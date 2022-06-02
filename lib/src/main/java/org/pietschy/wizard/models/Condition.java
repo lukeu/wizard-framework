@@ -15,8 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- *
- * $Id: Condition.java,v 1.3 2005/05/16 23:07:00 pietschy Exp $
  */
 package org.pietschy.wizard.models;
 
@@ -25,11 +23,9 @@ import org.pietschy.wizard.WizardModel;
 /**
  * An interface that is used by {@link DynamicModel} and {@link MultiPathModel} to determine
  * if a wizard should display a particular step or group of steps.
- * @version $Revision: 1.3 $
  * @author andrewp
  * @see DynamicModel#add(org.pietschy.wizard.WizardStep, Condition)
  * @see BranchingPath#addBranch(Path, Condition)
- *
  */
 public interface
 Condition

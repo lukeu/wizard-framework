@@ -15,8 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- *
- * $Id: HelpBroker.java,v 1.3 2005/05/16 23:06:57 pietschy Exp $
  */
 package org.pietschy.wizard;
 
@@ -27,7 +25,6 @@ import javax.swing.*;
  * help button will be automatically displayed and help request fowwareded the model.  Otherwise, you'll need to
  * call {@link Wizard#setHelpBroker(HelpBroker)} explicitly with an instance of this interface.
  * @author andrewp
- * @version $Revision: 1.3 $
  */
 public interface
 HelpBroker

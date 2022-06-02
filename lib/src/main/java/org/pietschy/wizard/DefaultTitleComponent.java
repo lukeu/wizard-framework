@@ -15,8 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- *
- * $Id: DefaultTitleComponent.java,v 1.4 2005/05/16 23:06:57 pietschy Exp $
  */
 
 package org.pietschy.wizard;

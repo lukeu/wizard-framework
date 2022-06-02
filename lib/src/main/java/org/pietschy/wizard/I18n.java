@@ -15,8 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- *
- * $Id: I18n.java,v 1.6 2005/05/16 23:06:57 pietschy Exp $
  */
 package org.pietschy.wizard;
 
@@ -31,13 +29,10 @@ import java.util.Locale;
  * from the classpath but you can specify you own bundle by calling the static {@link #setBundle} method.
  *
  * @author andrewp
- * @version $Revision: 1.6 $
  */
 public class
 I18n
 {
-   private static final String _ID_ = "$Id: I18n.java,v 1.6 2005/05/16 23:06:57 pietschy Exp $";
-
    private static ResourceBundle bundle = null;
 
    private static ResourceBundle

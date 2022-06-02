@@ -15,8 +15,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- *
- * $Id: WizardStep.java,v 1.14 2005/05/22 07:13:30 pietschy Exp $
  */
 package org.pietschy.wizard;
 
@@ -28,15 +26,10 @@ import java.beans.PropertyChangeListener;
  * All changes to properties must fire property change events.
  *
  * @author andrewp
- * @version $Revision: 1.14 $
  */
 public interface
 WizardStep
 {
-   // Constants and variables
-   // -------------------------------------------------------------------------
-   static final String _ID_ = "$Id: WizardStep.java,v 1.14 2005/05/22 07:13:30 pietschy Exp $";
-
    /**
     * Gets the name of this step. This will be displayed in the title of the wizard while this
     * step is active.
