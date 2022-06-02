@@ -1,0 +1,142 @@
+<project name="wizard-framework" default="core-jars" basedir=".">
+
+   <!--   <taskdef name="rasterize"-->
+   <!--      classname="org.apache.tools.ant.taskdefs.optional.RasterizerTask"/>-->
+
+   <property file="project.properties"/>
+
+   <!-- set global properties for this build -->
+
+   <property name="build.compiler" value="javac1.4"/>
+
+   <property name="src" value="src"/>
+   <property name="build" value="classes"/>
+   <property name="libs" value="libs"/>
+   <property name="docs" value="docs"/>
+   <property name="dist" value="dist"/>
+   <property name="www" value="www"/>
+   <property name="release" value="${www}/release"/>
+   <property name="debug" value="off"/>
+
+   <path id="compilation-classpath">
+      <fileset dir="${libs}">
+         <include name="**/*.jar"/>
+         <include name="**/*.zip"/>
+      </fileset>
+   </path>
+
+   <path id="runtime-classpath">
+      <pathelement path="${build}"/>
+      <path refid="compilation-classpath"/>
+   </path>
+
+   <property name="runtime.classpath" refid="runtime-classpath"/>
+
+   <target name="init">
+      <!-- Create the time stamp -->
+      <tstamp/>
+
+      <mkdir dir="${build}"/>
+      <mkdir dir="${dist}"/>
+      <mkdir dir="${libs}"/>
+      <mkdir dir="${docs}"/>
+   </target>
+
+   <target name="clean" depends="clean-dist">
+      <delete failonerror="false">
+         <fileset dir="${build}" includes="**/*"/>
+      </delete>
+   </target>
+
+   <target name="clean-dist">
+      <delete failonerror="false">
+         <fileset dir="${dist}" includes="**/*"/>
+      </delete>
+   </target>
+
+   <target name="compile" depends="init">
+      <javac srcdir="${src}" destdir="${build}" source="1.4" target="1.4" debug="${debug}">
+         <classpath refid="compilation-classpath"/>
+      </javac>
+      <copy todir="${build}">
+         <fileset dir="${src}" includes="*.properties"/>
+      </copy>
+   </target>
+
+
+   <target name="core-jars" depends="compile">
+      <jar jarfile="${dist}/${jar.core}">
+         <fileset dir="${build}">
+            <include name="org/**"/>
+            <include name="*.properties"/>
+         </fileset>
+         <manifest>
+            <attribute name="Built-By" value="${user.name}"/>
+         </manifest>
+      </jar>
+
+      <jar jarfile="${dist}/${jar.core.source}">
+         <fileset dir="${src}">
+            <include name="org/**"/>
+            <include name="*.properties"/>
+         </fileset>
+         <manifest>
+            <attribute name="Built-By" value="${user.name}"/>
+         </manifest>
+      </jar>
+   </target>
+
+   <target name="dist" depends="clean-dist, core-jars">
+
+      <zip file="${dist}/${zip.docs}">
+         <fileset dir="${docs}"/>
+      </zip>
+
+      <copy todir="${dist}">
+         <fileset file="${basedir}/*.TXT"/>
+      </copy>
+
+      <zip file="${dist}/${zip.all}">
+         <fileset dir="${dist}" includes="*" excludes="${zip.all}"/>
+      </zip>
+   </target>
+
+   <target name="docs">
+      <delete failonerror="false">
+         <fileset dir="${docs}" includes="**/*"/>
+      </delete>
+
+      <javadoc destdir="${docs}" stylesheetfile="${basedir}/stylesheet.css">
+         <packageset dir="${src}" defaultexcludes="yes">
+            <include name="org/pietschy/**"/>
+         </packageset>
+         <doctitle><![CDATA[<h1>${project.title} ${version.full}</h1>${project.copyright}]]></doctitle>
+         <bottom><![CDATA[<i>Copyright &#169; 2004 Andrew Pietsch.</i>]]></bottom>
+      </javadoc>
+   </target>
+
+   <target name="release" depends="clean, clean-dist, docs, dist">
+
+      <copy todir="${www}" file="index.html" overwrite="true">
+         <filterset begintoken="@" endtoken="@">
+            <filter token="VERSION" value="${version.full}"/>
+         </filterset>
+      </copy>
+
+      <mkdir dir="${release}"/>
+      <copy todir="${release}">
+         <fileset dir="${dist}" includes="*.jar"/>
+         <fileset dir="${dist}" includes="*.zip"/>
+         <fileset dir="${dist}" includes="*.TXT"/>
+      </copy>
+   </target>
+
+   <target name="upload-release">
+      <ant antfile="deploy.xml" target="upload-release" inheritall="true"/>
+   </target>
+
+   <target name="upload-api">
+      <ant antfile="deploy.xml" target="upload-api" inheritall="true"/>
+   </target>
+
+</project>

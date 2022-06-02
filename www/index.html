@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Swing Wizard Framework</title>
+  <style type="text/css">
+     .comment { color: rgb(153, 153, 153); }
+  </style>
+</head>
+<body>
+<p>A Swing wizard library for Java based on a WizardModel and a number of
+WizardSteps.  The library comes with three models that can be extended, they are as follows.
+<ul>
+<li>
+<a href="http://pietschy.org/software/wizard-framework/api/org/pietschy/wizard/models/StaticModel.html">StaticModel</a>
+- The most basic model.
+</li>
+<li>
+<a href="http://pietschy.org/software/wizard-framework/api/org/pietschy/wizard/models/DynamicModel.html">DynamicModel</a>
+- Similar to the static model, except that steps can be skiped dynamically at runtime based on the users response.
+</li>
+<li>
+<a href="http://pietschy.org/software/wizard-framework/api/org/pietschy/wizard/models/MultiPathModel.html">MultiPathModel</a>
+- The most complex model, similar to the dynamic model, except that steps are grouped into paths, and paths are linked
+together.
+</li>
+</ul>
+</p>
+<p><b>Todo</b><br>
+<ul>
+  <li>Improved documentation</li>
+  <li>Move colors etc to UIManager properties.</li>
+</ul>
+<p><br>
+<h3>Other Libraries I've Developed</h3>
+<p>
+   <a href="http://pietschy.com/products/gui-commands/">GUI Commands</a> - A comprehensive command framework for swing (Commercial/Free for non commercial)<br/>
+   <a href="http://explicit-tablelayout.dev.java.net/">ExplicitTableBuilder</a> - A powerful Swing layout builder based on ExplicitLayout (LGPL).
+</p>
+
+<h3>Participation</h3>
+<p>
+Please feel free to join as an observer, download the code and hack away.  Please note that developer roles
+are reserved for existing project members who have sumbmitted qualitly patches.
+</p>
+<h3>Downloads</h3>
+<p>
+<a href="http://pietschy.org/software/wizard-framework/download/CHANGES.TXT">CHANGES.TXT</a><br>
+<a href="http://pietschy.org/software/wizard-framework/download/wizard-0.1.12.jar">wizard-0.1.12.jar</a><br>
+<a href="http://pietschy.org/software/wizard-framework/download/wizard-0.1.12-src.jar">wizard-0.1.12-src.jar</a><br>
+<a href="http://pietschy.org/software/wizard-framework/download/wizard-0.1.12-docs.zip">wizard-0.1.12-docs.zip</a><br>
+</p>
+<h3><b>Documentation</b></h3>
+<p>
+<a href='http://pietschy.org/software/wizard-framework/api/index.html'>API</a><br>
+<a href='http://pietschy.org/support/forum/index.php'>Forum</a>
+</p>
+<h3><b>Screenshot</b></h3>
+<p>
+<img src="images/screen-shot.jpg"><br>
+In this example I called <tt>wizard.setOverviewVisible(false)</tt> to hide the
+overview panel.  This particular example also uses another <a href="https://explicit-tablelayout.dev.java.net/">project of mine</a> for the layout.
+<br>
+</p>
+<h3>Donations</h3>
+<p>
+If you've found the Wizard Framework useful and you'd like to make a donation, you can use the Paypal
+button below.  Please note there is absolutely no obligation to make a donation and that the
+library will remain free of charge.
+</p>
+<p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but04.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+</form>
+</p>
+
+<h3><b>Getting Started</b></h3>
+<p>
+For an example of a multipath wizard please see the javadoc for <a href="http://pietschy.org/software/wizard-framework/api/org/pietschy/wizard/models/MultiPathModel.html">MultiPathModel.java</a>.
+</p>
+<p> <b>1. Basic Usage</b> </p>
+<pre>
+   StaticModel model = new StaticModel();
+   model.add(new MyFirstStep());
+   model.add(...);
+   model.add(...);
+
+   Wizard wizard = new Wizard(model);
+   wizard.showInFrame("My first wizard");
+</pre>
+<p>
+Please read the javadoc for details on using the other standard models.<br>
+<ul>
+<li><a href="http://pietschy.org/software/wizard-framework/api/org/pietschy/wizard/models/StaticModel.html">StaticModel.java</a></li>
+<li><a href="http://pietschy.org/software/wizard-framework/api/org/pietschy/wizard/models/DynamicModel.html">DynamicModel.java</a></li>
+<li><a href="http://pietschy.org/software/wizard-framework/api/org/pietschy/wizard/models/MultiPathModel.html">MultiPathModel.java</a></li>
+</ul>
+</p>
+<b>2. Basic WizardStep</b>
+<pre>
+   public class MyWizardStep
+   extends WizardStep
+   {
+      private MyModel model;
+      private JPanel mainView;
+      private JCheckBox agreeCheckbox;
+      private JTextArea license;
+
+      public MyWizardStep()
+      {
+         super("My First Step", "A summary of the first step");
+
+         <span class="comment">// build and layout the components..</span>
+         mainView = new JPanel();
+         agreeCheckbox = new JCheckBox("Agree");
+         license = new JTextArea();
+         mainView.setLayout(...);
+         mainView.add(agreeCheckbox);
+         ...
+
+         <span class="comment">// listen to changes in the state..</span>
+         agreeCheckbox.addItemListener(new ItemListener()
+         {
+            public void itemSelected(ItemEvent e)
+            {
+               <span class="comment">// only continue if they agree</span>
+               MyWizardStep.this.<b>setComplete(agreeCheckbox.isSelected());</b>
+            }
+         });
+      }
+
+      public void init(WizardModel model)
+      {
+         this.model = (MyModel) model;
+      }
+
+      public void prepare()
+      {
+         <span class="comment">// load our view...</span>
+         <b>setView(mainView);</b>
+      }
+
+      public void applyState()
+      throws InvalidStateException
+      {
+         <span class="comment">// display a progress bar of some kind..</span>
+         <b>setView(myProgressView);</b>
+
+         <b>setBusy(true);</b>
+         try
+         {
+            <span class="comment">// do some work on another thread.. see <a href="http://foxtrot.sourceforge.net/">Foxtrot</a></span>
+            ...
+         }
+         finally
+         {
+            <b>setBusy(false);</b>
+         }
+
+         <span class="comment">// if error then throw an exception</span>
+         if (!ok)
+         {
+            <span class="comment">// restore our original view..</span>
+            <b>setView(mainView)</b>
+            <span class="comment">// The wizard will display this message to the user.</span>
+            <span class="comment">// You can prevent this by calling invalidStateException.setShowUser(false)</span>
+            throw new InvalidStateException("That didn't work!");
+         }
+
+         <span class="comment">// all is well so update the model</span>
+         model.setAcceptsLicense(agreeCheckbox.isSelected());
+      }
+
+      public void getPreferredSize()
+      {
+         <span class="comment">// use the size of our main view...</span>
+         mainView.getPreferredSize();
+      }
+   }
+</pre>
+</body>
+</html>
