@@ -21,9 +21,6 @@ package org.pietschy.wizard.models;
 
 import org.pietschy.wizard.WizardStep;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 /**
  * A SimplePath represents a sequence of {@link WizardStep wizard steps} whose
  * next path is determined at compile time. That is, SimplePaths can't branch.
@@ -63,7 +60,8 @@ public class SimplePath extends Path {
     }
 
     public void visitNextPath(PathVisitor visitor) {
-        if (nextPath != null)
+        if (nextPath != null) {
             nextPath.acceptVisitor(visitor);
+        }
     }
 }

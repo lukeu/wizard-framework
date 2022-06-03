@@ -19,7 +19,7 @@
 
 package org.pietschy.wizard;
 
-import javax.swing.*;
+import javax.swing.JComponent;
 
 /**
  * An interface that marks a model as providing an overview component for the

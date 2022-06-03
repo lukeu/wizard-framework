@@ -18,7 +18,7 @@
  */
 package org.pietschy.wizard;
 
-import javax.swing.*;
+import javax.swing.JComponent;
 
 /**
  * An interface for handling wizard help requests. If this interface is

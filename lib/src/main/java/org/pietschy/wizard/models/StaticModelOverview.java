@@ -19,16 +19,21 @@
 
 package org.pietschy.wizard.models;
 
-import org.pietschy.wizard.WizardStep;
-import org.pietschy.wizard.Wizard;
-import org.pietschy.wizard.I18n;
-
-import javax.swing.*;
-import java.beans.PropertyChangeListener;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.beans.PropertyChangeEvent;
-import java.awt.*;
-import java.util.Iterator;
+import java.beans.PropertyChangeListener;
 import java.util.HashMap;
+import java.util.Iterator;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import org.pietschy.wizard.I18n;
+import org.pietschy.wizard.WizardStep;
 
 /**
  * This class provides an overview panel for instances of {@link StaticModel}.
@@ -53,7 +58,8 @@ public class StaticModelOverview extends JPanel implements PropertyChangeListene
         int i = 1;
         for (Iterator iter = model.stepIterator(); iter.hasNext();) {
             WizardStep step = (WizardStep) iter.next();
-            JLabel label = new JLabel("" + i++ + ". " + step.getName());
+            JLabel label = new JLabel("" + i + ". " + step.getName());
+            i++;
             label.setBackground(new Color(240, 240, 240));
             label.setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
             label.setAlignmentX(0);
@@ -68,8 +74,9 @@ public class StaticModelOverview extends JPanel implements PropertyChangeListene
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("activeStep")) {
             JLabel old = (JLabel) labels.get(evt.getOldValue());
-            if (old != null)
+            if (old != null) {
                 formatInactive(old);
+            }
 
             JLabel label = (JLabel) labels.get(evt.getNewValue());
             formatActive(label);

@@ -18,7 +18,7 @@
  */
 package org.pietschy.wizard;
 
-import java.awt.*;
+import java.awt.Window;
 
 /**
  * This class implements {@link WizardListener} and is used to hide and dispose

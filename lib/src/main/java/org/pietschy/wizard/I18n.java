@@ -18,10 +18,10 @@
  */
 package org.pietschy.wizard;
 
-import javax.swing.*;
-import java.util.ResourceBundle;
 import java.util.MissingResourceException;
-import java.util.Locale;
+import java.util.ResourceBundle;
+
+import javax.swing.KeyStroke;
 
 /**
  * Internationalization Helper. By default this class attempts to load the
@@ -34,8 +34,9 @@ public class I18n {
     private static ResourceBundle bundle = null;
 
     private static ResourceBundle getBundle() {
-        if (bundle == null)
+        if (bundle == null) {
             bundle = ResourceBundle.getBundle("org-pietschy-wizard");
+        }
 
         return bundle;
     }
@@ -59,16 +60,19 @@ public class I18n {
     public static int getMnemonic(String key) {
         String mnemonicString = getBundle().getString(key);
 
-        if (mnemonicString == null)
+        if (mnemonicString == null) {
             throw new MissingResourceException("Missing resource: " + key, I18n.class.getName(), key);
+        }
 
-        if (mnemonicString.length() != 1)
+        if (mnemonicString.length() != 1) {
             throw new IllegalStateException("mnemonic string invalid: " + mnemonicString);
+        }
 
         KeyStroke ks = KeyStroke.getKeyStroke(mnemonicString.toUpperCase());
 
-        if (ks == null)
+        if (ks == null) {
             throw new IllegalStateException("mnemonic string invalid: " + mnemonicString);
+        }
 
         return ks.getKeyCode();
     }

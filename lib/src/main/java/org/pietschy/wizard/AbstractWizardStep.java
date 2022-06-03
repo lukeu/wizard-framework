@@ -19,10 +19,11 @@
 
 package org.pietschy.wizard;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+
+import javax.swing.Icon;
 
 /**
  * This is the base class for all non panel related wizard steps. Subclasses

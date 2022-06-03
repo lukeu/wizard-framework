@@ -19,12 +19,13 @@
 
 package org.pietschy.wizard.models;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Stack;
+
 import org.pietschy.wizard.AbstractWizardModel;
 import org.pietschy.wizard.WizardStep;
-
-import java.util.*;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
 
 /**
  * MultiPathModels are built from a joined set of {@link Path Paths} that each
@@ -109,8 +110,9 @@ public class MultiPathModel extends AbstractWizardModel {
         firstPath.acceptVisitor(v);
         lastPath = v.getPath();
 
-        if (lastPath == null)
+        if (lastPath == null) {
             throw new IllegalStateException("Unable to locate last path");
+        }
 
         for (Iterator iter = pathMapping.keySet().iterator(); iter.hasNext();) {
             addCompleteListener((WizardStep) iter.next());
@@ -182,8 +184,9 @@ public class MultiPathModel extends AbstractWizardModel {
      */
     public boolean allStepsComplete() {
         for (Iterator iterator = stepIterator(); iterator.hasNext();) {
-            if (!((WizardStep) iterator.next()).isComplete())
+            if (!((WizardStep) iterator.next()).isComplete()) {
                 return false;
+            }
         }
 
         return true;
@@ -203,8 +206,9 @@ public class MultiPathModel extends AbstractWizardModel {
         public void visitPath(SimplePath p) {
             if (enter(p)) {
                 if (p.getNextPath() == null) {
-                    if (this.last != null)
+                    if (this.last != null) {
                         throw new IllegalStateException("Two paths have empty values for nextPath");
+                    }
 
                     this.last = p;
                 } else {
@@ -214,8 +218,9 @@ public class MultiPathModel extends AbstractWizardModel {
         }
 
         public void visitPath(BranchingPath path) {
-            if (enter(path))
+            if (enter(path)) {
                 path.visitBranches(this);
+            }
         }
 
         public Path getPath() {

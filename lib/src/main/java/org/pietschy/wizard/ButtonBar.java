@@ -19,12 +19,18 @@
 
 package org.pietschy.wizard;
 
-import javax.swing.*;
-import java.beans.PropertyChangeListener;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.LayoutManager;
 import java.beans.PropertyChangeEvent;
-import java.awt.*;
-import java.awt.event.FocusListener;
-import java.awt.event.FocusEvent;
+import java.beans.PropertyChangeListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  * The component that holds the wizards buttons. Subclasses may override
@@ -147,10 +153,12 @@ public class ButtonBar extends JPanel {
                 cancelButton, closeButton };
         for (int i = 0; i < buttons.length; i++) {
             Dimension buttonDim = buttons[i].getPreferredSize();
-            if (buttonDim.width > d.width)
+            if (buttonDim.width > d.width) {
                 d.width = (int) buttonDim.width;
-            if (buttonDim.height > d.height)
+            }
+            if (buttonDim.height > d.height) {
                 d.height = (int) buttonDim.height;
+            }
         }
 
         for (int i = 0; i < buttons.length; i++) {

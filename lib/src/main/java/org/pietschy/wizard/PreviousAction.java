@@ -19,9 +19,9 @@
 
 package org.pietschy.wizard;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
+
+import javax.swing.SwingConstants;
 
 /**
  * Created by IntelliJ IDEA. User: andrewp Date: 7/06/2004 Time: 16:06:09 To

@@ -19,18 +19,16 @@
 
 package org.pietschy.wizard.models;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+
+import javax.swing.JComponent;
+
 import org.pietschy.wizard.AbstractWizardModel;
-import org.pietschy.wizard.WizardStep;
 import org.pietschy.wizard.OverviewProvider;
 import org.pietschy.wizard.Wizard;
-
-import javax.swing.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Collections;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
-import java.awt.*;
+import org.pietschy.wizard.WizardStep;
 
 /**
  * This class provides the basis for a simple linear wizard model. Steps are
@@ -56,16 +54,18 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
     }
 
     public void nextStep() {
-        if (currentStep >= steps.size() - 1)
+        if (currentStep >= steps.size() - 1) {
             throw new IllegalStateException("Already on last step");
+        }
 
         currentStep++;
         setActiveStep((WizardStep) steps.get(currentStep));
     }
 
     public void previousStep() {
-        if (currentStep == 0)
+        if (currentStep == 0) {
             throw new IllegalStateException("Already at first step");
+        }
 
         currentStep--;
         setActiveStep((WizardStep) steps.get(currentStep));
@@ -115,8 +115,9 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
      */
     public boolean allStepsComplete() {
         for (Iterator iterator = steps.iterator(); iterator.hasNext();) {
-            if (!((WizardStep) iterator.next()).isComplete())
+            if (!((WizardStep) iterator.next()).isComplete()) {
                 return false;
+            }
         }
 
         return true;
@@ -131,8 +132,9 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
      *         state.
      */
     public JComponent getOverviewComponent() {
-        if (overviewComponent == null)
+        if (overviewComponent == null) {
             overviewComponent = new StaticModelOverview(this);
+        }
 
         return overviewComponent;
     }

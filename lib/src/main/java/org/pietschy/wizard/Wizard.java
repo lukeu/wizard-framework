@@ -19,15 +19,34 @@
 
 package org.pietschy.wizard;
 
-import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.AbstractBorder;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dialog;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.Window;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Iterator;
+
+import javax.swing.Action;
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JWindow;
+import javax.swing.RootPaneContainer;
+import javax.swing.SwingUtilities;
+import javax.swing.border.AbstractBorder;
 
 /**
  * The wizard class is the main entry point for creating wizards. Typically you
@@ -110,8 +129,9 @@ public class Wizard extends JPanel {
      * @param model the model that the wizard is to use.
      */
     public Wizard(WizardModel model) {
-        if (model == null)
+        if (model == null) {
             throw new NullPointerException("models is null");
+        }
 
         this.model = model;
         this.model.addPropertyChangeListener(new PropertyChangeListener() {
@@ -172,8 +192,9 @@ public class Wizard extends JPanel {
 
         configureOverviewContainer();
 
-        if (model instanceof HelpBroker)
+        if (model instanceof HelpBroker) {
             setHelpBroker((HelpBroker) model);
+        }
 
         this.model.reset();
     }
@@ -187,8 +208,9 @@ public class Wizard extends JPanel {
      * @param defaultExitMode the default exit mode.
      */
     public void setDefaultExitMode(int defaultExitMode) {
-        if (defaultExitMode != EXIT_ON_FINISH && defaultExitMode != EXIT_ON_CLOSE)
+        if (defaultExitMode != EXIT_ON_FINISH && defaultExitMode != EXIT_ON_CLOSE) {
             throw new IllegalArgumentException();
+        }
 
         this.defaultExitMode = defaultExitMode;
     }
@@ -367,8 +389,9 @@ public class Wizard extends JPanel {
     public void cancel() {
         WizardStep activeStep = getModel().getActiveStep();
         if (activeStep != null && activeStep.isBusy()) {
-            if (!confirmAbort())
+            if (!confirmAbort()) {
                 return;
+            }
 
             activeStep.abortBusy();
         }
@@ -485,8 +508,9 @@ public class Wizard extends JPanel {
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == WizardListener.class) {
                 // Lazily create the event:
-                if (event == null)
+                if (event == null) {
                     event = new WizardEvent(this);
+                }
                 ((WizardListener) listeners[i + 1]).wizardClosed(event);
             }
         }
@@ -504,8 +528,9 @@ public class Wizard extends JPanel {
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == WizardListener.class) {
                 // Lazily create the event:
-                if (event == null)
+                if (event == null) {
                     event = new WizardEvent(this);
+                }
                 ((WizardListener) listeners[i + 1]).wizardCancelled(event);
             }
         }
@@ -620,8 +645,9 @@ public class Wizard extends JPanel {
     }
 
     private JDialog createDialogFor(Window window, String title, boolean modal) {
-        if (window == null)
+        if (window == null) {
             throw new NullPointerException("window is null");
+        }
 
         JDialog dialog = null;
         if (window instanceof Frame) {

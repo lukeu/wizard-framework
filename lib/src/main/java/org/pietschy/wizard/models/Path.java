@@ -19,11 +19,9 @@
 
 package org.pietschy.wizard.models;
 
-import org.pietschy.wizard.WizardStep;
-
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+
+import org.pietschy.wizard.WizardStep;
 
 /**
  * Paths represent a sequence of {@link WizardStep}s.

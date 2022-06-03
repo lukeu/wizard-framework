@@ -19,12 +19,12 @@
 
 package org.pietschy.wizard;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.*;
-import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 
 /**
  *
@@ -49,8 +49,9 @@ class HelpAction extends AbstractAction {
     public void actionPerformed(ActionEvent e) {
         HelpBroker helpBroker = wizard.getHelpBroker();
 
-        if (helpBroker != null)
+        if (helpBroker != null) {
             helpBroker.activateHelp(wizard, wizard.getModel());
+        }
     }
 
     private void configureState() {

@@ -19,11 +19,24 @@
 
 package org.pietschy.wizard;
 
-import javax.swing.*;
-import java.beans.PropertyChangeListener;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Paint;
 import java.beans.PropertyChangeEvent;
-import java.awt.*;
+import java.beans.PropertyChangeListener;
 import java.util.Iterator;
+
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.JEditorPane;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  * This class displays the details of the current {@link WizardStep}. It
@@ -84,10 +97,11 @@ public class DefaultTitleComponent extends JPanel {
         Dimension maximumSize = new Dimension(maxIconWidth, maxIconHeight);
         iconLabel.setMaximumSize(maximumSize);
         iconLabel.setPreferredSize(maximumSize);
-        if (iconLabel.getComponentOrientation().isLeftToRight())
+        if (iconLabel.getComponentOrientation().isLeftToRight()) {
             iconLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        else
+        } else {
             iconLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        }
         iconLabel.setVerticalAlignment(SwingConstants.CENTER);
 
         p.add(title, BorderLayout.PAGE_START);

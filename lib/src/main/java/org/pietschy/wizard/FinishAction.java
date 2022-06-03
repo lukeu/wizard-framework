@@ -19,9 +19,7 @@
 
 package org.pietschy.wizard;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 
 /**
  * Created by IntelliJ IDEA. User: andrewp Date: 7/06/2004 Time: 16:06:09 To
@@ -38,12 +36,13 @@ class FinishAction extends WizardAction {
         int defaultCloseOperation = getWizard().getDefaultExitMode();
 
         // todo (ap): should really consider making this more OO.
-        if (defaultCloseOperation == Wizard.EXIT_ON_FINISH)
+        if (defaultCloseOperation == Wizard.EXIT_ON_FINISH) {
             getWizard().getCloseAction().actionPerformed(e);
-        else if (defaultCloseOperation == Wizard.EXIT_ON_CLOSE)
+        } else if (defaultCloseOperation == Wizard.EXIT_ON_CLOSE) {
             getWizard().showCloseButton();
-        else
+        } else {
             throw new InvalidStateException("Invalid finish operaion: " + defaultCloseOperation);
+        }
     }
 
     protected void updateState() {

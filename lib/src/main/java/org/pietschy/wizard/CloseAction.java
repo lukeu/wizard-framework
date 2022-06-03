@@ -19,10 +19,10 @@
 
 package org.pietschy.wizard;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.*;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 
 /**
  * Created by IntelliJ IDEA. User: andrewp Date: 10/06/2004 Time: 19:55:40 To

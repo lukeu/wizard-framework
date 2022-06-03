@@ -18,12 +18,14 @@
  */
 package org.pietschy.wizard.pane;
 
+import java.awt.Component;
+import java.awt.Dimension;
+
+import javax.swing.Icon;
+
 import org.pietschy.wizard.AbstractWizardStep;
 import org.pietschy.wizard.InvalidStateException;
 import org.pietschy.wizard.WizardModel;
-
-import javax.swing.*;
-import java.awt.*;
 
 /**
  * A simple step that can be used to decouple the step from its user interface
@@ -61,8 +63,9 @@ public class WizardPaneStep extends AbstractWizardStep {
     public WizardPaneStep(WizardPane pane, String name, String summary) {
         super(name, summary);
 
-        if (!(pane instanceof Component))
+        if (!(pane instanceof Component)) {
             throw new IllegalArgumentException("The pane should also be a Component subclass");
+        }
         this.pane = pane;
     }
 

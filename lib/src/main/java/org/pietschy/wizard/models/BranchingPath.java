@@ -19,12 +19,11 @@
 
 package org.pietschy.wizard.models;
 
-import org.pietschy.wizard.WizardStep;
-
 import java.util.HashMap;
-import java.util.List;
 import java.util.Iterator;
 import java.util.Map;
+
+import org.pietschy.wizard.WizardStep;
 
 /**
  * BranchingPaths represent a sequence of {@link WizardStep}s that has multiple
@@ -63,8 +62,9 @@ public class BranchingPath extends Path {
         for (Iterator iter = paths.entrySet().iterator(); iter.hasNext();) {
             Map.Entry entry = (Map.Entry) iter.next();
             Condition condition = (Condition) entry.getKey();
-            if (condition.evaluate(model))
+            if (condition.evaluate(model)) {
                 return (Path) entry.getValue();
+            }
         }
 
         throw new IllegalStateException("No next path selected");

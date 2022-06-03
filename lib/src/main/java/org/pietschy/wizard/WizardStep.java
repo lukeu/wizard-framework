@@ -18,9 +18,11 @@
  */
 package org.pietschy.wizard;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.beans.PropertyChangeListener;
+
+import javax.swing.Icon;
 
 /**
  * All changes to properties must fire property change events.

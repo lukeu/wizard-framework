@@ -19,13 +19,12 @@
 
 package org.pietschy.wizard;
 
-import org.pietschy.wizard.models.StaticModel;
-import org.pietschy.wizard.models.MultiPathModel;
-
-import javax.swing.*;
-import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Iterator;
+
+import org.pietschy.wizard.models.MultiPathModel;
+import org.pietschy.wizard.models.StaticModel;
 
 /**
  * This interface defines the Model for wizards. It provides various methods for

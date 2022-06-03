@@ -19,9 +19,6 @@
 
 package org.pietschy.wizard;
 
-import javax.swing.*;
-import javax.swing.text.html.HTMLEditorKit;
-import javax.swing.text.EditorKit;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -29,6 +26,11 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.io.IOException;
 import java.net.URL;
+
+import javax.swing.JEditorPane;
+import javax.swing.UIManager;
+import javax.swing.text.EditorKit;
+import javax.swing.text.html.HTMLEditorKit;
 
 /**
  * This class displays HTML text using an instance of {@link JEditorPane} but
@@ -80,14 +82,16 @@ public class HTMLPane extends JEditorPane {
 
     public void setFont(Font font) {
         super.setFont(font);
-        if (kit != null)
+        if (kit != null) {
             updateEditorFont(font);
+        }
     }
 
     public void setForeground(Color fg) {
         super.setForeground(fg);
-        if (kit != null)
+        if (kit != null) {
             updateEditorColor(fg);
+        }
     }
 
     public void setEditorKit(EditorKit kit) {

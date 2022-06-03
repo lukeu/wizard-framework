@@ -19,8 +19,13 @@
 
 package org.pietschy.wizard;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
+
+import javax.swing.Icon;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 /**
  * Created by IntelliJ IDEA. User: andrewp Date: 4/06/2004 Time: 20:00:46 To
@@ -51,10 +56,11 @@ class ArrowIcon implements Icon {
 
         g.translate(x, y);
 
-        if (c.isEnabled())
+        if (c.isEnabled()) {
             g.setColor(c.getForeground());
-        else
+        } else {
             g.setColor(UIManager.getColor("Button.disabledForeground"));
+        }
 
         switch (direction) {
         case SwingConstants.NORTH:

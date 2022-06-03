@@ -19,13 +19,14 @@
 
 package org.pietschy.wizard.models;
 
-import org.pietschy.wizard.AbstractWizardModel;
-import org.pietschy.wizard.WizardStep;
-import org.pietschy.wizard.WizardModel;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Stack;
 
-import java.util.*;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
+import org.pietschy.wizard.AbstractWizardModel;
+import org.pietschy.wizard.WizardModel;
+import org.pietschy.wizard.WizardStep;
 
 /**
  * The DynamicModel is very similar to the static model, except that steps can
@@ -96,10 +97,11 @@ public class DynamicModel extends AbstractWizardModel {
      * @param step the step to added.
      */
     public void add(WizardStep step) {
-        if (step instanceof Condition)
+        if (step instanceof Condition) {
             add(step, (Condition) step);
-        else
+        } else {
             add(step, TRUE_CONDITION);
+        }
     }
 
     /**
@@ -175,8 +177,9 @@ public class DynamicModel extends AbstractWizardModel {
             Condition condition = (Condition) conditions.get(i);
 
             if (condition.evaluate(this)) {
-                if (!step.isComplete())
+                if (!step.isComplete()) {
                     return false;
+                }
             }
 
         }

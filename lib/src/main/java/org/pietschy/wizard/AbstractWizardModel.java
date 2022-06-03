@@ -19,9 +19,9 @@
 
 package org.pietschy.wizard;
 
-import java.beans.PropertyChangeSupport;
-import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 /**
  * This class provides a base for implementors of {@link WizardModel}. It
@@ -42,8 +42,9 @@ public abstract class AbstractWizardModel implements WizardModel {
 
     private PropertyChangeListener completeListener = new PropertyChangeListener() {
         public void propertyChange(PropertyChangeEvent evt) {
-            if (evt.getPropertyName().equals("complete"))
+            if (evt.getPropertyName().equals("complete")) {
                 refreshModelState();
+            }
         }
     };
 

@@ -19,11 +19,14 @@
 
 package org.pietschy.wizard;
 
-import javax.swing.*;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.Icon;
+import javax.swing.JOptionPane;
 
 /**
  * Base class for all Wizard actions.
@@ -42,8 +45,9 @@ public abstract class WizardAction extends AbstractAction implements PropertyCha
         this.wizard = wizard;
         getModel().addPropertyChangeListener(this);
         activeStep = getModel().getActiveStep();
-        if (activeStep != null)
+        if (activeStep != null) {
             activeStep.addPropertyChangeListener(this);
+        }
 
         putValue(Action.MNEMONIC_KEY, new Integer(I18n.getMnemonic(key + ".mnemonic")));
 
@@ -82,8 +86,9 @@ public abstract class WizardAction extends AbstractAction implements PropertyCha
 
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("activeStep")) {
-            if (activeStep != null)
+            if (activeStep != null) {
                 activeStep.removePropertyChangeListener(this);
+            }
             activeStep = (WizardStep) evt.getNewValue();
             activeStep.addPropertyChangeListener(this);
         }
