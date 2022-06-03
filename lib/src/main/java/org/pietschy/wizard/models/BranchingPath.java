@@ -20,8 +20,7 @@
 package org.pietschy.wizard.models;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.Map.Entry;
 
 import org.pietschy.wizard.WizardStep;
 
@@ -44,8 +43,7 @@ public class BranchingPath extends Path {
 
     @Override
     protected Path getNextPath(MultiPathModel model) {
-        for (Iterator<Map.Entry<Condition, Path>> iter = paths.entrySet().iterator(); iter.hasNext();) {
-            Map.Entry<Condition, Path> entry = iter.next();
+        for (Entry<Condition, Path> entry : paths.entrySet()) {
             Condition condition = entry.getKey();
             if (condition.evaluate(model)) {
                 return entry.getValue();
@@ -72,8 +70,7 @@ public class BranchingPath extends Path {
     }
 
     public void visitBranches(PathVisitor visitor) {
-        for (Iterator<Path> iter = paths.values().iterator(); iter.hasNext();) {
-            Path path = iter.next();
+        for (Path path : paths.values()) {
             path.acceptVisitor(visitor);
         }
     }

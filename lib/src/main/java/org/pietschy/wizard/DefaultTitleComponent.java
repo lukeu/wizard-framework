@@ -27,8 +27,6 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.Iterator;
 
 import javax.swing.BorderFactory;
@@ -118,15 +116,12 @@ public class DefaultTitleComponent extends JPanel {
                 BorderFactory.createCompoundBorder(BorderFactory.createEtchedBorder(), BorderFactory.createEmptyBorder(
                         Wizard.BORDER_WIDTH, Wizard.BORDER_WIDTH, Wizard.BORDER_WIDTH, Wizard.BORDER_WIDTH)));
 
-        model.addPropertyChangeListener(new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                if (evt.getPropertyName().equals("activeStep")) {
-                    WizardStep activeStep = DefaultTitleComponent.this.model.getActiveStep();
-                    title.setText(activeStep.getName());
-                    summary.setText(activeStep.getSummary());
-                    iconLabel.setIcon(activeStep.getIcon());
-                }
+        model.addPropertyChangeListener(evt -> {
+            if (evt.getPropertyName().equals("activeStep")) {
+                WizardStep activeStep = DefaultTitleComponent.this.model.getActiveStep();
+                title.setText(activeStep.getName());
+                summary.setText(activeStep.getSummary());
+                iconLabel.setIcon(activeStep.getIcon());
             }
         });
     }

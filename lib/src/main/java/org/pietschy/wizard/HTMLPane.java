@@ -98,7 +98,7 @@ public class HTMLPane extends JEditorPane {
     }
 
     private void updateEditorFont(Font font) {
-        StringBuffer rule = new StringBuffer("body { ");
+        StringBuilder rule = new StringBuilder("body { ");
         rule.append("font-family: ").append(font.getFamily()).append(";");
         rule.append(" font-size: ").append(font.getSize()).append("pt;");
         if (font.isBold()) {
@@ -114,7 +114,7 @@ public class HTMLPane extends JEditorPane {
     }
 
     private void updateEditorColor(Color fg) {
-        StringBuffer rule = new StringBuffer("body { color: #");
+        StringBuilder rule = new StringBuilder("body { color: #");
 
         if (fg.getRed() < 16) {
             rule.append('0');

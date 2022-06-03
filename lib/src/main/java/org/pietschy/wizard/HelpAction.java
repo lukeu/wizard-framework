@@ -20,8 +20,6 @@
 package org.pietschy.wizard;
 
 import java.awt.event.ActionEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -32,12 +30,7 @@ class HelpAction extends AbstractAction {
         super(I18n.getString("help.text"));
         this.wizard = wizard;
         putValue(Action.MNEMONIC_KEY, I18n.getMnemonic("help.mnemonic"));
-        wizard.addPropertyChangeListener("helpBroker", new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                configureState();
-            }
-        });
+        wizard.addPropertyChangeListener("helpBroker", evt -> configureState());
 
         configureState();
     }

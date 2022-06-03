@@ -114,8 +114,8 @@ public class MultiPathModel extends AbstractWizardModel {
             throw new IllegalStateException("Unable to locate last path");
         }
 
-        for (Iterator<WizardStep> iter = pathMapping.keySet().iterator(); iter.hasNext();) {
-            addCompleteListener(iter.next());
+        for (WizardStep step : pathMapping.keySet()) {
+            addCompleteListener(step);
         }
     }
 
@@ -260,8 +260,7 @@ public class MultiPathModel extends AbstractWizardModel {
         }
 
         private void populateMap(Path path) {
-            for (Iterator<WizardStep> iter = path.getSteps().iterator(); iter.hasNext();) {
-                WizardStep step = iter.next();
+            for (WizardStep step : path.getSteps()) {
                 map.put(step, path);
             }
         }

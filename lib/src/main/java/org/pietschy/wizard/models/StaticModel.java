@@ -113,8 +113,8 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
      *         <tt>false</tt> otherwise.
      */
     public boolean allStepsComplete() {
-        for (Iterator<WizardStep> iterator = steps.iterator(); iterator.hasNext();) {
-            if (!iterator.next().isComplete()) {
+        for (WizardStep step : steps) {
+            if (!step.isComplete()) {
                 return false;
             }
         }

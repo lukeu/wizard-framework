@@ -22,8 +22,6 @@ package org.pietschy.wizard;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.LayoutManager;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -58,19 +56,9 @@ public class ButtonBar extends JPanel {
 
     public ButtonBar(Wizard wizard) {
         this.wizard = wizard;
-        this.wizard.getModel().addPropertyChangeListener("lastVisible", new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                configureLastButton();
-            }
-        });
+        this.wizard.getModel().addPropertyChangeListener("lastVisible", evt -> configureLastButton());
 
-        this.wizard.addPropertyChangeListener("helpBroker", new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                configureHelpButton();
-            }
-        });
+        this.wizard.addPropertyChangeListener("helpBroker", evt -> configureHelpButton());
 
         previousButton = new JButton(wizard.getPreviousAction());
         nextButton = new JButton(wizard.getNextAction());
@@ -142,8 +130,8 @@ public class ButtonBar extends JPanel {
         // make sure that every button has the same size
         Dimension d = new Dimension();
         JButton[] buttons = { help, previous, next, last, finish, cancel, close };
-        for (int i = 0; i < buttons.length; i++) {
-            Dimension buttonDim = buttons[i].getPreferredSize();
+        for (JButton button : buttons) {
+            Dimension buttonDim = button.getPreferredSize();
             if (buttonDim.width > d.width) {
                 d.width = buttonDim.width;
             }
@@ -152,8 +140,8 @@ public class ButtonBar extends JPanel {
             }
         }
 
-        for (int i = 0; i < buttons.length; i++) {
-            buttons[i].setPreferredSize(d);
+        for (JButton button : buttons) {
+            button.setPreferredSize(d);
         }
     }
 

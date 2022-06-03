@@ -25,7 +25,6 @@ import java.util.Iterator;
 import java.util.Stack;
 
 import org.pietschy.wizard.AbstractWizardModel;
-import org.pietschy.wizard.WizardModel;
 import org.pietschy.wizard.WizardStep;
 
 /**
@@ -63,12 +62,7 @@ import org.pietschy.wizard.WizardStep;
 public class DynamicModel extends AbstractWizardModel {
 
     /** An implementation of {@link Condition} that always returns <tt>true</tt>. */
-    public static final Condition TRUE_CONDITION = new Condition() {
-        @Override
-        public boolean evaluate(WizardModel model) {
-            return true;
-        }
-    };
+    public static final Condition TRUE_CONDITION = model -> true;
 
     private ArrayList<WizardStep> steps = new ArrayList<>();
     private ArrayList<Condition> conditions = new ArrayList<>();

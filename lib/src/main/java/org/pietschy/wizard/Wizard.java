@@ -28,7 +28,6 @@ import java.awt.Image;
 import java.awt.Window;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Iterator;
 
@@ -113,12 +112,7 @@ public class Wizard extends JPanel {
 
     private boolean canceled = false;
 
-    private PropertyChangeListener viewListener = new PropertyChangeListener() {
-        @Override
-        public void propertyChange(PropertyChangeEvent evt) {
-            handleViewChange();
-        }
-    };
+    private PropertyChangeListener viewListener = evt -> handleViewChange();
 
     public Wizard(WizardModel model) {
         if (model == null) {
@@ -126,12 +120,9 @@ public class Wizard extends JPanel {
         }
 
         this.model = model;
-        this.model.addPropertyChangeListener(new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                if (evt.getPropertyName().equals("activeStep")) {
-                    handleStepChange();
-                }
+        this.model.addPropertyChangeListener(evt -> {
+            if (evt.getPropertyName().equals("activeStep")) {
+                handleStepChange();
             }
         });
 
