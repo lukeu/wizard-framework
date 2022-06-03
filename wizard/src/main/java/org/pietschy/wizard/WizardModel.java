@@ -21,7 +21,9 @@ package org.pietschy.wizard;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.pietschy.wizard.models.MultiPathModel;
 import org.pietschy.wizard.models.StaticModel;
@@ -121,8 +123,24 @@ public interface WizardModel {
     /**
      * Returns an iterator over all the steps in the model. The iteration order is
      * not guaranteed to be the order of traversal.
+     *
+     * @implSpec Implementations must not call the default implementation of {@code steps()}
+     *           (It would trigger an infinite loop.)
      */
     Iterator<WizardStep> stepIterator();
+
+    /**
+     * Returns all the steps in the model.
+     * The iteration order is not guaranteed to be the order of traversal.
+     *
+     * @implNote This default implementation works with unknown external implementations of
+     * stepIterator
+     */
+    default List<WizardStep> steps() {
+        ArrayList<WizardStep> steps = new ArrayList<>();
+        stepIterator().forEachRemaining(steps::add);
+        return steps;
+    }
 
     /**
      * Adds a {@link PropertyChangeListener} to this model.

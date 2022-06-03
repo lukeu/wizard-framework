@@ -27,8 +27,6 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
-import java.util.Iterator;
-
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.JEditorPane;
@@ -83,8 +81,8 @@ public class DefaultTitleComponent extends JPanel {
         // determine the largest icon size.
         int maxIconHeight = 0;
         int maxIconWidth = 0;
-        for (Iterator<WizardStep> iter = model.stepIterator(); iter.hasNext();) {
-            Icon icon = iter.next().getIcon();
+        for (WizardStep step : model.steps()) {
+            Icon icon = step.getIcon();
             if (icon != null) {
                 maxIconWidth = Math.max(maxIconWidth, icon.getIconWidth());
                 maxIconHeight = Math.max(maxIconHeight, icon.getIconHeight());

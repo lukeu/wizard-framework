@@ -20,8 +20,8 @@
 package org.pietschy.wizard.models;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Stack;
 
 import org.pietschy.wizard.AbstractWizardModel;
@@ -185,7 +185,12 @@ public class DynamicModel extends AbstractWizardModel {
 
     @Override
     public Iterator<WizardStep> stepIterator() {
-        return Collections.unmodifiableList(steps).iterator();
+        return steps.iterator();
+    }
+
+    @Override
+    public List<WizardStep> steps() {
+        return new ArrayList<>(steps);
     }
 
     private WizardStep findNextVisibleStep(WizardStep currentStep) {

@@ -20,8 +20,8 @@
 package org.pietschy.wizard.models;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JComponent;
 
@@ -83,7 +83,12 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
 
     @Override
     public Iterator<WizardStep> stepIterator() {
-        return Collections.unmodifiableList(steps).iterator();
+        return steps().iterator();
+    }
+
+    @Override
+    public List<WizardStep> steps() {
+        return new ArrayList<>(steps);
     }
 
     /**

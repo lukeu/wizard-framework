@@ -24,8 +24,6 @@ import java.awt.Dimension;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.HashMap;
-import java.util.Iterator;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -56,8 +54,7 @@ public class StaticModelOverview extends JPanel implements PropertyChangeListene
         title.setMaximumSize(new Dimension(Integer.MAX_VALUE, title.getMaximumSize().height));
         add(title);
         int i = 1;
-        for (Iterator<WizardStep> iter = model.stepIterator(); iter.hasNext();) {
-            WizardStep step = iter.next();
+        for (WizardStep step : model.steps()) {
             JLabel label = new JLabel("" + i + ". " + step.getName());
             i++;
             label.setBackground(new Color(240, 240, 240));
