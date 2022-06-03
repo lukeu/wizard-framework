@@ -26,9 +26,6 @@ import java.beans.PropertyChangeListener;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 
-/**
- *
- */
 class HelpAction extends AbstractAction {
     private Wizard wizard;
     protected HelpAction(Wizard wizard) {

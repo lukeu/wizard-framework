@@ -120,23 +120,17 @@ public interface WizardModel {
 
     /**
      * Returns an iterator over all the steps in the model. The iteration order is
-     * not guarenteed to the be the order of traversal.
-     *
-     * @return an iterator over all the steps of the model
+     * not guaranteed to be the order of traversal.
      */
     Iterator stepIterator();
 
     /**
      * Adds a {@link PropertyChangeListener} to this model.
-     *
-     * @param listener the listener to add.
      */
     void addPropertyChangeListener(PropertyChangeListener listener);
 
     /**
      * Removes a {@link PropertyChangeListener} from this model.
-     *
-     * @param listener the listener to remove.
      */
     void removePropertyChangeListener(PropertyChangeListener listener);
 

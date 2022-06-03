@@ -56,9 +56,6 @@ import org.pietschy.wizard.WizardStep;
  * It is also worth noting that steps that implement {@link Condition} can be
  * added using the basic {@link #add(WizardStep)} and the model will
  * automatically add them as an optional step.
- * <p>
- *
- *
  *
  * @see #add(WizardStep)
  * @see #add(WizardStep, Condition)
@@ -78,9 +75,6 @@ public class DynamicModel extends AbstractWizardModel {
 
     private Stack history = new Stack();
 
-    /**
-     * Creates a new DynamicModel.
-     */
     public DynamicModel() {
     }
 
@@ -151,8 +145,9 @@ public class DynamicModel extends AbstractWizardModel {
     }
 
     /**
-     * Forces the model to re-evaluate it's current state. This method will
-     * re-evalute the conditional steps by calling
+     * {@inheritDoc}
+     * <p>
+     * This implementation will re-evaluate the conditional steps by calling
      * {@link Condition#evaluate(org.pietschy.wizard.WizardModel)}.
      * <p>
      * Subclasses that override this method must be sure to invoke
@@ -199,10 +194,6 @@ public class DynamicModel extends AbstractWizardModel {
         return Collections.unmodifiableList(steps).iterator();
     }
 
-    /**
-     * @param currentStep
-     * @return
-     */
     private WizardStep findNextVisibleStep(WizardStep currentStep) {
         int startIndex = (currentStep == null) ? 0 : steps.indexOf(currentStep) + 1;
 
@@ -216,9 +207,6 @@ public class DynamicModel extends AbstractWizardModel {
         throw new IllegalStateException("Wizard contains no more visible steps");
     }
 
-    /**
-     * @return
-     */
     private WizardStep findLastStep() {
         for (int i = conditions.size() - 1; i >= 0; i--) {
             Condition condition = (Condition) conditions.get(i);

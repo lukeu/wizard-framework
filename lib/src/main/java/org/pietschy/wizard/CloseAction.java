@@ -24,10 +24,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 
-/**
- * Created by IntelliJ IDEA. User: andrewp Date: 10/06/2004 Time: 19:55:40 To
- * change this template use Options | File Templates.
- */
 class CloseAction extends AbstractAction {
     private Wizard wizard;
 

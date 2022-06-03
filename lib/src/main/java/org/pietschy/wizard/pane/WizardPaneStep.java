@@ -58,8 +58,6 @@ public class WizardPaneStep extends AbstractWizardStep {
      * Creates a new WizardPaneStep
      *
      * @param pane    - the graphical component. Should be a subclass of Component
-     * @param name
-     * @param summary
      */
     public WizardPaneStep(WizardPane pane, String name, String summary) {
         super(name, summary);
@@ -74,43 +72,28 @@ public class WizardPaneStep extends AbstractWizardStep {
      * Creates a new WizardPaneStep
      *
      * @param pane    - the graphical component. Should be a subclass of Component
-     * @param name
-     * @param summary
-     * @param icon
      */
     public WizardPaneStep(WizardPane pane, String name, String summary, Icon icon) {
         super(name, summary, icon);
         this.pane = pane;
     }
 
-    /**
-     * @see org.pietschy.wizard.WizardStep#init(org.pietschy.wizard.WizardModel)
-     */
     @Override
     public void init(WizardModel model) {
         pane.init(this, model);
     }
 
-    /**
-     * @see org.pietschy.wizard.WizardStep#prepare()
-     */
     @Override
     public void prepare() {
         setView((Component) pane);
         pane.prepare();
     }
 
-    /**
-     * @see org.pietschy.wizard.WizardStep#applyState()
-     */
     @Override
     public void applyState() throws InvalidStateException {
         pane.applyState();
     }
 
-    /**
-     * @see org.pietschy.wizard.WizardStep#getPreferredSize()
-     */
     @Override
     public Dimension getPreferredSize() {
         return ((Component) pane).getPreferredSize();

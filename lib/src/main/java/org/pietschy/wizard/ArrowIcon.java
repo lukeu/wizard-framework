@@ -27,10 +27,6 @@ import javax.swing.Icon;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
-/**
- * Created by IntelliJ IDEA. User: andrewp Date: 4/06/2004 Time: 20:00:46 To
- * change this template use Options | File Templates.
- */
 class ArrowIcon implements Icon {
 
     private int direction;

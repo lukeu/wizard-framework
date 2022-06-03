@@ -28,20 +28,12 @@ public class WizardFrameCloser implements WizardListener {
     private Window window;
     private Wizard wizard;
 
-    /**
-     * Creates a new closer that monitors the specified wizard and closes the parent
-     * frame.
-     *
-     * @param wizard
-     * @param window
-     */
+    /** Creates a new closer that monitors the specified wizard and closes the parent frame. */
     public static void bind(Wizard wizard, Window window) {
         new WizardFrameCloser(wizard, window);
     }
 
-    /**
-     * Constructs a new closer for the specified wizard in the specified window.
-     */
+    /** Constructs a new closer for the specified wizard in the specified window. */
     private WizardFrameCloser(Wizard wizard, Window window) {
         this.window = window;
         this.wizard = wizard;

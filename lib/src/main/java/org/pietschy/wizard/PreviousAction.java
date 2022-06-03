@@ -23,10 +23,6 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.SwingConstants;
 
-/**
- * Created by IntelliJ IDEA. User: andrewp Date: 7/06/2004 Time: 16:06:09 To
- * change this template use Options | File Templates.
- */
 class PreviousAction extends WizardAction {
     protected PreviousAction(Wizard model) {
         super("previous", model, new ArrowIcon(SwingConstants.WEST));

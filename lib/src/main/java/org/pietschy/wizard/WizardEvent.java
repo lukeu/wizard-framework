@@ -25,20 +25,11 @@ import java.util.EventObject;
  * This event is fired when ever a {@link Wizard} is closed or cancelled.
  */
 public class WizardEvent extends EventObject {
-    /**
-     * Constructs a new event for the specified {@link Wizard}.
-     *
-     * @param source
-     */
+
     public WizardEvent(Wizard source) {
         super(source);
     }
 
-    /**
-     * Returns the {@link Wizard} that fired the event.
-     *
-     * @return the wizard that fired the event.
-     */
     public Wizard getWizard() {
         return (Wizard) getSource();
     }

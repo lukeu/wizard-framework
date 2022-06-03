@@ -131,13 +131,12 @@ public class PanelWizardStep extends JPanel implements WizardStep {
     private boolean complete;
 
     /**
-     * Marks the task as being busy. While in this state the wizard will prevent
-     * cancel opertations.
+     * Marks the task as being busy. While in this state the wizard will prevent cancel operations.
      */
     private boolean busy = false;
 
     /**
-     * A default constructor make this class JavaBean compatible.
+     * A default constructor to make this class JavaBean compatible.
      */
     public PanelWizardStep() {
     }
@@ -145,9 +144,6 @@ public class PanelWizardStep extends JPanel implements WizardStep {
     /**
      * Creates a new step with the specified name and summary. The name and summary
      * are displayed in the wizard title block while this step is active.
-     *
-     * @param name    the name of this step.
-     * @param summary a brief summary of this step or some usage guidelines.
      */
     public PanelWizardStep(String name, String summary) {
         this(name, summary, null);
@@ -156,9 +152,6 @@ public class PanelWizardStep extends JPanel implements WizardStep {
     /**
      * Creates a new step with the specified name and summary. The name and summary
      * are displayed in the wizard title block while this step is active.
-     *
-     * @param name    the name of this step.
-     * @param summary a brief summary of this step or some usage guidelines.
      */
     public PanelWizardStep(String name, String summary, Icon icon) {
         setName(name);
@@ -166,13 +159,6 @@ public class PanelWizardStep extends JPanel implements WizardStep {
         this.icon = icon;
     }
 
-    /**
-     * Gets the summary of this step. This will be displayed in the title of the
-     * wizard while this step is active. The summary is typically an overview of the
-     * step or some usage guidelines for the user.
-     *
-     * @return the summary of this step.
-     */
     @Override
     public String getSummary() {
         return summary;
@@ -193,12 +179,6 @@ public class PanelWizardStep extends JPanel implements WizardStep {
         }
     }
 
-    /**
-     * Gets the {@link javax.swing.Icon} that represents this step.
-     *
-     * @return the {@link javax.swing.Icon} that represents this step, or
-     *         <tt>null</tt> if the step doesn't have an icon.
-     */
     @Override
     public Icon getIcon() {
         return icon;
@@ -219,9 +199,9 @@ public class PanelWizardStep extends JPanel implements WizardStep {
     }
 
     /**
-     * Returns 'this'.
+     * This implementation returns 'this'.
      *
-     * @return this panel.
+     * <p>{@inheritDoc}
      */
     @Override
     public Component getView() {
@@ -246,15 +226,6 @@ public class PanelWizardStep extends JPanel implements WizardStep {
 //      }
 //   }
 
-    /**
-     * Checks if this step is compete. This method should return true if the wizard
-     * can proceed to the next step. This property is bound and changes can be made
-     * at anytime by calling {@link #setComplete(boolean)} .
-     *
-     * @return <tt>true</tt> if the wizard can proceed from this step,
-     *         <tt>false</tt> otherwise.
-     * @see #setComplete
-     */
     @Override
     public boolean isComplete() {
         return complete;
@@ -275,13 +246,6 @@ public class PanelWizardStep extends JPanel implements WizardStep {
         }
     }
 
-    /**
-     * Checks if the current task is busy. This usually indicates that the step is
-     * performing a time consuming task on a background thread.
-     *
-     * @return <tt>true</tt> if step is busy performing a background operation,
-     *         <tt>false</tt> otherwise.
-     */
     @Override
     public boolean isBusy() {
         return busy;
@@ -293,7 +257,7 @@ public class PanelWizardStep extends JPanel implements WizardStep {
      * responds by disabling the various buttons appropriately.
      * <p>
      * Wizard steps that go into a busy state must also implement {@link #abortBusy}
-     * to cancel any inprogress operation.
+     * to cancel any in-progress operation.
      *
      * @param busy <tt>true</tt> to mark the step as busy and disable further user
      *             action, <tt>false</tt> to return the wizard to its normal state.
@@ -310,55 +274,18 @@ public class PanelWizardStep extends JPanel implements WizardStep {
     // WizardStep Abstract Methods
     //
 
-    /**
-     * Called to initialize the step. This method will be called when the wizard is
-     * first initialising.
-     *
-     * @param model the model to which the step belongs.
-     */
     @Override
     public void init(WizardModel model) {
     }
 
-    /**
-     * Called to prepare this step to display. Subclasses should query the model and
-     * configure their view appropriately.
-     * <p>
-     * This method will be called whenever the step is to be displayed, regardless
-     * of whether the user pressed next or previous.
-     */
     @Override
     public void prepare() {
     }
 
-    /**
-     * This method is called whenever the user presses next while this step is
-     * active.
-     * <p>
-     * If this method will take a long time to complete, subclasses should consider
-     * executing the work and a separate thread and displaying some kind of progress
-     * indicator.
-     * <p>
-     * This method will only be called if {@link WizardModel#isNextAvailable} and
-     * {@link #isComplete} return true.
-     *
-     * @throws InvalidStateException if an error occurs and the wizard can't
-     *                               progress to the next step. By default the
-     *                               message of this exception will be displayed to
-     *                               the user. If you wish to prevent this behaviour
-     *                               please ensure
-     *                               {@link InvalidStateException#setShowUser} is
-     *                               called with a value of <tt>false</tt>.
-     */
     @Override
     public void applyState() throws InvalidStateException {
     }
 
-    /**
-     * Called by the wizard if the user presses cancel while the step is in a
-     * {@link #isBusy busy} state. Steps that are never busy need not override this
-     * method.
-     */
     @Override
     public void abortBusy() {
     }

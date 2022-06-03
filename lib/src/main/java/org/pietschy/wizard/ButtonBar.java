@@ -135,17 +135,7 @@ public class ButtonBar extends JPanel {
     }
 
     /**
-     * Call prior to
-     * {@link #layoutButtons(javax.swing.JButton, javax.swing.JButton, javax.swing.JButton, javax.swing.JButton, javax.swing.JButton, javax.swing.JButton, javax.swing.JButton)}
-     * to make all the buttons the same width.
-     *
-     * @param helpButton
-     * @param previousButton
-     * @param nextButton
-     * @param lastButton
-     * @param finishButton
-     * @param cancelButton
-     * @param closeButton
+     * Call prior to {@link #layoutButtons} to make all the buttons the same width.
      */
     protected void equalizeButtonWidths(JButton helpButton, JButton previousButton, JButton nextButton,
             JButton lastButton, JButton finishButton, JButton cancelButton, JButton closeButton) {

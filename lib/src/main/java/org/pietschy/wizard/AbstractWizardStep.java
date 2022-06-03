@@ -122,19 +122,13 @@ import javax.swing.Icon;
 public abstract class AbstractWizardStep implements WizardStep {
     private PropertyChangeSupport pcs;
 
-    /**
-     * The name of this step.
-     */
+    /** The name of this step. */
     private String name;
 
-    /**
-     * A summary of this step, or some usage advice.
-     */
+    /** A summary of this step, or some usage advice. */
     private String summary;
 
-    /**
-     * An Icon that represents this step.
-     */
+    /** An Icon that represents this step. */
     private Icon icon;
 
     /**
@@ -180,12 +174,6 @@ public abstract class AbstractWizardStep implements WizardStep {
         this.icon = icon;
     }
 
-    /**
-     * Gets the name of this step. This will be displayed in the title of the wizard
-     * while this step is active.
-     *
-     * @return the name of this step.
-     */
     @Override
     public String getName() {
         return name;
@@ -194,8 +182,6 @@ public abstract class AbstractWizardStep implements WizardStep {
     /**
      * Sets the name of this step. This will be displayed in the title of the wizard
      * while this step is active.
-     *
-     * @param name the name of this step.
      */
     public void setName(String name) {
         if ((this.name != null && !this.name.equals(name)) || this.name == null && name != null) {
@@ -205,13 +191,6 @@ public abstract class AbstractWizardStep implements WizardStep {
         }
     }
 
-    /**
-     * Gets the summary of this step. This will be displayed in the title of the
-     * wizard while this step is active. The summary is typically an overview of the
-     * step or some usage guidelines for the user.
-     *
-     * @return the summary of this step.
-     */
     @Override
     public String getSummary() {
         return summary;
@@ -221,8 +200,6 @@ public abstract class AbstractWizardStep implements WizardStep {
      * Sets the summary of this step. This will be displayed in the title of the
      * wizard while this step is active. The summary is typically an overview of the
      * step or some usage guidelines for the user.
-     *
-     * @param summary the summary of this step.
      */
     public void setSummary(String summary) {
         if ((this.summary != null && !this.summary.equals(summary))
@@ -233,12 +210,6 @@ public abstract class AbstractWizardStep implements WizardStep {
         }
     }
 
-    /**
-     * Gets the {@link javax.swing.Icon} that represents this step.
-     *
-     * @return the {@link javax.swing.Icon} that represents this step, or
-     *         <tt>null</tt> if the step doesn't have an icon.
-     */
     @Override
     public Icon getIcon() {
         return icon;
@@ -263,9 +234,6 @@ public abstract class AbstractWizardStep implements WizardStep {
      * displayed in the main section of the wizard with this step is active. This
      * may changed at any time by calling {@link #setView} and the wizard will
      * update accordingly.
-     *
-     * @return the current view of the step.
-     * @see #setView
      */
     @Override
     public Component getView() {
@@ -276,8 +244,6 @@ public abstract class AbstractWizardStep implements WizardStep {
      * Sets the current view this step is displaying. This component will be
      * displayed in the main section of the wizard with this step is active. This
      * method may changed at any time and the wizard will update accordingly.
-     *
-     * @param component the current view of the step.
      */
     protected void setView(Component component) {
         if (!component.equals(view)) {
@@ -292,9 +258,7 @@ public abstract class AbstractWizardStep implements WizardStep {
      * can proceed to the next step. This property is bound and changes can be made
      * at anytime by calling {@link #setComplete(boolean)} .
      *
-     * @return <tt>true</tt> if the wizard can proceed from this step,
-     *         <tt>false</tt> otherwise.
-     * @see #setComplete
+     * @return <tt>true</tt> if the wizard can proceed from this step, <tt>false</tt> otherwise.
      */
     @Override
     public boolean isComplete() {
@@ -305,9 +269,7 @@ public abstract class AbstractWizardStep implements WizardStep {
      * Marks this step as compete. The wizard will not be able to proceed from this
      * step until this property is configured to <tt>true</tt>.
      *
-     * @param complete <tt>true</tt> to allow the wizard to proceed, <tt>false</tt>
-     *                 otherwise.
-     * @see #isComplete
+     * @param complete <tt>true</tt> to allow the wizard to proceed, <tt>false</tt> otherwise.
      */
     public void setComplete(boolean complete) {
         if (this.complete != complete) {
@@ -336,8 +298,8 @@ public abstract class AbstractWizardStep implements WizardStep {
      * Wizard steps that go into a busy state must also implement {@link #abortBusy}
      * to cancel any inprogress operation.
      *
-     * @param busy <tt>true</tt> to mark the step as busy and disable further user
-     *             action, <tt>false</tt> to return the wizard to its normal state.
+     * @param busy <tt>true</tt> to mark the step as busy and disable further user action,
+     *             <tt>false</tt> to return the wizard to its normal state.
      */
     public void setBusy(boolean busy) {
         if (this.busy != busy) {
@@ -351,19 +313,13 @@ public abstract class AbstractWizardStep implements WizardStep {
     // Abstract Methods
     //
 
-    /**
-     * Called to initialize the step. This method will be called when the wizard is
-     * first initialising.
-     *
-     * @param model the model to which the step belongs.
-     */
     @Override
     public abstract void init(WizardModel model);
 
     /**
-     * Called by the wizard if the user presses cancel while the step is in a
-     * {@link #isBusy busy} state. Steps that are never busy need not override this
-     * method.
+     * {@inheritDoc}
+     * <p>-----
+     * <br>Steps that are never busy need not override this method.
      */
     @Override
     public void abortBusy() {

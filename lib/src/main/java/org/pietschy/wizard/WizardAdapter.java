@@ -23,21 +23,10 @@ package org.pietschy.wizard;
  * This class provides an empty implementation of {@link WizardListener}.
  */
 public abstract class WizardAdapter implements WizardListener {
-    /**
-     * Empty implementation of {@link WizardListener#wizardClosed}
-     *
-     * @param e the wizard event
-     */
-    @Override
-    public void wizardClosed(WizardEvent e) {
-    }
 
-    /**
-     * Empty implementation of {@link WizardListener#wizardCancelled}
-     *
-     * @param e the wizard event
-     */
     @Override
-    public void wizardCancelled(WizardEvent e) {
-    }
+    public void wizardClosed(WizardEvent e) {}
+
+    @Override
+    public void wizardCancelled(WizardEvent e) {}
 }

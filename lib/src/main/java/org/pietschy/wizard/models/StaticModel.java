@@ -27,7 +27,6 @@ import javax.swing.JComponent;
 
 import org.pietschy.wizard.AbstractWizardModel;
 import org.pietschy.wizard.OverviewProvider;
-import org.pietschy.wizard.Wizard;
 import org.pietschy.wizard.WizardStep;
 
 /**
@@ -45,9 +44,6 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
     public StaticModel() {
     }
 
-    /**
-     * Resest this model. This method rewinds to the first step in the wizard.
-     */
     @Override
     public void reset() {
         currentStep = 0;
@@ -100,10 +96,6 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
         addCompleteListener(step);
     }
 
-    /**
-     * This method is invoked after the current step has been changed to update the
-     * state of the model.
-     */
     @Override
     public void refreshModelState() {
         setNextAvailable(getActiveStep().isComplete() && !isLastStep(getActiveStep()));

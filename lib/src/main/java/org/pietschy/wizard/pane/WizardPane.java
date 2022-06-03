@@ -37,13 +37,13 @@ public interface WizardPane {
     /**
      * Called to initialize the step. This method will be called when the wizard is
      * first initialising. You should get a reference to the
-     * {@link org.pietschy.wizard.WizardStep} in order to call
-     * {@link org.pietschy.wizard.WizardStep#setComplete(boolean) when the step is
+     * {@link WizardStep} in order to call
+     * {@link org.pietschy.wizard.AbstractWizardStep#setComplete(boolean)} when the step is
      * filled with enough information, and a reference to the model in order to
      * update it on {@link #applyState}.
      *
-     * @param WizardStep the step that uses this pane
-     * @param model      the model to which the step belongs.
+     * @param step  the step that uses this pane
+     * @param model the model to which the step belongs.
      */
     void init(WizardStep step, WizardModel model);
 
@@ -53,7 +53,7 @@ public interface WizardPane {
      * <p>
      * If this method will take a long time to complete, implementors should
      * consider executing the work and a separate thread calling
-     * {@link WizardStep#setView}with some kind of progress indicator.
+     * {@link org.pietschy.wizard.AbstractWizardStep#setView} with some kind of progress indicator.
      * <p>
      * This method will only be called if {@link WizardModel#isNextAvailable} and
      * {@link WizardStep#isComplete}return true.

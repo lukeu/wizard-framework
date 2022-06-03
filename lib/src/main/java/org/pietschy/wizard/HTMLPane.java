@@ -45,17 +45,10 @@ public class HTMLPane extends JEditorPane {
     private boolean antiAlias = false;
     private boolean forceReload = false;
 
-    /**
-     * Creates a new <code>JEditorPane</code>. The document model is set to
-     * <code>null</code>.
-     */
     public HTMLPane() {
         this(true);
     }
 
-    /**
-     * Creates a new {@link HTMLPane}.
-     */
     public HTMLPane(boolean opaque) {
         kit = new HTMLEditorKit();
         setEditorKit(kit);
@@ -63,7 +56,6 @@ public class HTMLPane extends JEditorPane {
         updateEditorColor(getForeground());
         setEditable(false);
         setOpaque(opaque);
-
     }
 
     @Override

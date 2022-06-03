@@ -21,10 +21,6 @@ package org.pietschy.wizard;
 
 import java.awt.event.ActionEvent;
 
-/**
- * Created by IntelliJ IDEA. User: andrewp Date: 7/06/2004 Time: 16:06:09 To
- * change this template use Options | File Templates.
- */
 class FinishAction extends WizardAction {
     protected FinishAction(Wizard model) {
         super("finish", model);

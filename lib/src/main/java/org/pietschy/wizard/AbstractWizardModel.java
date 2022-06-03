@@ -53,11 +53,6 @@ public abstract class AbstractWizardModel implements WizardModel {
         pcs = new PropertyChangeSupport(this);
     }
 
-    /**
-     * Gets the current active step the wizard should display.
-     *
-     * @return the active step.
-     */
     @Override
     public WizardStep getActiveStep() {
         return activeStep;
@@ -78,35 +73,16 @@ public abstract class AbstractWizardModel implements WizardModel {
         }
     }
 
-    /**
-     * Checks if the previous button should be enabled.
-     *
-     * @return <tt>true</tt> if the previou button should be enabled, <tt>false</tt>
-     *         otherwise.
-     */
     @Override
     public boolean isPreviousAvailable() {
         return previousAvailable;
     }
 
-    /**
-     * Checks if the next button should be enabled.
-     *
-     * @return <tt>true</tt> if the next button should be enabled, <tt>false</tt>
-     *         otherwise.
-     */
     @Override
     public boolean isNextAvailable() {
         return nextAvailable;
     }
 
-    /**
-     * Checks if the last button should be enabled.
-     *
-     * @return <tt>true</tt> if the last button should be enabled, <tt>false</tt>
-     *         otherwise.
-     * @see #isLastVisible
-     */
     @Override
     public boolean isLastAvailable() {
         return lastAvailable;
@@ -168,14 +144,6 @@ public abstract class AbstractWizardModel implements WizardModel {
         }
     }
 
-    /**
-     * Checks if the last button should be displayed. This method should only return
-     * true if the {@link #isLastAvailable} will return true at any point. Returning
-     * false will prevent the last button from appearing on the wizard at all.
-     *
-     * @return <tt>true</tt> if the previou last should be displayed, <tt>false</tt>
-     *         otherwise.
-     */
     @Override
     public boolean isLastVisible() {
         return lastVisible;
@@ -196,51 +164,25 @@ public abstract class AbstractWizardModel implements WizardModel {
         }
     }
 
-    /**
-     * This is an empty method that is intended for subclasses to override to update
-     * their various properties based on the active step.
-     */
     @Override
     public void refreshModelState() {
     }
 
-    /**
-     * Adds a {@link PropertyChangeListener} to this model.
-     *
-     * @param listener the listener to add.
-     */
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         pcs.addPropertyChangeListener(listener);
     }
 
-    /**
-     * Removes a {@link PropertyChangeListener} from this model.
-     *
-     * @param listener the listener to remove.
-     */
     @Override
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         pcs.removePropertyChangeListener(listener);
     }
 
-    /**
-     * Adds a {@link PropertyChangeListener} to this model.
-     *
-     * @param propertyName the property to listen to.
-     * @param listener     the listener to add.
-     */
     @Override
     public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         pcs.addPropertyChangeListener(propertyName, listener);
     }
 
-    /**
-     * Removes a {@link PropertyChangeListener} from this model.
-     *
-     * @param propertyName the property to stop listening to.
-     * @param listener     the listener to remove.
-     */
     @Override
     public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         pcs.removePropertyChangeListener(propertyName, listener);

@@ -35,17 +35,9 @@ import org.pietschy.wizard.WizardStep;
 public class BranchingPath extends Path {
     private HashMap paths = new HashMap();
 
-    /**
-     * Creates a new empth BranchingPath.
-     */
     public BranchingPath() {
     }
 
-    /**
-     * Creates a new BranchingPath that is initialized with the specified step.
-     *
-     * @param step the first step of the path.
-     */
     public BranchingPath(WizardStep step) {
         addStep(step);
     }
