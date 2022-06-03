@@ -86,8 +86,7 @@ public abstract class Path {
      *         otherwise.
      */
     public boolean isLastStep(WizardStep step) {
-        boolean lastStep = steps.lastIndexOf(step) == steps.size() - 1;
-        return lastStep;
+        return steps.lastIndexOf(step) == steps.size() - 1;
     }
 
     public ArrayList getSteps() {

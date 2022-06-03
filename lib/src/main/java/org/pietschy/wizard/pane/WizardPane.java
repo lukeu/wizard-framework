@@ -44,7 +44,7 @@ public interface WizardPane {
      * @param WizardStep the step that uses this pane
      * @param model      the model to which the step belongs.
      */
-    public void init(WizardStep step, WizardModel model);
+    void init(WizardStep step, WizardModel model);
 
     /**
      * This method is called whenever the user presses next while this step is
@@ -65,7 +65,7 @@ public interface WizardPane {
      *                               {@link InvalidStateException#setShowUser}is
      *                               called with a value of <tt>false</tt>.
      */
-    public void applyState() throws InvalidStateException;
+    void applyState() throws InvalidStateException;
 
     /**
      * Called to prepare this step to display. Implementors should query the model
@@ -74,5 +74,5 @@ public interface WizardPane {
      * This method will be called whenever the step is to be displayed, regardless
      * of whether the user pressed next or previous.
      */
-    public void prepare();
+    void prepare();
 }

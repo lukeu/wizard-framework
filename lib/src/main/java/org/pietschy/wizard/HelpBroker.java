@@ -38,5 +38,5 @@ public interface HelpBroker {
      *               the {@link Wizard} itself.
      * @param model  the wizard model.
      */
-    public void activateHelp(JComponent parent, WizardModel model);
+    void activateHelp(JComponent parent, WizardModel model);
 }

@@ -37,5 +37,5 @@ public interface OverviewProvider {
      *
      * @return a componet that provides an overview of the wizard progress.
      */
-    public JComponent getOverviewComponent();
+    JComponent getOverviewComponent();
 }

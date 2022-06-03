@@ -33,12 +33,12 @@ public interface WizardListener extends EventListener {
      *
      * @param e the wizard event.
      */
-    public void wizardClosed(WizardEvent e);
+    void wizardClosed(WizardEvent e);
 
     /**
      * Called when the user cancels the wizard.
      *
      * @param e the wizard event.
      */
-    public void wizardCancelled(WizardEvent e);
+    void wizardCancelled(WizardEvent e);
 }

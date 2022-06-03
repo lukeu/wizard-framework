@@ -37,5 +37,5 @@ public interface Condition {
      * @param model the {@link WizardModel} the condition should use.
      * @return true if the .
      */
-    public boolean evaluate(WizardModel model);
+    boolean evaluate(WizardModel model);
 }

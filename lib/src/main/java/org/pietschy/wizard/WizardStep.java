@@ -36,7 +36,7 @@ public interface WizardStep {
      *
      * @return the name of this step.
      */
-    public String getName();
+    String getName();
 
     /**
      * Gets the summary of this step. This will be displayed in the title of the
@@ -45,7 +45,7 @@ public interface WizardStep {
      *
      * @return the summary of this step.
      */
-    public String getSummary();
+    String getSummary();
 
     /**
      * Gets the {@link javax.swing.Icon} that represents this step.
@@ -53,7 +53,7 @@ public interface WizardStep {
      * @return the {@link javax.swing.Icon} that represents this step, or
      *         <tt>null</tt> if the step doesn't have an icon.
      */
-    public Icon getIcon();
+    Icon getIcon();
 
     /**
      * Returns the current view this step is displaying. This component will be
@@ -63,7 +63,7 @@ public interface WizardStep {
      *
      * @return the current view of the step.
      */
-    public Component getView();
+    Component getView();
 
     /**
      * Checks if this step is compete. This method should return true if the wizard

@@ -46,7 +46,7 @@ public interface WizardModel {
      * @return <tt>true</tt> if the previou button should be enabled, <tt>false</tt>
      *         otherwise.
      */
-    public boolean isPreviousAvailable();
+    boolean isPreviousAvailable();
 
     /**
      * Checks if the next button should be enabled.
@@ -54,7 +54,7 @@ public interface WizardModel {
      * @return <tt>true</tt> if the next button should be enabled, <tt>false</tt>
      *         otherwise.
      */
-    public boolean isNextAvailable();
+    boolean isNextAvailable();
 
     /**
      * Checks if the last button should be enabled.
@@ -63,28 +63,28 @@ public interface WizardModel {
      *         otherwise.
      * @see #isLastVisible
      */
-    public boolean isLastAvailable();
+    boolean isLastAvailable();
 
     /**
      * Increments the model the the next step and fires the appropriate property
      * change events. This method must only be called if {@link #isNextAvailable}
      * returns <tt>true</tt>.
      */
-    public void nextStep();
+    void nextStep();
 
     /**
      * Takes the model back to the previsou step and fires the appropriate property
      * change events. This method must only be called if
      * {@link #isPreviousAvailable} returns <tt>true</tt>.
      */
-    public void previousStep();
+    void previousStep();
 
     /**
      * Takes the model to the last step in the wizard and fires the appropriate
      * property change events. This method must only be called if
      * {@link #isLastAvailable} returns <tt>true</tt>.
      */
-    public void lastStep();
+    void lastStep();
 
     /**
      * Checks if the last button should be displayed. This method should only return
@@ -100,14 +100,14 @@ public interface WizardModel {
      * Takes the model back to the first step and fires the appropriate property
      * change events.
      */
-    public void reset();
+    void reset();
 
     /**
      * Gets the current active step the wizard should display.
      *
      * @return the active step.
      */
-    public WizardStep getActiveStep();
+    WizardStep getActiveStep();
 
     /**
      * Checks if the specified step is the last step in the wizard.
@@ -116,7 +116,7 @@ public interface WizardModel {
      * @return <tt>true</tt> if its the final step in the wizard, <tt>false</tt>
      *         otherwise.
      */
-    public boolean isLastStep(WizardStep step);
+    boolean isLastStep(WizardStep step);
 
     /**
      * Returns an iterator over all the steps in the model. The iteration order is
@@ -124,21 +124,21 @@ public interface WizardModel {
      *
      * @return an iterator over all the steps of the model
      */
-    public Iterator stepIterator();
+    Iterator stepIterator();
 
     /**
      * Adds a {@link PropertyChangeListener} to this model.
      *
      * @param listener the listener to add.
      */
-    public void addPropertyChangeListener(PropertyChangeListener listener);
+    void addPropertyChangeListener(PropertyChangeListener listener);
 
     /**
      * Removes a {@link PropertyChangeListener} from this model.
      *
      * @param listener the listener to remove.
      */
-    public void removePropertyChangeListener(PropertyChangeListener listener);
+    void removePropertyChangeListener(PropertyChangeListener listener);
 
     /**
      * Adds a {@link PropertyChangeListener} to this model.
@@ -146,7 +146,7 @@ public interface WizardModel {
      * @param propertyName the property to listen to.
      * @param listener     the listener to add.
      */
-    public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener);
+    void addPropertyChangeListener(String propertyName, PropertyChangeListener listener);
 
     /**
      * Removes a {@link PropertyChangeListener} from this model.
@@ -154,12 +154,12 @@ public interface WizardModel {
      * @param propertyName the property to stop listening to.
      * @param listener     the listener to remove.
      */
-    public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener);
+    void removePropertyChangeListener(String propertyName, PropertyChangeListener listener);
 
     /**
      * Called to request the model to update it current state. This will be called
      * when ever a step transition occurs but may also be called by the current
      * {@link WizardStep} to force a refresh.
      */
-    public void refreshModelState();
+    void refreshModelState();
 }

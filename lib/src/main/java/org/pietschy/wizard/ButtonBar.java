@@ -149,15 +149,15 @@ public class ButtonBar extends JPanel {
             JButton lastButton, JButton finishButton, JButton cancelButton, JButton closeButton) {
         // make sure that every button has the same size
         Dimension d = new Dimension();
-        JButton[] buttons = new JButton[] { helpButton, previousButton, nextButton, lastButton, finishButton,
+        JButton[] buttons = { helpButton, previousButton, nextButton, lastButton, finishButton,
                 cancelButton, closeButton };
         for (int i = 0; i < buttons.length; i++) {
             Dimension buttonDim = buttons[i].getPreferredSize();
             if (buttonDim.width > d.width) {
-                d.width = (int) buttonDim.width;
+                d.width = buttonDim.width;
             }
             if (buttonDim.height > d.height) {
-                d.height = (int) buttonDim.height;
+                d.height = buttonDim.height;
             }
         }
 
