@@ -33,9 +33,10 @@ public abstract class Path {
     }
 
     /**
-     * Gets the path that will follow this one.
+     * Gets the path to traverse after this path has exhausted all its steps.
      *
-     * @return the next path.
+     * @return the next path in the sequence.
+     * @throws IllegalStateException if no matching path is found.
      */
     protected abstract Path getNextPath(MultiPathModel model);
 

@@ -130,14 +130,6 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
         return true;
     }
 
-    /**
-     * Returns an JComponent that will serve as an overview for this wizard. The
-     * overview can be disabled by calling {@link Wizard#setOverviewVisible} with a
-     * value of <tt>false</tt>.
-     *
-     * @return a component that provides an overview of this wizard and its current
-     *         state.
-     */
     @Override
     public JComponent getOverviewComponent() {
         if (overviewComponent == null) {

@@ -33,9 +33,10 @@ public interface OverviewProvider {
     /**
      * Called to get a component that provides an overview of the wizard. This
      * component will be shown in the wizard on the side corresponding the
-     * {@link java.awt.BorderLayout#LINE_START}.
+     * {@link java.awt.BorderLayout#LINE_START}. The overview can be disabled
+     * by calling {@link Wizard#setOverviewVisible} with a value of <tt>false</tt>.
      *
-     * @return a componet that provides an overview of the wizard progress.
+     * @return a component that provides an overview of the wizard progress.
      */
     JComponent getOverviewComponent();
 }

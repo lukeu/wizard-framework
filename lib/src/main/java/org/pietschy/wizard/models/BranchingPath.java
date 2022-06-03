@@ -50,14 +50,6 @@ public class BranchingPath extends Path {
         addStep(step);
     }
 
-    /**
-     * Gets the path to traverse after this path has exhausted all its steps. This
-     * method will call iterate over each path selector to determine the path to
-     * return.
-     *
-     * @return the next path in the sequence.
-     * @throws IllegalStateException if no matching path is found.
-     */
     @Override
     protected Path getNextPath(MultiPathModel model) {
         for (Iterator iter = paths.entrySet().iterator(); iter.hasNext();) {
