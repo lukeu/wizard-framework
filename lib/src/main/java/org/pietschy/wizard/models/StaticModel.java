@@ -48,11 +48,13 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
     /**
      * Resest this model. This method rewinds to the first step in the wizard.
      */
+    @Override
     public void reset() {
         currentStep = 0;
         setActiveStep((WizardStep) steps.get(currentStep));
     }
 
+    @Override
     public void nextStep() {
         if (currentStep >= steps.size() - 1) {
             throw new IllegalStateException("Already on last step");
@@ -62,6 +64,7 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
         setActiveStep((WizardStep) steps.get(currentStep));
     }
 
+    @Override
     public void previousStep() {
         if (currentStep == 0) {
             throw new IllegalStateException("Already at first step");
@@ -71,15 +74,18 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
         setActiveStep((WizardStep) steps.get(currentStep));
     }
 
+    @Override
     public void lastStep() {
         currentStep = steps.size() - 1;
         setActiveStep((WizardStep) steps.get(currentStep));
     }
 
+    @Override
     public boolean isLastStep(WizardStep step) {
         return steps.indexOf(step) == steps.size() - 1;
     }
 
+    @Override
     public Iterator stepIterator() {
         return Collections.unmodifiableList(steps).iterator();
     }
@@ -98,6 +104,7 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
      * This method is invoked after the current step has been changed to update the
      * state of the model.
      */
+    @Override
     public void refreshModelState() {
         setNextAvailable(getActiveStep().isComplete() && !isLastStep(getActiveStep()));
         setPreviousAvailable(currentStep > 0);
@@ -131,6 +138,7 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
      * @return a component that provides an overview of this wizard and its current
      *         state.
      */
+    @Override
     public JComponent getOverviewComponent() {
         if (overviewComponent == null) {
             overviewComponent = new StaticModelOverview(this);

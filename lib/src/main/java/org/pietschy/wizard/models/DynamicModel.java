@@ -67,6 +67,7 @@ public class DynamicModel extends AbstractWizardModel {
 
     /** An implementation of {@link Condition} that always returns <tt>true</tt>. */
     public static final Condition TRUE_CONDITION = new Condition() {
+        @Override
         public boolean evaluate(WizardModel model) {
             return true;
         }
@@ -118,28 +119,33 @@ public class DynamicModel extends AbstractWizardModel {
         conditions.add(condition);
     }
 
+    @Override
     public void nextStep() {
         WizardStep currentStep = getActiveStep();
         history.push(currentStep);
         setActiveStep(findNextVisibleStep(currentStep));
     }
 
+    @Override
     public void previousStep() {
         WizardStep step = (WizardStep) history.pop();
         setActiveStep(step);
     }
 
+    @Override
     public void lastStep() {
         WizardStep activeStep = getActiveStep();
         history.push(activeStep);
         setActiveStep(findLastStep());
     }
 
+    @Override
     public void reset() {
         history.clear();
         setActiveStep(findNextVisibleStep(null));
     }
 
+    @Override
     public boolean isLastStep(WizardStep step) {
         return findLastStep().equals(step);
     }
@@ -152,6 +158,7 @@ public class DynamicModel extends AbstractWizardModel {
      * Subclasses that override this method must be sure to invoke
      * <tt>super.refreshModelState()</tt>.
      */
+    @Override
     public void refreshModelState() {
         WizardStep activeStep = getActiveStep();
         setNextAvailable(activeStep != null && activeStep.isComplete() && !isLastStep(activeStep));
@@ -187,6 +194,7 @@ public class DynamicModel extends AbstractWizardModel {
         return true;
     }
 
+    @Override
     public Iterator stepIterator() {
         return Collections.unmodifiableList(steps).iterator();
     }

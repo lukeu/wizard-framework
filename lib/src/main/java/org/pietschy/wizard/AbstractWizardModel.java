@@ -41,6 +41,7 @@ public abstract class AbstractWizardModel implements WizardModel {
     private PropertyChangeSupport pcs;
 
     private PropertyChangeListener completeListener = new PropertyChangeListener() {
+        @Override
         public void propertyChange(PropertyChangeEvent evt) {
             if (evt.getPropertyName().equals("complete")) {
                 refreshModelState();
@@ -57,6 +58,7 @@ public abstract class AbstractWizardModel implements WizardModel {
      *
      * @return the active step.
      */
+    @Override
     public WizardStep getActiveStep() {
         return activeStep;
     }
@@ -82,6 +84,7 @@ public abstract class AbstractWizardModel implements WizardModel {
      * @return <tt>true</tt> if the previou button should be enabled, <tt>false</tt>
      *         otherwise.
      */
+    @Override
     public boolean isPreviousAvailable() {
         return previousAvailable;
     }
@@ -92,6 +95,7 @@ public abstract class AbstractWizardModel implements WizardModel {
      * @return <tt>true</tt> if the next button should be enabled, <tt>false</tt>
      *         otherwise.
      */
+    @Override
     public boolean isNextAvailable() {
         return nextAvailable;
     }
@@ -103,6 +107,7 @@ public abstract class AbstractWizardModel implements WizardModel {
      *         otherwise.
      * @see #isLastVisible
      */
+    @Override
     public boolean isLastAvailable() {
         return lastAvailable;
     }
@@ -171,6 +176,7 @@ public abstract class AbstractWizardModel implements WizardModel {
      * @return <tt>true</tt> if the previou last should be displayed, <tt>false</tt>
      *         otherwise.
      */
+    @Override
     public boolean isLastVisible() {
         return lastVisible;
     }
@@ -194,6 +200,7 @@ public abstract class AbstractWizardModel implements WizardModel {
      * This is an empty method that is intended for subclasses to override to update
      * their various properties based on the active step.
      */
+    @Override
     public void refreshModelState() {
     }
 
@@ -202,6 +209,7 @@ public abstract class AbstractWizardModel implements WizardModel {
      *
      * @param listener the listener to add.
      */
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         pcs.addPropertyChangeListener(listener);
     }
@@ -211,6 +219,7 @@ public abstract class AbstractWizardModel implements WizardModel {
      *
      * @param listener the listener to remove.
      */
+    @Override
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         pcs.removePropertyChangeListener(listener);
     }
@@ -221,6 +230,7 @@ public abstract class AbstractWizardModel implements WizardModel {
      * @param propertyName the property to listen to.
      * @param listener     the listener to add.
      */
+    @Override
     public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         pcs.addPropertyChangeListener(propertyName, listener);
     }
@@ -231,6 +241,7 @@ public abstract class AbstractWizardModel implements WizardModel {
      * @param propertyName the property to stop listening to.
      * @param listener     the listener to remove.
      */
+    @Override
     public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         pcs.removePropertyChangeListener(propertyName, listener);
     }

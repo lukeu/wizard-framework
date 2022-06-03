@@ -30,10 +30,12 @@ class CancelAction extends WizardAction {
         super("cancel", model);
     }
 
+    @Override
     public void doAction(ActionEvent e) {
         getWizard().cancel();
     }
 
+    @Override
     protected void updateState() {
     }
 }

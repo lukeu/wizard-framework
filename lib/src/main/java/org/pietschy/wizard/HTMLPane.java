@@ -66,6 +66,7 @@ public class HTMLPane extends JEditorPane {
 
     }
 
+    @Override
     public URL getPage() {
         if (forceReload) {
             forceReload = false;
@@ -75,11 +76,13 @@ public class HTMLPane extends JEditorPane {
         return super.getPage();
     }
 
+    @Override
     public void setPage(URL page) throws IOException {
         forceReload = true;
         super.setPage(page);
     }
 
+    @Override
     public void setFont(Font font) {
         super.setFont(font);
         if (kit != null) {
@@ -87,6 +90,7 @@ public class HTMLPane extends JEditorPane {
         }
     }
 
+    @Override
     public void setForeground(Color fg) {
         super.setForeground(fg);
         if (kit != null) {
@@ -94,6 +98,7 @@ public class HTMLPane extends JEditorPane {
         }
     }
 
+    @Override
     public void setEditorKit(EditorKit kit) {
         super.setEditorKit(kit);
         updateEditorColor(getForeground());
@@ -143,6 +148,7 @@ public class HTMLPane extends JEditorPane {
         return antiAlias;
     }
 
+    @Override
     public void paint(Graphics g) {
         if (antiAlias) {
             Graphics2D g2 = (Graphics2D) g;

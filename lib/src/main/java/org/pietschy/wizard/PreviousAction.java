@@ -32,10 +32,12 @@ class PreviousAction extends WizardAction {
         super("previous", model, new ArrowIcon(SwingConstants.WEST));
     }
 
+    @Override
     public void doAction(ActionEvent e) {
         getModel().previousStep();
     }
 
+    @Override
     protected void updateState() {
         WizardStep activeStep = getActiveStep();
         boolean busy = activeStep != null && activeStep.isBusy();

@@ -30,11 +30,13 @@ class LastAction extends WizardAction {
         super("last", model);
     }
 
+    @Override
     public void doAction(ActionEvent e) throws InvalidStateException {
         getModel().getActiveStep().applyState();
         getModel().lastStep();
     }
 
+    @Override
     protected void updateState() {
         WizardStep activeStep = getModel().getActiveStep();
         boolean busy = activeStep != null && activeStep.isBusy();

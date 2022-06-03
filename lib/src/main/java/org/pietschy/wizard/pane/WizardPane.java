@@ -31,6 +31,7 @@ import org.pietschy.wizard.WizardStep;
  *             implementation by any swing componenent. See
  *             {@link org.pietschy.wizard.PanelWizardStep}.
  */
+@Deprecated
 public interface WizardPane {
 
     /**

@@ -28,6 +28,7 @@ public abstract class WizardAdapter implements WizardListener {
      *
      * @param e the wizard event
      */
+    @Override
     public void wizardClosed(WizardEvent e) {
     }
 
@@ -36,6 +37,7 @@ public abstract class WizardAdapter implements WizardListener {
      *
      * @param e the wizard event
      */
+    @Override
     public void wizardCancelled(WizardEvent e) {
     }
 }

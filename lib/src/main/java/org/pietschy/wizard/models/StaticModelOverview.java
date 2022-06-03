@@ -71,6 +71,7 @@ public class StaticModelOverview extends JPanel implements PropertyChangeListene
         add(Box.createGlue());
     }
 
+    @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("activeStep")) {
             JLabel old = (JLabel) labels.get(evt.getOldValue());

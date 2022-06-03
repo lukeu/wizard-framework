@@ -66,6 +66,7 @@ public abstract class WizardAction extends AbstractAction implements PropertyCha
         return activeStep;
     }
 
+    @Override
     public final void actionPerformed(ActionEvent e) {
         try {
             doAction(e);
@@ -84,6 +85,7 @@ public abstract class WizardAction extends AbstractAction implements PropertyCha
 
     protected abstract void updateState();
 
+    @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("activeStep")) {
             if (activeStep != null) {

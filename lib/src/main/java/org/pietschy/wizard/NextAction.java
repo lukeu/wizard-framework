@@ -32,11 +32,13 @@ class NextAction extends WizardAction {
         super("next", model, new ArrowIcon(SwingConstants.EAST));
     }
 
+    @Override
     public void doAction(ActionEvent e) throws InvalidStateException {
         getModel().getActiveStep().applyState();
         getModel().nextStep();
     }
 
+    @Override
     protected void updateState() {
         WizardStep activeStep = getActiveStep();
         boolean busy = activeStep != null && activeStep.isBusy();

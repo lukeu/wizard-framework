@@ -59,12 +59,14 @@ public class ButtonBar extends JPanel {
     public ButtonBar(Wizard wizard) {
         this.wizard = wizard;
         this.wizard.getModel().addPropertyChangeListener("lastVisible", new PropertyChangeListener() {
+            @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 configureLastButton();
             }
         });
 
         this.wizard.addPropertyChangeListener("helpBroker", new PropertyChangeListener() {
+            @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 configureHelpButton();
             }

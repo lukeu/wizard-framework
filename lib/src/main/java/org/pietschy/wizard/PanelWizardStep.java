@@ -173,6 +173,7 @@ public class PanelWizardStep extends JPanel implements WizardStep {
      *
      * @return the summary of this step.
      */
+    @Override
     public String getSummary() {
         return summary;
     }
@@ -198,6 +199,7 @@ public class PanelWizardStep extends JPanel implements WizardStep {
      * @return the {@link javax.swing.Icon} that represents this step, or
      *         <tt>null</tt> if the step doesn't have an icon.
      */
+    @Override
     public Icon getIcon() {
         return icon;
     }
@@ -221,6 +223,7 @@ public class PanelWizardStep extends JPanel implements WizardStep {
      *
      * @return this panel.
      */
+    @Override
     public Component getView() {
         return this;
     }
@@ -252,6 +255,7 @@ public class PanelWizardStep extends JPanel implements WizardStep {
      *         <tt>false</tt> otherwise.
      * @see #setComplete
      */
+    @Override
     public boolean isComplete() {
         return complete;
     }
@@ -278,6 +282,7 @@ public class PanelWizardStep extends JPanel implements WizardStep {
      * @return <tt>true</tt> if step is busy performing a background operation,
      *         <tt>false</tt> otherwise.
      */
+    @Override
     public boolean isBusy() {
         return busy;
     }
@@ -311,6 +316,7 @@ public class PanelWizardStep extends JPanel implements WizardStep {
      *
      * @param model the model to which the step belongs.
      */
+    @Override
     public void init(WizardModel model) {
     }
 
@@ -321,6 +327,7 @@ public class PanelWizardStep extends JPanel implements WizardStep {
      * This method will be called whenever the step is to be displayed, regardless
      * of whether the user pressed next or previous.
      */
+    @Override
     public void prepare() {
     }
 
@@ -343,6 +350,7 @@ public class PanelWizardStep extends JPanel implements WizardStep {
      *                               {@link InvalidStateException#setShowUser} is
      *                               called with a value of <tt>false</tt>.
      */
+    @Override
     public void applyState() throws InvalidStateException {
     }
 
@@ -351,6 +359,7 @@ public class PanelWizardStep extends JPanel implements WizardStep {
      * {@link #isBusy busy} state. Steps that are never busy need not override this
      * method.
      */
+    @Override
     public void abortBusy() {
     }
 }

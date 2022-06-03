@@ -127,6 +127,7 @@ public class MultiPathModel extends AbstractWizardModel {
         return lastPath;
     }
 
+    @Override
     public void nextStep() {
         WizardStep currentStep = getActiveStep();
         Path currentPath = getPathForStep(currentStep);
@@ -141,17 +142,20 @@ public class MultiPathModel extends AbstractWizardModel {
         history.push(currentStep);
     }
 
+    @Override
     public void previousStep() {
         WizardStep step = (WizardStep) history.pop();
         setActiveStep(step);
     }
 
+    @Override
     public void lastStep() {
         history.push(getActiveStep());
         WizardStep lastStep = getLastPath().lastStep();
         setActiveStep(lastStep);
     }
 
+    @Override
     public void reset() {
         history.clear();
         WizardStep firstStep = firstPath.firstStep();
@@ -159,11 +163,13 @@ public class MultiPathModel extends AbstractWizardModel {
         history.push(firstStep);
     }
 
+    @Override
     public boolean isLastStep(WizardStep step) {
         Path path = getPathForStep(step);
         return path.equals(getLastPath()) && path.isLastStep(step);
     }
 
+    @Override
     public void refreshModelState() {
         WizardStep activeStep = getActiveStep();
         Path activePath = getPathForStep(activeStep);
@@ -192,6 +198,7 @@ public class MultiPathModel extends AbstractWizardModel {
         return true;
     }
 
+    @Override
     public Iterator stepIterator() {
         return pathMapping.keySet().iterator();
     }
@@ -203,6 +210,7 @@ public class MultiPathModel extends AbstractWizardModel {
     private class LastPathVisitor extends AbstractPathVisitor {
         private Path last;
 
+        @Override
         public void visitPath(SimplePath p) {
             if (enter(p)) {
                 if (p.getNextPath() == null) {
@@ -217,6 +225,7 @@ public class MultiPathModel extends AbstractWizardModel {
             }
         }
 
+        @Override
         public void visitPath(BranchingPath path) {
             if (enter(path)) {
                 path.visitBranches(this);
@@ -234,6 +243,7 @@ public class MultiPathModel extends AbstractWizardModel {
         public PathMapVisitor() {
         }
 
+        @Override
         public void visitPath(SimplePath path) {
             if (enter(path)) {
                 populateMap(path);
@@ -241,6 +251,7 @@ public class MultiPathModel extends AbstractWizardModel {
             }
         }
 
+        @Override
         public void visitPath(BranchingPath path) {
             if (enter(path)) {
                 populateMap(path);

@@ -186,6 +186,7 @@ public abstract class AbstractWizardStep implements WizardStep {
      *
      * @return the name of this step.
      */
+    @Override
     public String getName() {
         return name;
     }
@@ -211,6 +212,7 @@ public abstract class AbstractWizardStep implements WizardStep {
      *
      * @return the summary of this step.
      */
+    @Override
     public String getSummary() {
         return summary;
     }
@@ -237,6 +239,7 @@ public abstract class AbstractWizardStep implements WizardStep {
      * @return the {@link javax.swing.Icon} that represents this step, or
      *         <tt>null</tt> if the step doesn't have an icon.
      */
+    @Override
     public Icon getIcon() {
         return icon;
     }
@@ -264,6 +267,7 @@ public abstract class AbstractWizardStep implements WizardStep {
      * @return the current view of the step.
      * @see #setView
      */
+    @Override
     public Component getView() {
         return view;
     }
@@ -292,6 +296,7 @@ public abstract class AbstractWizardStep implements WizardStep {
      *         <tt>false</tt> otherwise.
      * @see #setComplete
      */
+    @Override
     public boolean isComplete() {
         return complete;
     }
@@ -318,6 +323,7 @@ public abstract class AbstractWizardStep implements WizardStep {
      * @return <tt>true</tt> if step is busy performing a background operation,
      *         <tt>false</tt> otherwise.
      */
+    @Override
     public boolean isBusy() {
         return busy;
     }
@@ -351,6 +357,7 @@ public abstract class AbstractWizardStep implements WizardStep {
      *
      * @param model the model to which the step belongs.
      */
+    @Override
     public abstract void init(WizardModel model);
 
     /**
@@ -358,24 +365,29 @@ public abstract class AbstractWizardStep implements WizardStep {
      * {@link #isBusy busy} state. Steps that are never busy need not override this
      * method.
      */
+    @Override
     public void abortBusy() {
     }
 
     /////////////////////////////////////////////////////////////////////
     // Property change support
     //
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         pcs.addPropertyChangeListener(listener);
     }
 
+    @Override
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         pcs.removePropertyChangeListener(listener);
     }
 
+    @Override
     public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         pcs.addPropertyChangeListener(propertyName, listener);
     }
 
+    @Override
     public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         pcs.removePropertyChangeListener(propertyName, listener);
     }

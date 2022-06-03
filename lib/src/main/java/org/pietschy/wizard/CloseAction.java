@@ -37,6 +37,7 @@ class CloseAction extends AbstractAction {
         putValue(Action.MNEMONIC_KEY, new Integer(I18n.getMnemonic("close.mnemonic")));
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
         wizard.close();
     }

@@ -50,6 +50,7 @@ import org.pietschy.wizard.WizardModel;
  *             implementation by any swing componenent. See
  *             {@link org.pietschy.wizard.PanelWizardStep}.
  */
+@Deprecated
 public class WizardPaneStep extends AbstractWizardStep {
     WizardPane pane;
 
@@ -85,6 +86,7 @@ public class WizardPaneStep extends AbstractWizardStep {
     /**
      * @see org.pietschy.wizard.WizardStep#init(org.pietschy.wizard.WizardModel)
      */
+    @Override
     public void init(WizardModel model) {
         pane.init(this, model);
     }
@@ -92,6 +94,7 @@ public class WizardPaneStep extends AbstractWizardStep {
     /**
      * @see org.pietschy.wizard.WizardStep#prepare()
      */
+    @Override
     public void prepare() {
         setView((Component) pane);
         pane.prepare();
@@ -100,6 +103,7 @@ public class WizardPaneStep extends AbstractWizardStep {
     /**
      * @see org.pietschy.wizard.WizardStep#applyState()
      */
+    @Override
     public void applyState() throws InvalidStateException {
         pane.applyState();
     }
@@ -107,6 +111,7 @@ public class WizardPaneStep extends AbstractWizardStep {
     /**
      * @see org.pietschy.wizard.WizardStep#getPreferredSize()
      */
+    @Override
     public Dimension getPreferredSize() {
         return ((Component) pane).getPreferredSize();
     }

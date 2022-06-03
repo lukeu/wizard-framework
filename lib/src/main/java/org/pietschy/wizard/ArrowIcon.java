@@ -40,14 +40,17 @@ class ArrowIcon implements Icon {
         this.direction = direction;
     }
 
+    @Override
     public int getIconWidth() {
         return direction == SwingConstants.EAST || direction == SwingConstants.WEST ? LENGTH : 2 * LENGTH;
     }
 
+    @Override
     public int getIconHeight() {
         return direction == SwingConstants.NORTH || direction == SwingConstants.SOUTH ? LENGTH : 2 * LENGTH;
     }
 
+    @Override
     public void paintIcon(Component c, Graphics g, int x, int y) {
         Color oldColor = g.getColor();
         int mid = LENGTH;

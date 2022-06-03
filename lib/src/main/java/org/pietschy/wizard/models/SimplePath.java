@@ -43,6 +43,7 @@ public class SimplePath extends Path {
         addStep(step);
     }
 
+    @Override
     protected Path getNextPath(MultiPathModel model) {
         return nextPath;
     }
@@ -55,6 +56,7 @@ public class SimplePath extends Path {
         this.nextPath = nextPath;
     }
 
+    @Override
     public void acceptVisitor(PathVisitor visitor) {
         visitor.visitPath(this);
     }

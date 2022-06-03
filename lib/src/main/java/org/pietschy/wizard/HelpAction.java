@@ -36,6 +36,7 @@ class HelpAction extends AbstractAction {
         this.wizard = wizard;
         putValue(Action.MNEMONIC_KEY, new Integer(I18n.getMnemonic("help.mnemonic")));
         wizard.addPropertyChangeListener("helpBroker", new PropertyChangeListener() {
+            @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 configureState();
             }
@@ -44,6 +45,7 @@ class HelpAction extends AbstractAction {
         configureState();
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
         HelpBroker helpBroker = wizard.getHelpBroker();
 

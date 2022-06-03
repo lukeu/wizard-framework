@@ -58,6 +58,7 @@ public class BranchingPath extends Path {
      * @return the next path in the sequence.
      * @throws IllegalStateException if no matching path is found.
      */
+    @Override
     protected Path getNextPath(MultiPathModel model) {
         for (Iterator iter = paths.entrySet().iterator(); iter.hasNext();) {
             Map.Entry entry = (Map.Entry) iter.next();
@@ -81,6 +82,7 @@ public class BranchingPath extends Path {
         paths.put(condition, path);
     }
 
+    @Override
     public void acceptVisitor(PathVisitor visitor) {
         visitor.visitPath(this);
     }

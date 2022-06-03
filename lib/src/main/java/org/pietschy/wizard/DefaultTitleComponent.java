@@ -119,6 +119,7 @@ public class DefaultTitleComponent extends JPanel {
                         Wizard.BORDER_WIDTH, Wizard.BORDER_WIDTH, Wizard.BORDER_WIDTH, Wizard.BORDER_WIDTH)));
 
         model.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 if (evt.getPropertyName().equals("activeStep")) {
                     WizardStep activeStep = DefaultTitleComponent.this.model.getActiveStep();
@@ -153,6 +154,7 @@ public class DefaultTitleComponent extends JPanel {
         this.gradientBackground = gradientBackground;
     }
 
+    @Override
     protected void paintComponent(Graphics g) {
         if (isGradientBackground()) {
             Paint gradientPaint = prepareGradient();

@@ -114,6 +114,7 @@ public class Wizard extends JPanel {
     private boolean canceled = false;
 
     private PropertyChangeListener viewListener = new PropertyChangeListener() {
+        @Override
         public void propertyChange(PropertyChangeEvent evt) {
             handleViewChange();
         }
@@ -131,6 +132,7 @@ public class Wizard extends JPanel {
 
         this.model = model;
         this.model.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 if (evt.getPropertyName().equals("activeStep")) {
                     handleStepChange();
@@ -666,6 +668,7 @@ public class Wizard extends JPanel {
     private void showInWindow(Window window, Component relativeTo) {
         ((RootPaneContainer) window).getContentPane().add(this);
         window.addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent e) {
                 cancel();
             }

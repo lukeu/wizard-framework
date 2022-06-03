@@ -30,6 +30,7 @@ class FinishAction extends WizardAction {
         super("finish", model);
     }
 
+    @Override
     public void doAction(ActionEvent e) throws InvalidStateException {
         WizardStep finishStep = getModel().getActiveStep();
         finishStep.applyState();
@@ -45,6 +46,7 @@ class FinishAction extends WizardAction {
         }
     }
 
+    @Override
     protected void updateState() {
         WizardStep activeStep = getActiveStep();
         setEnabled(activeStep != null && getModel().isLastStep(activeStep) && activeStep.isComplete()

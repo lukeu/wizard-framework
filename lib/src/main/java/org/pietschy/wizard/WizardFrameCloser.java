@@ -48,10 +48,12 @@ public class WizardFrameCloser implements WizardListener {
         this.wizard.addWizardListener(this);
     }
 
+    @Override
     public void wizardClosed(WizardEvent e) {
         closeWindow();
     }
 
+    @Override
     public void wizardCancelled(WizardEvent e) {
         closeWindow();
     }
