@@ -79,11 +79,11 @@ import org.pietschy.wizard.WizardStep;
  * more than one is found the model will throw an exception.
  */
 public class MultiPathModel extends AbstractWizardModel {
-    private Path firstPath;
-    private Path lastPath;
-    private Map<WizardStep, Path> pathMapping;
+    private final Path firstPath;
+    private final Path lastPath;
+    private final Map<WizardStep, Path> pathMapping;
 
-    private Stack<WizardStep> history = new Stack<>();
+    private final Stack<WizardStep> history = new Stack<>();
 
     /**
      * Creates a new MultiPathModel. The paths must be full constructed and linked
@@ -238,7 +238,7 @@ public class MultiPathModel extends AbstractWizardModel {
     }
 
     private class PathMapVisitor extends AbstractPathVisitor {
-        private HashMap<WizardStep, Path> map = new HashMap<>();
+        private final HashMap<WizardStep, Path> map = new HashMap<>();
 
         public PathMapVisitor() {
         }

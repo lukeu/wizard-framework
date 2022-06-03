@@ -45,11 +45,11 @@ import javax.swing.SwingConstants;
 public class DefaultTitleComponent extends JPanel {
     private static final Color COLOR_GRAY_230 = new Color(230, 230, 230);
 
-    private JLabel title;
-    private JEditorPane summary;
-    private JLabel iconLabel;
+    private final JLabel title;
+    private final JEditorPane summary;
+    private final JLabel iconLabel;
 
-    private WizardModel model;
+    private final WizardModel model;
 
     private boolean gradientBackground = false;
     private Color fadeColor = COLOR_GRAY_230;

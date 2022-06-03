@@ -88,31 +88,31 @@ public class Wizard extends JPanel {
      */
     public static final int EXIT_ON_FINISH = 2;
 
-    private NextAction nextAction;
-    private PreviousAction previousAction;
-    private LastAction lastAction;
-    private FinishAction finishAction;
-    private CancelAction cancelAction;
-    private CloseAction closeAction;
-    private HelpAction helpAction;
+    private final NextAction nextAction;
+    private final PreviousAction previousAction;
+    private final LastAction lastAction;
+    private final FinishAction finishAction;
+    private final CancelAction cancelAction;
+    private final CloseAction closeAction;
+    private final HelpAction helpAction;
 
     private HelpBroker helpBroker;
 
     private WizardStep activeStep;
-    private WizardModel model;
+    private final WizardModel model;
     private int defaultExitMode = EXIT_ON_CLOSE;
 
-    private JComponent titleComponent;
-    private ButtonBar buttonBar;
-    private JPanel viewPanel;
-    private JPanel mainContainer;
-    private JPanel overviewContainer;
+    private final JComponent titleComponent;
+    private final ButtonBar buttonBar;
+    private final JPanel viewPanel;
+    private final JPanel mainContainer;
+    private final JPanel overviewContainer;
 
     private boolean overviewVisible = true;
 
     private boolean canceled = false;
 
-    private PropertyChangeListener viewListener = evt -> handleViewChange();
+    private final PropertyChangeListener viewListener = evt -> handleViewChange();
 
     public Wizard(WizardModel model) {
         if (model == null) {

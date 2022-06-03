@@ -37,9 +37,9 @@ public abstract class AbstractWizardModel implements WizardModel {
     private boolean lastAvailable;
     private boolean cancelAvailable;
     private boolean lastVisible = true;
-    private PropertyChangeSupport pcs;
+    private final PropertyChangeSupport pcs;
 
-    private PropertyChangeListener completeListener = evt -> {
+    private final PropertyChangeListener completeListener = evt -> {
         if (evt.getPropertyName().equals("complete")) {
             refreshModelState();
         }

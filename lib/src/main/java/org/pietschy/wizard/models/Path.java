@@ -27,7 +27,7 @@ import org.pietschy.wizard.WizardStep;
  * Paths represent a sequence of {@link WizardStep}s.
  */
 public abstract class Path {
-    private ArrayList<WizardStep> steps = new ArrayList<>();
+    private final ArrayList<WizardStep> steps = new ArrayList<>();
 
     protected Path() {
     }

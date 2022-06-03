@@ -41,7 +41,7 @@ import javax.swing.text.html.HTMLEditorKit;
  * @see #setForeground
  */
 public class HTMLPane extends JEditorPane {
-    private HTMLEditorKit kit;
+    private final HTMLEditorKit kit;
     private boolean antiAlias = false;
     private boolean forceReload = false;
 

@@ -120,7 +120,7 @@ import javax.swing.Icon;
  * </pre>
  */
 public abstract class AbstractWizardStep implements WizardStep {
-    private PropertyChangeSupport pcs;
+    private final PropertyChangeSupport pcs;
 
     /** The name of this step. */
     private String name;

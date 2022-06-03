@@ -39,8 +39,8 @@ import org.pietschy.wizard.WizardStep;
  * This class provides an overview panel for instances of {@link StaticModel}.
  */
 public class StaticModelOverview extends JPanel implements PropertyChangeListener {
-    private StaticModel model;
-    private HashMap<WizardStep, JLabel> labels = new HashMap<>();
+    private final StaticModel model;
+    private final HashMap<WizardStep, JLabel> labels = new HashMap<>();
 
     public StaticModelOverview(StaticModel model) {
         this.model = model;

@@ -25,7 +25,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 
 class HelpAction extends AbstractAction {
-    private Wizard wizard;
+    private final Wizard wizard;
     protected HelpAction(Wizard wizard) {
         super(I18n.getString("help.text"));
         this.wizard = wizard;

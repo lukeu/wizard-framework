@@ -25,7 +25,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 
 class CloseAction extends AbstractAction {
-    private Wizard wizard;
+    private final Wizard wizard;
 
     protected CloseAction(Wizard wizard) {
         super(I18n.getString("close.text"));

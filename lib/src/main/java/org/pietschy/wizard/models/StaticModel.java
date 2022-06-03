@@ -36,7 +36,7 @@ import org.pietschy.wizard.WizardStep;
  */
 public class StaticModel extends AbstractWizardModel implements OverviewProvider {
 
-    private ArrayList<WizardStep> steps = new ArrayList<>();
+    private final ArrayList<WizardStep> steps = new ArrayList<>();
 
     private int currentStep = 0;
     private StaticModelOverview overviewComponent;

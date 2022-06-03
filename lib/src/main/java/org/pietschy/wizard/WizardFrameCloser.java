@@ -25,8 +25,8 @@ import java.awt.Window;
  * frames when a wizard has been completed or canceled.
  */
 public class WizardFrameCloser implements WizardListener {
-    private Window window;
-    private Wizard wizard;
+    private final Window window;
+    private final Wizard wizard;
 
     /** Creates a new closer that monitors the specified wizard and closes the parent frame. */
     public static void bind(Wizard wizard, Window window) {

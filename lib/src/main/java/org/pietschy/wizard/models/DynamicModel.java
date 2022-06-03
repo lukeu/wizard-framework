@@ -64,10 +64,10 @@ public class DynamicModel extends AbstractWizardModel {
     /** An implementation of {@link Condition} that always returns <tt>true</tt>. */
     public static final Condition TRUE_CONDITION = model -> true;
 
-    private ArrayList<WizardStep> steps = new ArrayList<>();
-    private ArrayList<Condition> conditions = new ArrayList<>();
+    private final ArrayList<WizardStep> steps = new ArrayList<>();
+    private final ArrayList<Condition> conditions = new ArrayList<>();
 
-    private Stack<WizardStep> history = new Stack<>();
+    private final Stack<WizardStep> history = new Stack<>();
 
     public DynamicModel() {
     }

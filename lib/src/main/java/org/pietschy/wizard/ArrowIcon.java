@@ -29,7 +29,7 @@ import javax.swing.UIManager;
 
 class ArrowIcon implements Icon {
 
-    private int direction;
+    private final int direction;
     private static final int LENGTH = 5;
 
     public ArrowIcon(int direction) {

@@ -32,7 +32,7 @@ import org.pietschy.wizard.WizardStep;
  * @see #addStep
  */
 public class BranchingPath extends Path {
-    private HashMap<Condition, Path> paths = new HashMap<>();
+    private final HashMap<Condition, Path> paths = new HashMap<>();
 
     public BranchingPath() {
     }

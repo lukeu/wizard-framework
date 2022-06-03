@@ -42,14 +42,14 @@ public class ButtonBar extends JPanel {
     public static final int RELATED_GAP = Wizard.BORDER_WIDTH / 2;
     public static final int UNRELATED_GAP = Wizard.BORDER_WIDTH;
 
-    private Wizard wizard;
-    private JButton lastButton;
-    private JButton nextButton;
-    private JButton previousButton;
-    private JButton finishButton;
-    private JButton cancelButton;
-    private JButton closeButton;
-    private JButton helpButton;
+    private final Wizard wizard;
+    private final JButton lastButton;
+    private final JButton nextButton;
+    private final JButton previousButton;
+    private final JButton finishButton;
+    private final JButton cancelButton;
+    private final JButton closeButton;
+    private final JButton helpButton;
 
     protected Component lastButtonGap = Box.createHorizontalStrut(RELATED_GAP);
     protected Component helpButtonGap = Box.createHorizontalStrut(UNRELATED_GAP);
