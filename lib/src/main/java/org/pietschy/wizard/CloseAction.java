@@ -30,7 +30,7 @@ class CloseAction extends AbstractAction {
     protected CloseAction(Wizard wizard) {
         super(I18n.getString("close.text"));
         this.wizard = wizard;
-        putValue(Action.MNEMONIC_KEY, new Integer(I18n.getMnemonic("close.mnemonic")));
+        putValue(Action.MNEMONIC_KEY, I18n.getMnemonic("close.mnemonic"));
     }
 
     @Override

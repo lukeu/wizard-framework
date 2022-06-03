@@ -49,7 +49,7 @@ public abstract class WizardAction extends AbstractAction implements PropertyCha
             activeStep.addPropertyChangeListener(this);
         }
 
-        putValue(Action.MNEMONIC_KEY, new Integer(I18n.getMnemonic(key + ".mnemonic")));
+        putValue(Action.MNEMONIC_KEY, I18n.getMnemonic(key + ".mnemonic"));
 
         updateState();
     }
