@@ -51,7 +51,7 @@ public class StaticModelOverview extends JPanel implements PropertyChangeListene
 
         JLabel title = new JLabel(I18n.getString("StaticModelOverview.title"));
         title.setBorder(BorderFactory.createEmptyBorder(0, 4, 4, 4));
-        ;
+
         title.setAlignmentX(0);
         title.setMaximumSize(new Dimension(Integer.MAX_VALUE, title.getMaximumSize().height));
         add(title);

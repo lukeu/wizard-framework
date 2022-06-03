@@ -20,14 +20,11 @@
 package org.pietschy.wizard;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Frame;
-import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Insets;
 import java.awt.Window;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -46,7 +43,6 @@ import javax.swing.JSeparator;
 import javax.swing.JWindow;
 import javax.swing.RootPaneContainer;
 import javax.swing.SwingUtilities;
-import javax.swing.border.AbstractBorder;
 
 /**
  * The wizard class is the main entry point for creating wizards. Typically you
@@ -178,13 +174,11 @@ public class Wizard extends JPanel {
 
         if (model instanceof OverviewProvider) {
             p = new JPanel(new BorderLayout());
-            p.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(0, 0, 0, 2),
+            p.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createEmptyBorder(0, 0, 0, 2),
                     BorderFactory.createEtchedBorder()));
-            //         p.setBorder(new OverviewBorder());
             p.add(((OverviewProvider) model).getOverviewComponent(), BorderLayout.CENTER);
             overviewContainer.add(p, BorderLayout.WEST);
-            // overviewContainer.add(Box.createVerticalStrut(buttonBar.getPreferredSize().height
-            // + BORDER_WIDTH), BorderLayout.SOUTH);
         }
 
         add(mainContainer, BorderLayout.CENTER);
@@ -273,7 +267,7 @@ public class Wizard extends JPanel {
     public void reset() {
         canceled = false;
         getModel().reset();
-    };
+    }
 
     /**
      * Gets the models this wizard is using.
@@ -682,28 +676,5 @@ public class Wizard extends JPanel {
         window.setLocationRelativeTo(relativeTo);
         window.setVisible(true);
         window.toFront();
-    }
-
-    private class OverviewBorder extends AbstractBorder {
-        private int width = 5;
-        private Insets insets = new Insets(0, 0, 0, 2);
-
-        public boolean isBorderOpaque() {
-            return true;
-        }
-
-        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-            Color old = g.getColor();
-
-            g.setColor(Color.BLACK);
-
-            g.drawLine(x + width - 1, y, x + width - 1, y + height);
-
-            g.setColor(old);
-        }
-
-        public Insets getBorderInsets(Component c) {
-            return insets;
-        }
     }
 }
