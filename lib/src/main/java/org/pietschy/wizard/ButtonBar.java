@@ -108,41 +108,40 @@ public class ButtonBar extends JPanel {
      * method are responsible for setting the layout manager using
      * {@link #setLayout(LayoutManager)}.
      *
-     * @param helpButton     the help button.
-     * @param previousButton the previous button.
-     * @param nextButton     the next button
-     * @param lastButton     the last button
-     * @param finishButton   the showCloseButton button
-     * @param cancelButton   the cancel button.
-     * @param closeButton    the close button.
+     * @param help     the help button.
+     * @param previous the previous button.
+     * @param next     the next button
+     * @param last     the last button
+     * @param finish   the showCloseButton button
+     * @param cancel   the cancel button.
+     * @param close    the close button.
      */
-    protected void layoutButtons(JButton helpButton, JButton previousButton, JButton nextButton, JButton lastButton,
-            JButton finishButton, JButton cancelButton, JButton closeButton) {
+    protected void layoutButtons(JButton help, JButton previous, JButton next, JButton last,
+            JButton finish, JButton cancel, JButton close) {
         setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
-        add(helpButton);
+        add(help);
         add(helpButtonGap);
         add(Box.createHorizontalGlue());
-        add(previousButton);
+        add(previous);
         add(Box.createHorizontalStrut(RELATED_GAP));
-        add(nextButton);
+        add(next);
         add(lastButtonGap);
-        add(lastButton);
+        add(last);
         add(Box.createHorizontalStrut(RELATED_GAP));
-        add(finishButton);
+        add(finish);
         add(Box.createHorizontalStrut(UNRELATED_GAP));
-        add(cancelButton);
-        add(closeButton);
+        add(cancel);
+        add(close);
     }
 
     /**
      * Call prior to {@link #layoutButtons} to make all the buttons the same width.
      */
-    protected void equalizeButtonWidths(JButton helpButton, JButton previousButton, JButton nextButton,
-            JButton lastButton, JButton finishButton, JButton cancelButton, JButton closeButton) {
+    protected void equalizeButtonWidths(JButton help, JButton previous, JButton next,
+            JButton last, JButton finish, JButton cancel, JButton close) {
         // make sure that every button has the same size
         Dimension d = new Dimension();
-        JButton[] buttons = { helpButton, previousButton, nextButton, lastButton, finishButton,
-                cancelButton, closeButton };
+        JButton[] buttons = { help, previous, next, last, finish, cancel, close };
         for (int i = 0; i < buttons.length; i++) {
             Dimension buttonDim = buttons[i].getPreferredSize();
             if (buttonDim.width > d.width) {

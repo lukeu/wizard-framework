@@ -378,13 +378,13 @@ public class Wizard extends JPanel {
      * {@link WizardListener#wizardCancelled} event.
      */
     public void cancel() {
-        WizardStep activeStep = getModel().getActiveStep();
-        if (activeStep != null && activeStep.isBusy()) {
+        WizardStep step = getModel().getActiveStep();
+        if (step != null && step.isBusy()) {
             if (!confirmAbort()) {
                 return;
             }
 
-            activeStep.abortBusy();
+            step.abortBusy();
         }
 
         canceled = true;
