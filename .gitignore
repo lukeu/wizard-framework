@@ -6,3 +6,9 @@ build
 
 # Ignore Gradle project-specific cache directory
 .gradle
+
+# Ignore Eclipse-generated files
+.project
+.classpath
+.settings/
+bin/
