@@ -207,7 +207,7 @@ public class MultiPathModel extends AbstractWizardModel {
         return pathMapping.get(step);
     }
 
-    private class LastPathVisitor extends AbstractPathVisitor {
+    private static class LastPathVisitor extends AbstractPathVisitor {
         private Path last;
 
         @Override
@@ -237,7 +237,7 @@ public class MultiPathModel extends AbstractWizardModel {
         }
     }
 
-    private class PathMapVisitor extends AbstractPathVisitor {
+    private static class PathMapVisitor extends AbstractPathVisitor {
         private final HashMap<WizardStep, Path> map = new HashMap<>();
 
         public PathMapVisitor() {
