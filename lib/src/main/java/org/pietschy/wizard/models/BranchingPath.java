@@ -33,7 +33,7 @@ import org.pietschy.wizard.WizardStep;
  * @see #addStep
  */
 public class BranchingPath extends Path {
-    private HashMap paths = new HashMap();
+    private HashMap<Condition, Path> paths = new HashMap<>();
 
     public BranchingPath() {
     }
@@ -44,11 +44,11 @@ public class BranchingPath extends Path {
 
     @Override
     protected Path getNextPath(MultiPathModel model) {
-        for (Iterator iter = paths.entrySet().iterator(); iter.hasNext();) {
-            Map.Entry entry = (Map.Entry) iter.next();
-            Condition condition = (Condition) entry.getKey();
+        for (Iterator<Map.Entry<Condition, Path>> iter = paths.entrySet().iterator(); iter.hasNext();) {
+            Map.Entry<Condition, Path> entry = iter.next();
+            Condition condition = entry.getKey();
             if (condition.evaluate(model)) {
-                return (Path) entry.getValue();
+                return entry.getValue();
             }
         }
 
@@ -72,8 +72,8 @@ public class BranchingPath extends Path {
     }
 
     public void visitBranches(PathVisitor visitor) {
-        for (Iterator iter = paths.values().iterator(); iter.hasNext();) {
-            Path path = (Path) iter.next();
+        for (Iterator<Path> iter = paths.values().iterator(); iter.hasNext();) {
+            Path path = iter.next();
             path.acceptVisitor(visitor);
         }
     }

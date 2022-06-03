@@ -85,8 +85,8 @@ public class DefaultTitleComponent extends JPanel {
         // determine the largest icon size.
         int maxIconHeight = 0;
         int maxIconWidth = 0;
-        for (Iterator iter = model.stepIterator(); iter.hasNext();) {
-            Icon icon = ((WizardStep) iter.next()).getIcon();
+        for (Iterator<WizardStep> iter = model.stepIterator(); iter.hasNext();) {
+            Icon icon = iter.next().getIcon();
             if (icon != null) {
                 maxIconWidth = Math.max(maxIconWidth, icon.getIconWidth());
                 maxIconHeight = Math.max(maxIconHeight, icon.getIconHeight());

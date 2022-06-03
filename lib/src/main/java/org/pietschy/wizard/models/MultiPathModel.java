@@ -81,9 +81,9 @@ import org.pietschy.wizard.WizardStep;
 public class MultiPathModel extends AbstractWizardModel {
     private Path firstPath;
     private Path lastPath;
-    private Map pathMapping;
+    private Map<WizardStep, Path> pathMapping;
 
-    private Stack history = new Stack();
+    private Stack<WizardStep> history = new Stack<>();
 
     /**
      * Creates a new MultiPathModel. The paths must be full constructed and linked
@@ -114,8 +114,8 @@ public class MultiPathModel extends AbstractWizardModel {
             throw new IllegalStateException("Unable to locate last path");
         }
 
-        for (Iterator iter = pathMapping.keySet().iterator(); iter.hasNext();) {
-            addCompleteListener((WizardStep) iter.next());
+        for (Iterator<WizardStep> iter = pathMapping.keySet().iterator(); iter.hasNext();) {
+            addCompleteListener(iter.next());
         }
     }
 
@@ -144,7 +144,7 @@ public class MultiPathModel extends AbstractWizardModel {
 
     @Override
     public void previousStep() {
-        WizardStep step = (WizardStep) history.pop();
+        WizardStep step = history.pop();
         setActiveStep(step);
     }
 
@@ -189,8 +189,8 @@ public class MultiPathModel extends AbstractWizardModel {
      *         <tt>false</tt> otherwise.
      */
     public boolean allStepsComplete() {
-        for (Iterator iterator = stepIterator(); iterator.hasNext();) {
-            if (!((WizardStep) iterator.next()).isComplete()) {
+        for (Iterator<WizardStep> iterator = stepIterator(); iterator.hasNext();) {
+            if (!iterator.next().isComplete()) {
                 return false;
             }
         }
@@ -199,12 +199,12 @@ public class MultiPathModel extends AbstractWizardModel {
     }
 
     @Override
-    public Iterator stepIterator() {
+    public Iterator<WizardStep> stepIterator() {
         return pathMapping.keySet().iterator();
     }
 
     protected Path getPathForStep(WizardStep step) {
-        return (Path) pathMapping.get(step);
+        return pathMapping.get(step);
     }
 
     private class LastPathVisitor extends AbstractPathVisitor {
@@ -238,7 +238,7 @@ public class MultiPathModel extends AbstractWizardModel {
     }
 
     private class PathMapVisitor extends AbstractPathVisitor {
-        private HashMap map = new HashMap();
+        private HashMap<WizardStep, Path> map = new HashMap<>();
 
         public PathMapVisitor() {
         }
@@ -260,13 +260,13 @@ public class MultiPathModel extends AbstractWizardModel {
         }
 
         private void populateMap(Path path) {
-            for (Iterator iter = path.getSteps().iterator(); iter.hasNext();) {
-                WizardStep step = (WizardStep) iter.next();
+            for (Iterator<WizardStep> iter = path.getSteps().iterator(); iter.hasNext();) {
+                WizardStep step = iter.next();
                 map.put(step, path);
             }
         }
 
-        public Map getMap() {
+        public Map<WizardStep, Path> getMap() {
             return map;
         }
     }

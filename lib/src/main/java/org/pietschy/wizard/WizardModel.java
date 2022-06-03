@@ -122,7 +122,7 @@ public interface WizardModel {
      * Returns an iterator over all the steps in the model. The iteration order is
      * not guaranteed to be the order of traversal.
      */
-    Iterator stepIterator();
+    Iterator<WizardStep> stepIterator();
 
     /**
      * Adds a {@link PropertyChangeListener} to this model.

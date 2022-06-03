@@ -40,7 +40,7 @@ import org.pietschy.wizard.WizardStep;
  */
 public class StaticModelOverview extends JPanel implements PropertyChangeListener {
     private StaticModel model;
-    private HashMap labels = new HashMap();
+    private HashMap<WizardStep, JLabel> labels = new HashMap<>();
 
     public StaticModelOverview(StaticModel model) {
         this.model = model;
@@ -56,8 +56,8 @@ public class StaticModelOverview extends JPanel implements PropertyChangeListene
         title.setMaximumSize(new Dimension(Integer.MAX_VALUE, title.getMaximumSize().height));
         add(title);
         int i = 1;
-        for (Iterator iter = model.stepIterator(); iter.hasNext();) {
-            WizardStep step = (WizardStep) iter.next();
+        for (Iterator<WizardStep> iter = model.stepIterator(); iter.hasNext();) {
+            WizardStep step = iter.next();
             JLabel label = new JLabel("" + i + ". " + step.getName());
             i++;
             label.setBackground(new Color(240, 240, 240));
@@ -74,12 +74,12 @@ public class StaticModelOverview extends JPanel implements PropertyChangeListene
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("activeStep")) {
-            JLabel old = (JLabel) labels.get(evt.getOldValue());
+            JLabel old = labels.get(evt.getOldValue());
             if (old != null) {
                 formatInactive(old);
             }
 
-            JLabel label = (JLabel) labels.get(evt.getNewValue());
+            JLabel label = labels.get(evt.getNewValue());
             formatActive(label);
             repaint();
         }

@@ -36,7 +36,7 @@ import org.pietschy.wizard.WizardStep;
  */
 public class StaticModel extends AbstractWizardModel implements OverviewProvider {
 
-    private ArrayList steps = new ArrayList();
+    private ArrayList<WizardStep> steps = new ArrayList<>();
 
     private int currentStep = 0;
     private StaticModelOverview overviewComponent;
@@ -47,7 +47,7 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
     @Override
     public void reset() {
         currentStep = 0;
-        setActiveStep((WizardStep) steps.get(currentStep));
+        setActiveStep(steps.get(currentStep));
     }
 
     @Override
@@ -57,7 +57,7 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
         }
 
         currentStep++;
-        setActiveStep((WizardStep) steps.get(currentStep));
+        setActiveStep(steps.get(currentStep));
     }
 
     @Override
@@ -67,13 +67,13 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
         }
 
         currentStep--;
-        setActiveStep((WizardStep) steps.get(currentStep));
+        setActiveStep(steps.get(currentStep));
     }
 
     @Override
     public void lastStep() {
         currentStep = steps.size() - 1;
-        setActiveStep((WizardStep) steps.get(currentStep));
+        setActiveStep(steps.get(currentStep));
     }
 
     @Override
@@ -82,7 +82,7 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
     }
 
     @Override
-    public Iterator stepIterator() {
+    public Iterator<WizardStep> stepIterator() {
         return Collections.unmodifiableList(steps).iterator();
     }
 
@@ -113,8 +113,8 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
      *         <tt>false</tt> otherwise.
      */
     public boolean allStepsComplete() {
-        for (Iterator iterator = steps.iterator(); iterator.hasNext();) {
-            if (!((WizardStep) iterator.next()).isComplete()) {
+        for (Iterator<WizardStep> iterator = steps.iterator(); iterator.hasNext();) {
+            if (!iterator.next().isComplete()) {
                 return false;
             }
         }

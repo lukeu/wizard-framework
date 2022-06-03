@@ -278,13 +278,6 @@ public abstract class AbstractWizardStep implements WizardStep {
         }
     }
 
-    /**
-     * Checks if the current task is busy. This usually indicates that the step is
-     * performing a time consuming task on a background thread.
-     *
-     * @return <tt>true</tt> if step is busy performing a background operation,
-     *         <tt>false</tt> otherwise.
-     */
     @Override
     public boolean isBusy() {
         return busy;

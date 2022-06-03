@@ -120,11 +120,6 @@ public class Wizard extends JPanel {
         }
     };
 
-    /**
-     * Creates a new Wizard that uses the specified {@link WizardModel}.
-     *
-     * @param model the model that the wizard is to use.
-     */
     public Wizard(WizardModel model) {
         if (model == null) {
             throw new NullPointerException("models is null");
@@ -149,8 +144,8 @@ public class Wizard extends JPanel {
         helpAction = new HelpAction(this);
 
         // initialize all the wizard steps.
-        for (Iterator iter = model.stepIterator(); iter.hasNext();) {
-            ((WizardStep) iter.next()).init(this.model);
+        for (Iterator<WizardStep> iter = model.stepIterator(); iter.hasNext();) {
+            iter.next().init(this.model);
         }
 
         setLayout(new BorderLayout());
@@ -482,8 +477,8 @@ public class Wizard extends JPanel {
         int w = 0;
         int h = 0;
 
-        for (Iterator iter = getModel().stepIterator(); iter.hasNext();) {
-            WizardStep step = (WizardStep) iter.next();
+        for (Iterator<WizardStep> iter = getModel().stepIterator(); iter.hasNext();) {
+            WizardStep step = iter.next();
             Dimension d = step.getPreferredSize();
 
             w = Math.max(d.width, w);

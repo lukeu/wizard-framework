@@ -70,10 +70,10 @@ public class DynamicModel extends AbstractWizardModel {
         }
     };
 
-    private ArrayList steps = new ArrayList();
-    private ArrayList conditions = new ArrayList();
+    private ArrayList<WizardStep> steps = new ArrayList<>();
+    private ArrayList<Condition> conditions = new ArrayList<>();
 
-    private Stack history = new Stack();
+    private Stack<WizardStep> history = new Stack<>();
 
     public DynamicModel() {
     }
@@ -122,7 +122,7 @@ public class DynamicModel extends AbstractWizardModel {
 
     @Override
     public void previousStep() {
-        WizardStep step = (WizardStep) history.pop();
+        WizardStep step = history.pop();
         setActiveStep(step);
     }
 
@@ -175,8 +175,8 @@ public class DynamicModel extends AbstractWizardModel {
      */
     public boolean allStepsComplete() {
         for (int i = 0; i < steps.size(); i++) {
-            WizardStep step = (WizardStep) steps.get(i);
-            Condition condition = (Condition) conditions.get(i);
+            WizardStep step = steps.get(i);
+            Condition condition = conditions.get(i);
 
             if (condition.evaluate(this)) {
                 if (!step.isComplete()) {
@@ -190,7 +190,7 @@ public class DynamicModel extends AbstractWizardModel {
     }
 
     @Override
-    public Iterator stepIterator() {
+    public Iterator<WizardStep> stepIterator() {
         return Collections.unmodifiableList(steps).iterator();
     }
 
@@ -198,9 +198,9 @@ public class DynamicModel extends AbstractWizardModel {
         int startIndex = (currentStep == null) ? 0 : steps.indexOf(currentStep) + 1;
 
         for (int i = startIndex; i < conditions.size(); i++) {
-            Condition condition = (Condition) conditions.get(i);
+            Condition condition = conditions.get(i);
             if (condition.evaluate(this)) {
-                return (WizardStep) steps.get(i);
+                return steps.get(i);
             }
         }
 
@@ -209,9 +209,9 @@ public class DynamicModel extends AbstractWizardModel {
 
     private WizardStep findLastStep() {
         for (int i = conditions.size() - 1; i >= 0; i--) {
-            Condition condition = (Condition) conditions.get(i);
+            Condition condition = conditions.get(i);
             if (condition.evaluate(this)) {
-                return (WizardStep) steps.get(i);
+                return steps.get(i);
             }
         }
 

@@ -27,7 +27,7 @@ import org.pietschy.wizard.WizardStep;
  * Paths represent a sequence of {@link WizardStep}s.
  */
 public abstract class Path {
-    private ArrayList steps = new ArrayList();
+    private ArrayList<WizardStep> steps = new ArrayList<>();
 
     protected Path() {
     }
@@ -51,21 +51,21 @@ public abstract class Path {
     }
 
     public WizardStep firstStep() {
-        return (WizardStep) steps.get(0);
+        return steps.get(0);
     }
 
     public WizardStep nextStep(WizardStep currentStep) {
         int index = steps.indexOf(currentStep);
-        return (WizardStep) steps.get(index + 1);
+        return steps.get(index + 1);
     }
 
     public WizardStep previousStep(WizardStep currentStep) {
         int index = steps.indexOf(currentStep);
-        return (WizardStep) steps.get(index - 1);
+        return steps.get(index - 1);
     }
 
     public WizardStep lastStep() {
-        return (WizardStep) steps.get(steps.size() - 1);
+        return steps.get(steps.size() - 1);
     }
 
     /**
@@ -90,7 +90,7 @@ public abstract class Path {
         return steps.lastIndexOf(step) == steps.size() - 1;
     }
 
-    public ArrayList getSteps() {
+    public ArrayList<WizardStep> getSteps() {
         return steps;
     }
 
