@@ -13,6 +13,12 @@ plugins {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+tasks.withType(JavaCompile) {
+    options.compilerArgs << '-Xlint' << '-Werror' << '-Xlint:-serial'
+    options.encoding = 'UTF-8'
+    options.incremental = true
+}
+
 repositories {
     mavenCentral()
 }
