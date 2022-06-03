@@ -33,67 +33,55 @@ import java.util.HashMap;
 /**
  * This class provides an overview panel for instances of {@link StaticModel}.
  */
-public class
-StaticModelOverview
-extends JPanel
-implements PropertyChangeListener
-{
-   private StaticModel model;
-   private HashMap labels = new HashMap();
+public class StaticModelOverview extends JPanel implements PropertyChangeListener {
+    private StaticModel model;
+    private HashMap labels = new HashMap();
 
-   public StaticModelOverview(StaticModel model)
-   {
-      this.model = model;
-      this.model.addPropertyChangeListener(this);
-      setBackground(Color.WHITE);
-      setBorder(BorderFactory.createEmptyBorder(8,8,8,8));
-      setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+    public StaticModelOverview(StaticModel model) {
+        this.model = model;
+        this.model.addPropertyChangeListener(this);
+        setBackground(Color.WHITE);
+        setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
-      JLabel title = new JLabel(I18n.getString("StaticModelOverview.title"));
-      title.setBorder(BorderFactory.createEmptyBorder(0,4,4,4));;
-      title.setAlignmentX(0);
-      title.setMaximumSize(new Dimension(Integer.MAX_VALUE, title.getMaximumSize().height));
-      add(title);
-      int i = 1;
-      for (Iterator iter = model.stepIterator(); iter.hasNext();)
-      {
-         WizardStep step = (WizardStep) iter.next();
-         JLabel label = new JLabel(""+ i++ + ". " + step.getName());
-         label.setBackground(new Color(240,240,240));
-         label.setBorder(BorderFactory.createEmptyBorder(2,4,2,4));
-         label.setAlignmentX(0);
-         label.setMaximumSize(new Dimension(Integer.MAX_VALUE, label.getMaximumSize().height));
-         add(label);
-         labels.put(step, label);
-      }
+        JLabel title = new JLabel(I18n.getString("StaticModelOverview.title"));
+        title.setBorder(BorderFactory.createEmptyBorder(0, 4, 4, 4));
+        ;
+        title.setAlignmentX(0);
+        title.setMaximumSize(new Dimension(Integer.MAX_VALUE, title.getMaximumSize().height));
+        add(title);
+        int i = 1;
+        for (Iterator iter = model.stepIterator(); iter.hasNext();) {
+            WizardStep step = (WizardStep) iter.next();
+            JLabel label = new JLabel("" + i++ + ". " + step.getName());
+            label.setBackground(new Color(240, 240, 240));
+            label.setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
+            label.setAlignmentX(0);
+            label.setMaximumSize(new Dimension(Integer.MAX_VALUE, label.getMaximumSize().height));
+            add(label);
+            labels.put(step, label);
+        }
 
-      add(Box.createGlue());
-   }
+        add(Box.createGlue());
+    }
 
-   public void
-   propertyChange(PropertyChangeEvent evt)
-   {
-      if (evt.getPropertyName().equals("activeStep"))
-      {
-         JLabel old = (JLabel) labels.get(evt.getOldValue());
-         if (old != null)
-            formatInactive(old);
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getPropertyName().equals("activeStep")) {
+            JLabel old = (JLabel) labels.get(evt.getOldValue());
+            if (old != null)
+                formatInactive(old);
 
-         JLabel label = (JLabel) labels.get(evt.getNewValue());
-         formatActive(label);
-         repaint();
-      }
-   }
+            JLabel label = (JLabel) labels.get(evt.getNewValue());
+            formatActive(label);
+            repaint();
+        }
+    }
 
-   protected void
-   formatActive(JLabel label)
-   {
-      label.setOpaque(true);
-   }
+    protected void formatActive(JLabel label) {
+        label.setOpaque(true);
+    }
 
-   protected void
-   formatInactive(JLabel label)
-   {
-      label.setOpaque(false);
-   }
+    protected void formatInactive(JLabel label) {
+        label.setOpaque(false);
+    }
 }

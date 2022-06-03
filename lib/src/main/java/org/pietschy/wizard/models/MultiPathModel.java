@@ -27,285 +27,232 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 
 /**
- * MultiPathModels are built from a joined set of {@link Path Paths} that each contain one or more
- * {@link WizardStep WizardSteps}.  Two types of {@link Path} are available, {@link SimplePath} and
- * {@link BranchingPath}.  The paths must be fully constructed before the model is instantiated.
+ * MultiPathModels are built from a joined set of {@link Path Paths} that each
+ * contain one or more {@link WizardStep WizardSteps}. Two types of {@link Path}
+ * are available, {@link SimplePath} and {@link BranchingPath}. The paths must
+ * be fully constructed before the model is instantiated.
+ *
  * <pre>
  * // Construct each of the paths involved in the wizard.
- *BranchingPath firstPath = new BranchingPath();
- *SimplePath optionalPath = new SimplePath();
- *SimplePath lastPath = new SimplePath();
+ * BranchingPath firstPath = new BranchingPath();
+ * SimplePath optionalPath = new SimplePath();
+ * SimplePath lastPath = new SimplePath();
  *
- *firstPath.addStep(stepOne);
- *firstPath.addStep(stepTwo);
+ * firstPath.addStep(stepOne);
+ * firstPath.addStep(stepTwo);
  *
- *optionalPath.addStep(optionalStepOne);
- *optionalPath.addStep(optionalStepTwo);
- *optionalPath.addStep(optionalStepThree);
+ * optionalPath.addStep(optionalStepOne);
+ * optionalPath.addStep(optionalStepTwo);
+ * optionalPath.addStep(optionalStepThree);
  *
- *lastPath.addStep(lastStep);
+ * lastPath.addStep(lastStep);
  *
  * // Now bind all the paths together, first the branching path then the optional path.
  *
  * // add the optional path and the condition that determines when it should be followed
- *firstPath.addBranch(optionalPath, new Condition() {
- *   public boolean evaluate(WizardModel model) {
- *      return ((MyModel)model).includeOptional();
- *    }
- *});
+ * firstPath.addBranch(optionalPath, new Condition() {
+ *     public boolean evaluate(WizardModel model) {
+ *         return ((MyModel) model).includeOptional();
+ *     }
+ * });
  *
  * // add the end path and the condition that determines when it should be followed
- *firstPath.addBranch(lastPath, new Condition() {
- *   public boolean evaluate(WizardModel model) {
- *      return !((MyModel)model).includeOptional();
- *    }
- *});
+ * firstPath.addBranch(lastPath, new Condition() {
+ *     public boolean evaluate(WizardModel model) {
+ *         return !((MyModel) model).includeOptional();
+ *     }
+ * });
  *
  * // the optional path proceeds directly to the lastPath
- *optionalPath.setNextPath(lastPath);
+ * optionalPath.setNextPath(lastPath);
  *
  * // Now create the model and wizard.
- *MultiPathModel model = new MultiPathModel(firstPath);
- *Wizard wizard = new Wizard(model);
+ * MultiPathModel model = new MultiPathModel(firstPath);
+ * Wizard wizard = new Wizard(model);
  * </pre>
  *
- * During the initialization the wizard will scan all the paths to determine the ending path.  The
- * end path is an instance of {@link SimplePath} that is reachable from the
- * {@link #getFirstPath firstPath} and for whom {@link SimplePath#getNextPath} returns null.  If no
- * matching path is found or more than one is found the model will throw an exception.
+ * During the initialization the wizard will scan all the paths to determine the
+ * ending path. The end path is an instance of {@link SimplePath} that is
+ * reachable from the {@link #getFirstPath firstPath} and for whom
+ * {@link SimplePath#getNextPath} returns null. If no matching path is found or
+ * more than one is found the model will throw an exception.
  */
-public class
-MultiPathModel
-extends AbstractWizardModel
-{
-   private Path firstPath;
-   private Path lastPath;
-   private Map pathMapping;
+public class MultiPathModel extends AbstractWizardModel {
+    private Path firstPath;
+    private Path lastPath;
+    private Map pathMapping;
 
-   private Stack history = new Stack();
+    private Stack history = new Stack();
 
+    /**
+     * Creates a new MultiPathModel. The paths must be full constructed and linked
+     * before the this constructor is called.
+     * <p>
+     * During the initialization the wizard will scan all the paths to determine the
+     * ending path. The end path is an instance of {@link SimplePath} that is
+     * reachable from the {@link #getFirstPath firstPath} and for whom
+     * {@link SimplePath#getNextPath} returns null. If no matching path is found or
+     * more than one is found the model will throw an exception.
+     *
+     * @param firstPath the starting path of the model. The paths must be populated
+     *                  with their {@link WizardStep steps} and be linked before the
+     *                  this constructor is called.
+     */
+    public MultiPathModel(Path firstPath) {
+        this.firstPath = firstPath;
 
+        PathMapVisitor visitor = new PathMapVisitor();
+        firstPath.acceptVisitor(visitor);
+        pathMapping = visitor.getMap();
 
-   /**
-    * Creates a new MultiPathModel. The paths must be full constructed and
-    * linked before the this constructor is called.<p>
-    *  During the initialization the wizard will scan all the paths to determine the ending path.  The
-    * end path is an instance of {@link SimplePath} that is reachable from the
-    * {@link #getFirstPath firstPath} and for whom {@link SimplePath#getNextPath} returns null.  If no
-    * matching path is found or more than one is found the model will throw an exception.
-    * @param firstPath the starting path of the model.  The paths must be populated with their
-    * {@link WizardStep steps} and be linked before the this constructor is called.
-    */
-   public
-   MultiPathModel(Path firstPath)
-   {
-      this.firstPath = firstPath;
+        LastPathVisitor v = new LastPathVisitor();
+        firstPath.acceptVisitor(v);
+        lastPath = v.getPath();
 
-      PathMapVisitor visitor = new PathMapVisitor();
-      firstPath.acceptVisitor(visitor);
-      pathMapping = visitor.getMap();
+        if (lastPath == null)
+            throw new IllegalStateException("Unable to locate last path");
 
-      LastPathVisitor v = new LastPathVisitor();
-      firstPath.acceptVisitor(v);
-      lastPath = v.getPath();
+        for (Iterator iter = pathMapping.keySet().iterator(); iter.hasNext();) {
+            addCompleteListener((WizardStep) iter.next());
+        }
+    }
 
-      if (lastPath == null)
-         throw new IllegalStateException("Unable to locate last path");
+    public Path getFirstPath() {
+        return firstPath;
+    }
 
-      for (Iterator iter = pathMapping.keySet().iterator(); iter.hasNext();)
-      {
-         addCompleteListener((WizardStep) iter.next());
-      }
-   }
+    public Path getLastPath() {
+        return lastPath;
+    }
 
-   public Path
-   getFirstPath()
-   {
-      return firstPath;
-   }
+    public void nextStep() {
+        WizardStep currentStep = getActiveStep();
+        Path currentPath = getPathForStep(currentStep);
 
-   public Path
-   getLastPath()
-   {
-      return lastPath;
-   }
+        if (currentPath.isLastStep(currentStep)) {
+            Path nextPath = currentPath.getNextPath(this);
+            setActiveStep(nextPath.firstStep());
+        } else {
+            setActiveStep(currentPath.nextStep(currentStep));
+        }
 
-   public void
-   nextStep()
-   {
-      WizardStep currentStep = getActiveStep();
-      Path currentPath = getPathForStep(currentStep);
+        history.push(currentStep);
+    }
 
-      if (currentPath.isLastStep(currentStep))
-      {
-         Path nextPath = currentPath.getNextPath(this);
-         setActiveStep(nextPath.firstStep());
-      }
-      else
-      {
-         setActiveStep(currentPath.nextStep(currentStep));
-      }
+    public void previousStep() {
+        WizardStep step = (WizardStep) history.pop();
+        setActiveStep(step);
+    }
 
-      history.push(currentStep);
-   }
+    public void lastStep() {
+        history.push(getActiveStep());
+        WizardStep lastStep = getLastPath().lastStep();
+        setActiveStep(lastStep);
+    }
 
-   public void
-   previousStep()
-   {
-      WizardStep step = (WizardStep) history.pop();
-      setActiveStep(step);
-   }
+    public void reset() {
+        history.clear();
+        WizardStep firstStep = firstPath.firstStep();
+        setActiveStep(firstStep);
+        history.push(firstStep);
+    }
 
-   public void
-   lastStep()
-   {
-      history.push(getActiveStep());
-      WizardStep lastStep = getLastPath().lastStep();
-      setActiveStep(lastStep);
-   }
+    public boolean isLastStep(WizardStep step) {
+        Path path = getPathForStep(step);
+        return path.equals(getLastPath()) && path.isLastStep(step);
+    }
 
-   public void
-   reset()
-   {
-      history.clear();
-      WizardStep firstStep = firstPath.firstStep();
-      setActiveStep(firstStep);
-      history.push(firstStep);
-   }
+    public void refreshModelState() {
+        WizardStep activeStep = getActiveStep();
+        Path activePath = getPathForStep(activeStep);
 
-   public boolean
-   isLastStep(WizardStep step)
-   {
-      Path path = getPathForStep(step);
-      return path.equals(getLastPath()) && path.isLastStep(step);
-   }
+        setNextAvailable(activeStep.isComplete() && !isLastStep(activeStep));
+        setPreviousAvailable(!(activePath.equals(firstPath) && activePath.isFirstStep(activeStep)));
+        setLastAvailable(allStepsComplete() && !isLastStep(activeStep));
+        setCancelAvailable(true);
+    }
 
-   public void
-   refreshModelState()
-   {
-      WizardStep activeStep = getActiveStep();
-      Path activePath = getPathForStep(activeStep);
+    /**
+     * Returns true if all the steps in the wizard return <tt>true</tt> from
+     * {@link WizardStep#isComplete}. This is primarily used to determine if the
+     * last button can be enabled.
+     *
+     * @return <tt>true</tt> if all the steps in the wizard are complete,
+     *         <tt>false</tt> otherwise.
+     */
+    public boolean allStepsComplete() {
+        for (Iterator iterator = stepIterator(); iterator.hasNext();) {
+            if (!((WizardStep) iterator.next()).isComplete())
+                return false;
+        }
 
-      setNextAvailable(activeStep.isComplete() && !isLastStep(activeStep));
-      setPreviousAvailable(!(activePath.equals(firstPath) && activePath.isFirstStep(activeStep)));
-      setLastAvailable(allStepsComplete() && !isLastStep(activeStep));
-      setCancelAvailable(true);
-   }
+        return true;
+    }
 
-   /**
-    * Returns true if all the steps in the wizard return <tt>true</tt> from
-    * {@link WizardStep#isComplete}.  This is primarily used to determine if the last button
-    * can be enabled.
-    * @return <tt>true</tt> if all the steps in the wizard are complete, <tt>false</tt> otherwise.
-    */
-   public boolean
-   allStepsComplete()
-   {
-      for (Iterator iterator = stepIterator(); iterator.hasNext();)
-      {
-         if (!((WizardStep) iterator.next()).isComplete())
-            return false;
-      }
+    public Iterator stepIterator() {
+        return pathMapping.keySet().iterator();
+    }
 
-      return true;
-   }
+    protected Path getPathForStep(WizardStep step) {
+        return (Path) pathMapping.get(step);
+    }
 
+    private class LastPathVisitor extends AbstractPathVisitor {
+        private Path last;
 
-   public Iterator
-   stepIterator()
-   {
-      return pathMapping.keySet().iterator();
-   }
+        public void visitPath(SimplePath p) {
+            if (enter(p)) {
+                if (p.getNextPath() == null) {
+                    if (this.last != null)
+                        throw new IllegalStateException("Two paths have empty values for nextPath");
 
-   protected Path
-   getPathForStep(WizardStep step)
-   {
-      return (Path) pathMapping.get(step);
-   }
-
-
-   private class LastPathVisitor
-   extends AbstractPathVisitor
-   {
-      private Path last;
-
-      public void visitPath(SimplePath p)
-      {
-         if (enter(p))
-         {
-            if (p.getNextPath() == null)
-            {
-               if (this.last != null)
-                  throw new IllegalStateException("Two paths have empty values for nextPath");
-
-               this.last = p;
+                    this.last = p;
+                } else {
+                    p.visitNextPath(this);
+                }
             }
-            else
-            {
-               p.visitNextPath(this);
+        }
+
+        public void visitPath(BranchingPath path) {
+            if (enter(path))
+                path.visitBranches(this);
+        }
+
+        public Path getPath() {
+            return last;
+        }
+    }
+
+    private class PathMapVisitor extends AbstractPathVisitor {
+        private HashMap map = new HashMap();
+
+        public PathMapVisitor() {
+        }
+
+        public void visitPath(SimplePath path) {
+            if (enter(path)) {
+                populateMap(path);
+                path.visitNextPath(this);
             }
-         }
-      }
+        }
 
-      public void visitPath(BranchingPath path)
-      {
-         if (enter(path))
-            path.visitBranches(this);
-      }
+        public void visitPath(BranchingPath path) {
+            if (enter(path)) {
+                populateMap(path);
+                path.visitBranches(this);
+            }
+        }
 
-      public Path
-      getPath()
-      {
-         return last;
-      }
-   }
+        private void populateMap(Path path) {
+            for (Iterator iter = path.getSteps().iterator(); iter.hasNext();) {
+                WizardStep step = (WizardStep) iter.next();
+                map.put(step, path);
+            }
+        }
 
-   private class
-   PathMapVisitor
-   extends AbstractPathVisitor
-   {
-      private HashMap map = new HashMap();
-
-      public PathMapVisitor()
-      {
-      }
-
-      public void
-      visitPath(SimplePath path)
-      {
-         if (enter(path))
-         {
-            populateMap(path);
-            path.visitNextPath(this);
-         }
-      }
-
-      public void
-      visitPath(BranchingPath path)
-      {
-         if (enter(path))
-         {
-            populateMap(path);
-            path.visitBranches(this);
-         }
-      }
-
-      private void
-      populateMap(Path path)
-      {
-         for (Iterator iter = path.getSteps().iterator(); iter.hasNext();)
-         {
-            WizardStep step = (WizardStep) iter.next();
-            map.put(step, path);
-         }
-      }
-
-
-      public Map
-      getMap()
-      {
-         return map;
-      }
-   }
+        public Map getMap() {
+            return map;
+        }
+    }
 
 }

@@ -22,22 +22,23 @@ package org.pietschy.wizard;
 import java.util.EventListener;
 
 /**
- * This interface allows other classes to be notified when this wizard is cancelled or closed.
+ * This interface allows other classes to be notified when this wizard is
+ * cancelled or closed.
+ *
  * @see WizardAdapter
  */
-public interface
-WizardListener
-extends EventListener
-{
-   /**
-    * Called when the user closes the wizard.
-    * @param e the wizard event.
-    */
-   public void wizardClosed(WizardEvent e);
+public interface WizardListener extends EventListener {
+    /**
+     * Called when the user closes the wizard.
+     *
+     * @param e the wizard event.
+     */
+    public void wizardClosed(WizardEvent e);
 
-   /**
-    * Called when the user cancels the wizard.
-    * @param e the wizard event.
-    */
-   public void wizardCancelled(WizardEvent e);
+    /**
+     * Called when the user cancels the wizard.
+     *
+     * @param e the wizard event.
+     */
+    public void wizardCancelled(WizardEvent e);
 }

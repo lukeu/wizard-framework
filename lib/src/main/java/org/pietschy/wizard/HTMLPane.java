@@ -17,7 +17,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-
 package org.pietschy.wizard;
 
 import javax.swing.*;
@@ -32,163 +31,126 @@ import java.io.IOException;
 import java.net.URL;
 
 /**
- * This class displays HTML text using an instance of {@link JEditorPane} but allows
- * the font, foreground and background colors to be easily changed.  This is accomplished by
- * updating the documents style sheet rules when ever the font and color attributes are changed.
+ * This class displays HTML text using an instance of {@link JEditorPane} but
+ * allows the font, foreground and background colors to be easily changed. This
+ * is accomplished by updating the documents style sheet rules when ever the
+ * font and color attributes are changed.
  *
  * @see #setForeground
  */
-public class
-HTMLPane
-extends JEditorPane
-{
-   private HTMLEditorKit kit;
-   private boolean antiAlias = false;
-   private boolean forceReload = false;
+public class HTMLPane extends JEditorPane {
+    private HTMLEditorKit kit;
+    private boolean antiAlias = false;
+    private boolean forceReload = false;
 
-   /**
-    * Creates a new <code>JEditorPane</code>.
-    * The document model is set to <code>null</code>.
-    */
-   public HTMLPane()
-   {
-      this(true);
-   }
+    /**
+     * Creates a new <code>JEditorPane</code>. The document model is set to
+     * <code>null</code>.
+     */
+    public HTMLPane() {
+        this(true);
+    }
 
-   /**
-    * Creates a new {@link HTMLPane}.
-    */
-   public HTMLPane(boolean opaque)
-   {
-      kit = new HTMLEditorKit();
-      setEditorKit(kit);
-      setFont(UIManager.getFont("Label.font"));
-      updateEditorColor(getForeground());
-      setEditable(false);
-      setOpaque(opaque);
+    /**
+     * Creates a new {@link HTMLPane}.
+     */
+    public HTMLPane(boolean opaque) {
+        kit = new HTMLEditorKit();
+        setEditorKit(kit);
+        setFont(UIManager.getFont("Label.font"));
+        updateEditorColor(getForeground());
+        setEditable(false);
+        setOpaque(opaque);
 
+    }
 
-   }
+    public URL getPage() {
+        if (forceReload) {
+            forceReload = false;
+            return null;
+        }
 
-   public URL
-   getPage()
-   {
-      if (forceReload)
-      {
-         forceReload = false;
-         return null;
-      }
+        return super.getPage();
+    }
 
-      return super.getPage();
-   }
+    public void setPage(URL page) throws IOException {
+        forceReload = true;
+        super.setPage(page);
+    }
 
-   public void
-   setPage(URL page) throws IOException
-   {
-      forceReload = true;
-      super.setPage(page);
-   }
+    public void setFont(Font font) {
+        super.setFont(font);
+        if (kit != null)
+            updateEditorFont(font);
+    }
 
-   public void
-   setFont(Font font)
-   {
-      super.setFont(font);
-      if (kit != null)
-         updateEditorFont(font);
-   }
+    public void setForeground(Color fg) {
+        super.setForeground(fg);
+        if (kit != null)
+            updateEditorColor(fg);
+    }
 
-   public void
-   setForeground(Color fg)
-   {
-      super.setForeground(fg);
-      if (kit != null)
-         updateEditorColor(fg);
-   }
+    public void setEditorKit(EditorKit kit) {
+        super.setEditorKit(kit);
+        updateEditorColor(getForeground());
+        updateEditorFont(getFont());
+    }
 
-   public void
-   setEditorKit(EditorKit kit)
-   {
-      super.setEditorKit(kit);
-      updateEditorColor(getForeground());
-      updateEditorFont(getFont());
-   }
+    private void updateEditorFont(Font font) {
+        StringBuffer rule = new StringBuffer("body { ");
+        rule.append("font-family: ").append(font.getFamily()).append(";");
+        rule.append(" font-size: ").append(font.getSize()).append("pt;");
+        if (font.isBold()) {
+            rule.append("font-weight: 700;");
+        }
+        if (font.isItalic()) {
+            rule.append("font-style: italic;");
+        }
 
-   private void
-   updateEditorFont(Font font)
-   {
-      StringBuffer rule = new StringBuffer("body { ");
-      rule.append("font-family: ").append(font.getFamily()).append(";");
-      rule.append(" font-size: ").append(font.getSize()).append("pt;");
-      if (font.isBold())
-      {
-         rule.append("font-weight: 700;");
-      }
-      if (font.isItalic())
-      {
-         rule.append("font-style: italic;");
-      }
+        rule.append("}");
 
-      rule.append("}");
+        kit.getStyleSheet().addRule(rule.toString());
+    }
 
-      kit.getStyleSheet().addRule(rule.toString());
-   }
+    private void updateEditorColor(Color fg) {
+        StringBuffer rule = new StringBuffer("body { color: #");
 
-   private void
-   updateEditorColor(Color fg)
-   {
-      StringBuffer rule = new StringBuffer("body { color: #");
+        if (fg.getRed() < 16) {
+            rule.append('0');
+        }
+        rule.append(Integer.toHexString(fg.getRed()));
 
-      if (fg.getRed() < 16)
-      {
-         rule.append('0');
-      }
-      rule.append(Integer.toHexString(fg.getRed()));
+        if (fg.getGreen() < 16) {
+            rule.append('0');
+        }
+        rule.append(Integer.toHexString(fg.getGreen()));
 
-      if (fg.getGreen() < 16)
-      {
-         rule.append('0');
-      }
-      rule.append(Integer.toHexString(fg.getGreen()));
+        if (fg.getBlue() < 16) {
+            rule.append('0');
+        }
+        rule.append(Integer.toHexString(fg.getBlue()));
 
-      if (fg.getBlue() < 16)
-      {
-         rule.append('0');
-      }
-      rule.append(Integer.toHexString(fg.getBlue()));
+        rule.append(";}");
 
-      rule.append(";}");
+        kit.getStyleSheet().addRule(rule.toString());
+    }
 
-      kit.getStyleSheet().addRule(rule.toString());
-   }
+    public boolean isAntiAlias() {
+        return antiAlias;
+    }
 
+    public void paint(Graphics g) {
+        if (antiAlias) {
+            Graphics2D g2 = (Graphics2D) g;
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            super.paint(g2);
+        } else {
+            super.paint(g);
+        }
+    }
 
-   public boolean
-   isAntiAlias()
-   {
-      return antiAlias;
-   }
-
-   public void
-   paint(Graphics g)
-   {
-      if (antiAlias)
-      {
-         Graphics2D g2 = (Graphics2D) g;
-         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-         super.paint(g2);
-      }
-      else
-      {
-         super.paint(g);
-      }
-   }
-
-   public void
-   setAntiAlias(boolean antiAlias)
-   {
-      this.antiAlias = antiAlias;
-      repaint();
-   }
-
-
+    public void setAntiAlias(boolean antiAlias) {
+        this.antiAlias = antiAlias;
+        repaint();
+    }
 }

@@ -44,81 +44,67 @@ import java.awt.*;
  * </pre>
  *
  * @author Andrea Aime
- * @deprecated since 0.1.10.  WizardStep is now an interface allowing implementation by any swing
- * componenent.  See {@link org.pietschy.wizard.PanelWizardStep}.
+ * @deprecated since 0.1.10. WizardStep is now an interface allowing
+ *             implementation by any swing componenent. See
+ *             {@link org.pietschy.wizard.PanelWizardStep}.
  */
-public class
-WizardPaneStep
-extends AbstractWizardStep
-{
-   WizardPane pane;
+public class WizardPaneStep extends AbstractWizardStep {
+    WizardPane pane;
 
-   /**
-    * Creates a new WizardPaneStep
-    *
-    * @param pane    -
-    *                the graphical component. Should be a subclass of Component
-    * @param name
-    * @param summary
-    */
-   public WizardPaneStep(WizardPane pane, String name, String summary)
-   {
-      super(name, summary);
+    /**
+     * Creates a new WizardPaneStep
+     *
+     * @param pane    - the graphical component. Should be a subclass of Component
+     * @param name
+     * @param summary
+     */
+    public WizardPaneStep(WizardPane pane, String name, String summary) {
+        super(name, summary);
 
-      if (!(pane instanceof Component))
-         throw new IllegalArgumentException("The pane should also be a Component subclass");
-      this.pane = pane;
-   }
+        if (!(pane instanceof Component))
+            throw new IllegalArgumentException("The pane should also be a Component subclass");
+        this.pane = pane;
+    }
 
-   /**
-    * Creates a new WizardPaneStep
-    *
-    * @param pane    -
-    *                the graphical component. Should be a subclass of Component
-    * @param name
-    * @param summary
-    * @param icon
-    */
-   public WizardPaneStep(WizardPane pane, String name, String summary, Icon icon)
-   {
-      super(name, summary, icon);
-      this.pane = pane;
-   }
+    /**
+     * Creates a new WizardPaneStep
+     *
+     * @param pane    - the graphical component. Should be a subclass of Component
+     * @param name
+     * @param summary
+     * @param icon
+     */
+    public WizardPaneStep(WizardPane pane, String name, String summary, Icon icon) {
+        super(name, summary, icon);
+        this.pane = pane;
+    }
 
-   /**
-    * @see org.pietschy.wizard.WizardStep#init(org.pietschy.wizard.WizardModel)
-    */
-   public void
-   init(WizardModel model)
-   {
-      pane.init(this, model);
-   }
+    /**
+     * @see org.pietschy.wizard.WizardStep#init(org.pietschy.wizard.WizardModel)
+     */
+    public void init(WizardModel model) {
+        pane.init(this, model);
+    }
 
-   /**
-    * @see org.pietschy.wizard.WizardStep#prepare()
-    */
-   public void
-   prepare()
-   {
-      setView((Component) pane);
-      pane.prepare();
-   }
+    /**
+     * @see org.pietschy.wizard.WizardStep#prepare()
+     */
+    public void prepare() {
+        setView((Component) pane);
+        pane.prepare();
+    }
 
-   /**
-    * @see org.pietschy.wizard.WizardStep#applyState()
-    */
-   public void
-   applyState() throws InvalidStateException
-   {
-      pane.applyState();
-   }
+    /**
+     * @see org.pietschy.wizard.WizardStep#applyState()
+     */
+    public void applyState() throws InvalidStateException {
+        pane.applyState();
+    }
 
-   /**
-    * @see org.pietschy.wizard.WizardStep#getPreferredSize()
-    */
-   public Dimension
-   getPreferredSize()
-   {
-      return ((Component) pane).getPreferredSize();
-   }
+    /**
+     * @see org.pietschy.wizard.WizardStep#getPreferredSize()
+     */
+    public Dimension getPreferredSize() {
+        return ((Component) pane).getPreferredSize();
+    }
 }

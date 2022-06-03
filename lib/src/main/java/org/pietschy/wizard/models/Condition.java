@@ -21,21 +21,21 @@ package org.pietschy.wizard.models;
 import org.pietschy.wizard.WizardModel;
 
 /**
- * An interface that is used by {@link DynamicModel} and {@link MultiPathModel} to determine
- * if a wizard should display a particular step or group of steps.
+ * An interface that is used by {@link DynamicModel} and {@link MultiPathModel}
+ * to determine if a wizard should display a particular step or group of steps.
+ *
  * @author andrewp
  * @see DynamicModel#add(org.pietschy.wizard.WizardStep, Condition)
  * @see BranchingPath#addBranch(Path, Condition)
  */
-public interface
-Condition
-{
-   /**
-    * Called to determine when the path being added using {@link BranchingPath#addBranch} should
-    * be traversed.  The selector is passed the current {@link WizardModel} to assist with the
-    * decision.
-    * @param model the {@link WizardModel} the condition should use.
-    * @return true if the .
-    */
-   public boolean evaluate(WizardModel model);
+public interface Condition {
+    /**
+     * Called to determine when the path being added using
+     * {@link BranchingPath#addBranch} should be traversed. The selector is passed
+     * the current {@link WizardModel} to assist with the decision.
+     *
+     * @param model the {@link WizardModel} the condition should use.
+     * @return true if the .
+     */
+    public boolean evaluate(WizardModel model);
 }

@@ -29,40 +29,31 @@ import java.beans.PropertyChangeEvent;
 /**
  *
  */
-class HelpAction
-extends AbstractAction
-{
-   private Wizard wizard;
-   private HelpBroker broker;
+class HelpAction extends AbstractAction {
+    private Wizard wizard;
+    private HelpBroker broker;
 
-   protected HelpAction(Wizard wizard)
-   {
-      super(I18n.getString("help.text"));
-      this.wizard = wizard;
-      putValue(Action.MNEMONIC_KEY, new Integer(I18n.getMnemonic("help.mnemonic")));
-      wizard.addPropertyChangeListener("helpBroker", new PropertyChangeListener()
-      {
-         public void propertyChange(PropertyChangeEvent evt)
-         {
-            configureState();
-         }
-      });
+    protected HelpAction(Wizard wizard) {
+        super(I18n.getString("help.text"));
+        this.wizard = wizard;
+        putValue(Action.MNEMONIC_KEY, new Integer(I18n.getMnemonic("help.mnemonic")));
+        wizard.addPropertyChangeListener("helpBroker", new PropertyChangeListener() {
+            public void propertyChange(PropertyChangeEvent evt) {
+                configureState();
+            }
+        });
 
-      configureState();
-   }
+        configureState();
+    }
 
-   public void
-   actionPerformed(ActionEvent e)
-   {
-      HelpBroker helpBroker = wizard.getHelpBroker();
+    public void actionPerformed(ActionEvent e) {
+        HelpBroker helpBroker = wizard.getHelpBroker();
 
-      if (helpBroker != null)
-         helpBroker.activateHelp(wizard, wizard.getModel());
-   }
+        if (helpBroker != null)
+            helpBroker.activateHelp(wizard, wizard.getModel());
+    }
 
-   private void
-   configureState()
-   {
-      setEnabled(wizard.getHelpBroker() != null);
-   }
+    private void configureState() {
+        setEnabled(wizard.getHelpBroker() != null);
+    }
 }

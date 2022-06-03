@@ -21,9 +21,8 @@ package org.pietschy.wizard.models;
 /**
  * @author andrewp
  */
-public interface
-PathVisitor
-{
-   public void visitPath(SimplePath path);
-   public void visitPath(BranchingPath path);
+public interface PathVisitor {
+    public void visitPath(SimplePath path);
+
+    public void visitPath(BranchingPath path);
 }

@@ -23,16 +23,10 @@ import java.util.HashSet;
 /**
  * @author andrewp
  */
-public abstract class
-AbstractPathVisitor
-implements PathVisitor
-{
-   private HashSet paths = new HashSet();
+public abstract class AbstractPathVisitor implements PathVisitor {
+    private HashSet paths = new HashSet();
 
-   protected boolean
-   enter(Path path)
-   {
-      return paths.add(path);
-   }
-
+    protected boolean enter(Path path) {
+        return paths.add(path);
+    }
 }

@@ -28,93 +28,67 @@ import java.awt.event.KeyEvent;
 /**
  * Base class for all Wizard actions.
  */
-public abstract class
-WizardAction
-extends AbstractAction
-implements PropertyChangeListener
-{
-   protected Wizard wizard;
-   private WizardStep activeStep;
+public abstract class WizardAction extends AbstractAction implements PropertyChangeListener {
+    protected Wizard wizard;
+    private WizardStep activeStep;
 
-   protected WizardAction(String key, Wizard wizard, Icon icon)
-   {
-      this(key, wizard);
-      putValue(Action.SMALL_ICON, icon);
-   }
+    protected WizardAction(String key, Wizard wizard, Icon icon) {
+        this(key, wizard);
+        putValue(Action.SMALL_ICON, icon);
+    }
 
-   protected WizardAction(String key, Wizard wizard)
-   {
-      super(I18n.getString(key + ".text"));
-      this.wizard = wizard;
-      getModel().addPropertyChangeListener(this);
-      activeStep = getModel().getActiveStep();
-      if (activeStep != null)
-         activeStep.addPropertyChangeListener(this);
+    protected WizardAction(String key, Wizard wizard) {
+        super(I18n.getString(key + ".text"));
+        this.wizard = wizard;
+        getModel().addPropertyChangeListener(this);
+        activeStep = getModel().getActiveStep();
+        if (activeStep != null)
+            activeStep.addPropertyChangeListener(this);
 
-      putValue(Action.MNEMONIC_KEY, new Integer(I18n.getMnemonic(key + ".mnemonic")));
+        putValue(Action.MNEMONIC_KEY, new Integer(I18n.getMnemonic(key + ".mnemonic")));
 
-      updateState();
-   }
+        updateState();
+    }
 
-   protected Wizard
-   getWizard()
-   {
-      return wizard;
-   }
+    protected Wizard getWizard() {
+        return wizard;
+    }
 
-   public WizardModel
-   getModel()
-   {
-      return getWizard().getModel();
-   }
+    public WizardModel getModel() {
+        return getWizard().getModel();
+    }
 
-   public WizardStep
-   getActiveStep()
-   {
-      return activeStep;
-   }
+    public WizardStep getActiveStep() {
+        return activeStep;
+    }
 
-   public final void
-   actionPerformed(ActionEvent e)
-   {
-      try
-      {
-         doAction(e);
-      }
-      catch (InvalidStateException ise)
-      {
-         handleInvalideStateException(ise);
-      }
-   }
+    public final void actionPerformed(ActionEvent e) {
+        try {
+            doAction(e);
+        } catch (InvalidStateException ise) {
+            handleInvalideStateException(ise);
+        }
+    }
 
-   protected void
-   handleInvalideStateException(InvalidStateException ise)
-   {
-      if (ise.isShowUser())
-      {
-         JOptionPane.showMessageDialog(getWizard(), ise.getMessage(), "Error", JOptionPane.INFORMATION_MESSAGE);
-      }
-   }
+    protected void handleInvalideStateException(InvalidStateException ise) {
+        if (ise.isShowUser()) {
+            JOptionPane.showMessageDialog(getWizard(), ise.getMessage(), "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
 
-   public abstract void
-   doAction(ActionEvent e)
-   throws InvalidStateException;
+    public abstract void doAction(ActionEvent e) throws InvalidStateException;
 
-   protected abstract void
-   updateState();
+    protected abstract void updateState();
 
-   public void
-   propertyChange(PropertyChangeEvent evt)
-   {
-      if (evt.getPropertyName().equals("activeStep"))
-      {
-         if (activeStep != null)
-            activeStep.removePropertyChangeListener(this);
-         activeStep = (WizardStep) evt.getNewValue();
-         activeStep.addPropertyChangeListener(this);
-      }
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getPropertyName().equals("activeStep")) {
+            if (activeStep != null)
+                activeStep.removePropertyChangeListener(this);
+            activeStep = (WizardStep) evt.getNewValue();
+            activeStep.addPropertyChangeListener(this);
+        }
 
-      updateState();
-   }
+        updateState();
+    }
 
 }

@@ -25,27 +25,19 @@ import java.awt.event.KeyEvent;
 import java.awt.*;
 
 /**
- * Created by IntelliJ IDEA.
- * User: andrewp
- * Date: 10/06/2004
- * Time: 19:55:40
- * To change this template use Options | File Templates.
+ * Created by IntelliJ IDEA. User: andrewp Date: 10/06/2004 Time: 19:55:40 To
+ * change this template use Options | File Templates.
  */
-class CloseAction
-extends AbstractAction
-{
-   private Wizard wizard;
+class CloseAction extends AbstractAction {
+    private Wizard wizard;
 
-   protected CloseAction(Wizard wizard)
-   {
-      super(I18n.getString("close.text"));
-      this.wizard = wizard;
-      putValue(Action.MNEMONIC_KEY, new Integer(I18n.getMnemonic("close.mnemonic")));
-   }
+    protected CloseAction(Wizard wizard) {
+        super(I18n.getString("close.text"));
+        this.wizard = wizard;
+        putValue(Action.MNEMONIC_KEY, new Integer(I18n.getMnemonic("close.mnemonic")));
+    }
 
-   public void
-   actionPerformed(ActionEvent e)
-   {
-      wizard.close();
-   }
+    public void actionPerformed(ActionEvent e) {
+        wizard.close();
+    }
 }

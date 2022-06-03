@@ -26,37 +26,22 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 
 /**
- * Created by IntelliJ IDEA.
- * User: andrewp
- * Date: 7/06/2004
- * Time: 16:06:09
- * To change this template use Options | File Templates.
+ * Created by IntelliJ IDEA. User: andrewp Date: 7/06/2004 Time: 16:06:09 To
+ * change this template use Options | File Templates.
  */
-class
-NextAction
-extends WizardAction
-{
-   protected NextAction(Wizard model)
-   {
-      super("next",
-            model,
-            new ArrowIcon(SwingConstants.EAST)
-      );
-   }
+class NextAction extends WizardAction {
+    protected NextAction(Wizard model) {
+        super("next", model, new ArrowIcon(SwingConstants.EAST));
+    }
 
-   public void
-   doAction(ActionEvent e)
-   throws InvalidStateException
-   {
-      getModel().getActiveStep().applyState();
-      getModel().nextStep();
-   }
+    public void doAction(ActionEvent e) throws InvalidStateException {
+        getModel().getActiveStep().applyState();
+        getModel().nextStep();
+    }
 
-   protected void
-   updateState()
-   {
-      WizardStep activeStep = getActiveStep();
-      boolean busy = activeStep != null && activeStep.isBusy();
-      setEnabled(getModel().isNextAvailable() && !busy);
-   }
+    protected void updateState() {
+        WizardStep activeStep = getActiveStep();
+        boolean busy = activeStep != null && activeStep.isBusy();
+        setEnabled(getModel().isNextAvailable() && !busy);
+    }
 }

@@ -28,95 +28,77 @@ import java.util.Set;
 /**
  * Paths represent a sequence of {@link WizardStep}s.
  */
-public abstract class
-Path
-{
-   private ArrayList steps = new ArrayList();
+public abstract class Path {
+    private ArrayList steps = new ArrayList();
 
-   protected
-   Path()
-   {
-   }
+    protected Path() {
+    }
 
-   /**
-    * Gets the path that will follow this one.
-    * @return the next path.
-    */
-   protected abstract Path
-   getNextPath(MultiPathModel model);
+    /**
+     * Gets the path that will follow this one.
+     *
+     * @return the next path.
+     */
+    protected abstract Path getNextPath(MultiPathModel model);
 
-   /**
-    * Adds a wizard step to this path.  Paths must contain at least one step, and the steps
-    * will be traversed in the order they are added.
-    * @param step the next {@link WizardStep} in the path.
-    */
-   public void
-   addStep(WizardStep step)
-   {
-      steps.add(step);
-   }
+    /**
+     * Adds a wizard step to this path. Paths must contain at least one step, and
+     * the steps will be traversed in the order they are added.
+     *
+     * @param step the next {@link WizardStep} in the path.
+     */
+    public void addStep(WizardStep step) {
+        steps.add(step);
+    }
 
-   public WizardStep
-   firstStep()
-   {
-      return (WizardStep) steps.get(0);
-   }
+    public WizardStep firstStep() {
+        return (WizardStep) steps.get(0);
+    }
 
-   public WizardStep
-   nextStep(WizardStep currentStep)
-   {
-      int index = steps.indexOf(currentStep);
-      return (WizardStep) steps.get(index+1);
-   }
+    public WizardStep nextStep(WizardStep currentStep) {
+        int index = steps.indexOf(currentStep);
+        return (WizardStep) steps.get(index + 1);
+    }
 
-   public WizardStep
-   previousStep(WizardStep currentStep)
-   {
-      int index = steps.indexOf(currentStep);
-      return (WizardStep) steps.get(index-1);
-   }
+    public WizardStep previousStep(WizardStep currentStep) {
+        int index = steps.indexOf(currentStep);
+        return (WizardStep) steps.get(index - 1);
+    }
 
-   public WizardStep
-   lastStep()
-   {
-      return (WizardStep) steps.get(steps.size() - 1);
-   }
+    public WizardStep lastStep() {
+        return (WizardStep) steps.get(steps.size() - 1);
+    }
 
-   /**
-    * Checks if the specified step is the first step in the path.
-    * @param step the step to check
-    * @return <tt>true</tt> if the step is the first in the path, <tt>false</tt> otherwise.
-    */
-   public boolean
-   isFirstStep(WizardStep step)
-   {
-      return steps.indexOf(step) == 0;
-   }
+    /**
+     * Checks if the specified step is the first step in the path.
+     *
+     * @param step the step to check
+     * @return <tt>true</tt> if the step is the first in the path, <tt>false</tt>
+     *         otherwise.
+     */
+    public boolean isFirstStep(WizardStep step) {
+        return steps.indexOf(step) == 0;
+    }
 
-   /**
-    * Checks if the specified step is the last step in the path.
-    * @param step the step to check
-    * @return <tt>true</tt> if the step is the last in the path, <tt>false</tt> otherwise.
-    */
-   public boolean
-   isLastStep(WizardStep step)
-   {
-      boolean lastStep = steps.lastIndexOf(step) == steps.size() - 1;
-      return lastStep;
-   }
+    /**
+     * Checks if the specified step is the last step in the path.
+     *
+     * @param step the step to check
+     * @return <tt>true</tt> if the step is the last in the path, <tt>false</tt>
+     *         otherwise.
+     */
+    public boolean isLastStep(WizardStep step) {
+        boolean lastStep = steps.lastIndexOf(step) == steps.size() - 1;
+        return lastStep;
+    }
 
-   public ArrayList
-   getSteps()
-   {
-      return steps;
-   }
+    public ArrayList getSteps() {
+        return steps;
+    }
 
-   public boolean
-   contains(WizardStep step)
-   {
-      return steps.contains(step);
-   }
+    public boolean contains(WizardStep step) {
+        return steps.contains(step);
+    }
 
-   public abstract void
-   acceptVisitor(PathVisitor visitor);
+    public abstract void acceptVisitor(PathVisitor visitor);
 }

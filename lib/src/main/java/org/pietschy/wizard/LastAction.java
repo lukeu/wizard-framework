@@ -24,34 +24,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 /**
- * Created by IntelliJ IDEA.
- * User: andrewp
- * Date: 7/06/2004
- * Time: 16:06:09
- * To change this template use Options | File Templates.
+ * Created by IntelliJ IDEA. User: andrewp Date: 7/06/2004 Time: 16:06:09 To
+ * change this template use Options | File Templates.
  */
-class
-LastAction
-extends WizardAction
-{
-   protected LastAction(Wizard model)
-   {
-      super("last", model);
-   }
+class LastAction extends WizardAction {
+    protected LastAction(Wizard model) {
+        super("last", model);
+    }
 
-   public void
-   doAction(ActionEvent e)
-   throws InvalidStateException
-   {
-      getModel().getActiveStep().applyState();
-      getModel().lastStep();
-   }
+    public void doAction(ActionEvent e) throws InvalidStateException {
+        getModel().getActiveStep().applyState();
+        getModel().lastStep();
+    }
 
-   protected void
-   updateState()
-   {
-      WizardStep activeStep = getModel().getActiveStep();
-      boolean busy = activeStep != null && activeStep.isBusy();
-      setEnabled(getModel().isLastAvailable() && !busy);
-   }
+    protected void updateState() {
+        WizardStep activeStep = getModel().getActiveStep();
+        boolean busy = activeStep != null && activeStep.isBusy();
+        setEnabled(getModel().isLastAvailable() && !busy);
+    }
 }

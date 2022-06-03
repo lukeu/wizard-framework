@@ -21,62 +21,52 @@ package org.pietschy.wizard;
 
 /**
  * This exception is thrown by {@link WizardStep} instances if the call to
- * {@link WizardStep#applyState} can't be fullfilled.  By default this exception's message will
- * be displayed to the user.  To disable this feature, please ensure you call {@link #setShowUser}
- * with the value of <tt>false</tt>.
+ * {@link WizardStep#applyState} can't be fullfilled. By default this
+ * exception's message will be displayed to the user. To disable this feature,
+ * please ensure you call {@link #setShowUser} with the value of <tt>false</tt>.
  */
-public class
-InvalidStateException
-extends Exception
-{
-   private boolean showUser = true;
+public class InvalidStateException extends Exception {
+    private boolean showUser = true;
 
-   public InvalidStateException()
-   {
-      this.showUser = false;
-   }
+    public InvalidStateException() {
+        this.showUser = false;
+    }
 
-   public InvalidStateException(String message)
-   {
-      this(message, true);
-   }
+    public InvalidStateException(String message) {
+        this(message, true);
+    }
 
-   public InvalidStateException(String message, Throwable cause)
-   {
-      this(message, cause, true);
-   }
+    public InvalidStateException(String message, Throwable cause) {
+        this(message, cause, true);
+    }
 
+    public InvalidStateException(String message, boolean showUser) {
+        super(message);
+        this.showUser = showUser;
+    }
 
-   public InvalidStateException(String message, boolean showUser)
-   {
-      super(message);
-      this.showUser = showUser;
-   }
+    public InvalidStateException(String message, Throwable cause, boolean showUser) {
+        super(message, cause);
+        this.showUser = showUser;
+    }
 
-   public InvalidStateException(String message, Throwable cause, boolean showUser)
-   {
-      super(message, cause);
-      this.showUser = showUser;
-   }
+    /**
+     * Checks if this exception should be presented to the user.
+     *
+     * @return <tt>true</tt> to present the exception to the user, <tt>false</tt>
+     *         otherwise.
+     */
+    public boolean isShowUser() {
+        return showUser;
+    }
 
-
-   /**
-    * Checks if this exception should be presented to the user.
-    * @return <tt>true</tt> to present the exception to the user, <tt>false</tt> otherwise.
-    */
-   public boolean
-   isShowUser()
-   {
-      return showUser;
-   }
-
-   /**
-    * Configures if this exception should be presented to the user.
-    * @param showUser <tt>true</tt> to present the exception to the user, <tt>false</tt> otherwise.
-    */
-   public void
-   setShowUser(boolean showUser)
-   {
-      this.showUser = showUser;
-   }
+    /**
+     * Configures if this exception should be presented to the user.
+     *
+     * @param showUser <tt>true</tt> to present the exception to the user,
+     *                 <tt>false</tt> otherwise.
+     */
+    public void setShowUser(boolean showUser) {
+        this.showUser = showUser;
+    }
 }

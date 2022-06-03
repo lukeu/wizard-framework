@@ -21,19 +21,22 @@ package org.pietschy.wizard;
 import javax.swing.*;
 
 /**
- * An interface for handling wizard help requests.  If this interface is implemented by a {@link WizardModel}, the
- * help button will be automatically displayed and help request fowwareded the model.  Otherwise, you'll need to
- * call {@link Wizard#setHelpBroker(HelpBroker)} explicitly with an instance of this interface.
+ * An interface for handling wizard help requests. If this interface is
+ * implemented by a {@link WizardModel}, the help button will be automatically
+ * displayed and help request fowwareded the model. Otherwise, you'll need to
+ * call {@link Wizard#setHelpBroker(HelpBroker)} explicitly with an instance of
+ * this interface.
+ *
  * @author andrewp
  */
-public interface
-HelpBroker
-{
-   /**
-    * Activated when the user presses help.  Implementors will typically query the model to determine the current
-    * step and display the appropriate information.
-    * @param parent the component that is requesting the help.  This is typically the {@link Wizard} itself.
-    * @param model the wizard model.
-    */
-   public void activateHelp(JComponent parent, WizardModel model);
+public interface HelpBroker {
+    /**
+     * Activated when the user presses help. Implementors will typically query the
+     * model to determine the current step and display the appropriate information.
+     *
+     * @param parent the component that is requesting the help. This is typically
+     *               the {@link Wizard} itself.
+     * @param model  the wizard model.
+     */
+    public void activateHelp(JComponent parent, WizardModel model);
 }

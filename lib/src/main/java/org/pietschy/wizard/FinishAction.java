@@ -24,42 +24,31 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 /**
- * Created by IntelliJ IDEA.
- * User: andrewp
- * Date: 7/06/2004
- * Time: 16:06:09
- * To change this template use Options | File Templates.
+ * Created by IntelliJ IDEA. User: andrewp Date: 7/06/2004 Time: 16:06:09 To
+ * change this template use Options | File Templates.
  */
-class
-FinishAction
-extends WizardAction
-{
-   protected FinishAction(Wizard model)
-   {
-      super("finish", model);
-   }
+class FinishAction extends WizardAction {
+    protected FinishAction(Wizard model) {
+        super("finish", model);
+    }
 
-   public void
-   doAction(ActionEvent e)
-   throws InvalidStateException
-   {
-      WizardStep finishStep = getModel().getActiveStep();
-      finishStep.applyState();
-      int defaultCloseOperation = getWizard().getDefaultExitMode();
+    public void doAction(ActionEvent e) throws InvalidStateException {
+        WizardStep finishStep = getModel().getActiveStep();
+        finishStep.applyState();
+        int defaultCloseOperation = getWizard().getDefaultExitMode();
 
-      // todo (ap): should really consider making this more OO.
-      if (defaultCloseOperation == Wizard.EXIT_ON_FINISH)
-         getWizard().getCloseAction().actionPerformed(e);
-      else if (defaultCloseOperation == Wizard.EXIT_ON_CLOSE)
-         getWizard().showCloseButton();
-      else
-         throw new InvalidStateException("Invalid finish operaion: " + defaultCloseOperation);
-   }
+        // todo (ap): should really consider making this more OO.
+        if (defaultCloseOperation == Wizard.EXIT_ON_FINISH)
+            getWizard().getCloseAction().actionPerformed(e);
+        else if (defaultCloseOperation == Wizard.EXIT_ON_CLOSE)
+            getWizard().showCloseButton();
+        else
+            throw new InvalidStateException("Invalid finish operaion: " + defaultCloseOperation);
+    }
 
-   protected void
-   updateState()
-   {
-      WizardStep activeStep = getActiveStep();
-      setEnabled(activeStep != null && getModel().isLastStep(activeStep) && activeStep.isComplete() && !activeStep.isBusy());
-   }
+    protected void updateState() {
+        WizardStep activeStep = getActiveStep();
+        setEnabled(activeStep != null && getModel().isLastStep(activeStep) && activeStep.isComplete()
+                && !activeStep.isBusy());
+    }
 }

@@ -25,62 +25,45 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * A SimplePath represents a sequence of {@link WizardStep wizard steps} whose next path is determined
- * at compile time.  That is, SimplePaths can't branch.
+ * A SimplePath represents a sequence of {@link WizardStep wizard steps} whose
+ * next path is determined at compile time. That is, SimplePaths can't branch.
+ *
  * @see #setNextPath
  * @see #addStep
  */
-public class
-SimplePath
-extends Path
-{
-   private Path nextPath;
+public class SimplePath extends Path {
+    private Path nextPath;
 
-   public
-   SimplePath()
-   {
-   }
+    public SimplePath() {
+    }
 
-   /**
-    * Creates a new SimplePath that is initialized with the specified step.
-    * @param step the first step of the path.
-    */
-   public
-   SimplePath(WizardStep step)
-   {
-      addStep(step);
-   }
+    /**
+     * Creates a new SimplePath that is initialized with the specified step.
+     *
+     * @param step the first step of the path.
+     */
+    public SimplePath(WizardStep step) {
+        addStep(step);
+    }
 
-   protected Path
-   getNextPath(MultiPathModel model)
-   {
-      return nextPath;
-   }
+    protected Path getNextPath(MultiPathModel model) {
+        return nextPath;
+    }
 
-   public Path
-   getNextPath()
-   {
-      return nextPath;
-   }
+    public Path getNextPath() {
+        return nextPath;
+    }
 
-   public void
-   setNextPath(Path nextPath)
-   {
-      this.nextPath = nextPath;
-   }
+    public void setNextPath(Path nextPath) {
+        this.nextPath = nextPath;
+    }
 
-   public void
-   acceptVisitor(PathVisitor visitor)
-   {
-      visitor.visitPath(this);
-   }
+    public void acceptVisitor(PathVisitor visitor) {
+        visitor.visitPath(this);
+    }
 
-   public void
-   visitNextPath(PathVisitor visitor)
-   {
-      if (nextPath != null)
-         nextPath.acceptVisitor(visitor);
-   }
-
-
+    public void visitNextPath(PathVisitor visitor) {
+        if (nextPath != null)
+            nextPath.acceptVisitor(visitor);
+    }
 }

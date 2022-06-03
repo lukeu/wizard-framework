@@ -21,55 +21,44 @@ package org.pietschy.wizard;
 import java.awt.*;
 
 /**
- * This class implements {@link WizardListener} and is used to hide and dispose frames
- * when a wizard has been completed or canceled.
+ * This class implements {@link WizardListener} and is used to hide and dispose
+ * frames when a wizard has been completed or canceled.
  */
-public class
-WizardFrameCloser
-implements WizardListener
-{
-   private Window window;
-   private Wizard wizard;
+public class WizardFrameCloser implements WizardListener {
+    private Window window;
+    private Wizard wizard;
 
-   /**
-    * Creates a new closer that monitors the specified wizard and closes the parent frame.
-    *
-    * @param wizard
-    * @param window
-    */
-   public static void
-   bind(Wizard wizard, Window window)
-   {
-      new WizardFrameCloser(wizard, window);
-   }
+    /**
+     * Creates a new closer that monitors the specified wizard and closes the parent
+     * frame.
+     *
+     * @param wizard
+     * @param window
+     */
+    public static void bind(Wizard wizard, Window window) {
+        new WizardFrameCloser(wizard, window);
+    }
 
-   /**
-    * Constructs a new closer for the specified wizard in the specified window.
-    */
-   private WizardFrameCloser(Wizard wizard, Window window)
-   {
-      this.window = window;
-      this.wizard = wizard;
-      this.wizard.addWizardListener(this);
-   }
+    /**
+     * Constructs a new closer for the specified wizard in the specified window.
+     */
+    private WizardFrameCloser(Wizard wizard, Window window) {
+        this.window = window;
+        this.wizard = wizard;
+        this.wizard.addWizardListener(this);
+    }
 
-   public void
-   wizardClosed(WizardEvent e)
-   {
-      closeWindow();
-   }
+    public void wizardClosed(WizardEvent e) {
+        closeWindow();
+    }
 
-   public void
-   wizardCancelled(WizardEvent e)
-   {
-      closeWindow();
-   }
+    public void wizardCancelled(WizardEvent e) {
+        closeWindow();
+    }
 
-   public void
-   closeWindow()
-   {
-      window.setVisible(false);
-      window.dispose();
-      wizard.removeWizardListener(WizardFrameCloser.this);
-   }
+    public void closeWindow() {
+        window.setVisible(false);
+        window.dispose();
+        wizard.removeWizardListener(WizardFrameCloser.this);
+    }
 }

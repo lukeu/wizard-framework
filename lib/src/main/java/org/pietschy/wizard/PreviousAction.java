@@ -24,32 +24,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 /**
- * Created by IntelliJ IDEA.
- * User: andrewp
- * Date: 7/06/2004
- * Time: 16:06:09
- * To change this template use Options | File Templates.
+ * Created by IntelliJ IDEA. User: andrewp Date: 7/06/2004 Time: 16:06:09 To
+ * change this template use Options | File Templates.
  */
-class
-PreviousAction
-extends WizardAction
-{
-   protected PreviousAction(Wizard model)
-   {
-      super("previous", model, new ArrowIcon(SwingConstants.WEST));
-   }
+class PreviousAction extends WizardAction {
+    protected PreviousAction(Wizard model) {
+        super("previous", model, new ArrowIcon(SwingConstants.WEST));
+    }
 
-   public void
-   doAction(ActionEvent e)
-   {
-      getModel().previousStep();
-   }
+    public void doAction(ActionEvent e) {
+        getModel().previousStep();
+    }
 
-   protected void
-   updateState()
-   {
-      WizardStep activeStep = getActiveStep();
-      boolean busy = activeStep != null && activeStep.isBusy();
-      setEnabled(getModel().isPreviousAvailable() && !busy);
-   }
+    protected void updateState() {
+        WizardStep activeStep = getActiveStep();
+        boolean busy = activeStep != null && activeStep.isBusy();
+        setEnabled(getModel().isPreviousAvailable() && !busy);
+    }
 }
