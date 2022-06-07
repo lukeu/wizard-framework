@@ -23,6 +23,16 @@ repositories {
     mavenCentral()
 }
 
+javadoc {
+    configure( options ) {
+        tags(
+            "apiNote:a:API Note:",
+            "implSpec:a:Implementation Requirements",
+            "implNote:a:Implementation Note:"
+        )
+    }
+}
+
 // TODO...?
 // dependencies {
 //     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'

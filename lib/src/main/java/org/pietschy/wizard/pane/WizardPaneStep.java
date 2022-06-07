@@ -30,7 +30,7 @@ import org.pietschy.wizard.WizardModel;
 /**
  * A simple step that can be used to decouple the step from its user interface
  * so that the user interface can be created in a standalone class implementing
- * {@link WizardPane}.<br/>
+ * {@link WizardPane}.
  * Particularly useful if the user interface is built using a GUI tool.
  *
  * For example:
