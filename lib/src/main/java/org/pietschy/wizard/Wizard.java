@@ -269,7 +269,7 @@ public class Wizard extends JPanel {
     /**
      * Checks the visibily of the overview panel that is displayed on the wizards
      * left panel. The overview panel will only be displayed if this property is
-     * <tt>true</tt> and the current {@link WizardModel} implements
+     * {@code true} and the current {@link WizardModel} implements
      * {@link OverviewProvider}.
      */
     public boolean isOverviewVisible() {
@@ -281,7 +281,7 @@ public class Wizard extends JPanel {
      * wizards left panel. This method will only have an effect if the current
      * {@link WizardModel} implements {@link OverviewProvider}.
      *
-     * @param overviewVisible <tt>true</tt> to display the overview, <tt>false</tt>
+     * @param overviewVisible {@code true} to display the overview, {@code false}
      *                        otherwise.
      */
     public void setOverviewVisible(boolean overviewVisible) {
@@ -383,10 +383,10 @@ public class Wizard extends JPanel {
     }
 
     /**
-     * Checks if the wizard was canceled. This method will return <tt>false</tt>
+     * Checks if the wizard was canceled. This method will return {@code false}
      * unless the user canceled the wizard.
      *
-     * @return <tt>true</tt> if the user canceled the wizard, <tt>false</tt>
+     * @return {@code true} if the user canceled the wizard, {@code false}
      *         otherwise.
      */
     public boolean wasCanceled() {
@@ -398,7 +398,7 @@ public class Wizard extends JPanel {
      * {@link #activeStep} is {@link WizardStep#isBusy busy}. This method displays a
      * {@link JOptionPane} asking if the user wants to abort the wizard.
      *
-     * @return <tt>true</tt> if the user confirms the abort, <tt>false</tt>
+     * @return {@code true} if the user confirms the abort, {@code false}
      *         otherwise.
      */
     protected boolean confirmAbort() {
@@ -554,7 +554,7 @@ public class Wizard extends JPanel {
      *
      * @param title      the title of the frame.
      * @param relativeTo the new {@link JFrame} will be displayed relative to this
-     *                   component. If the component is <tt>null</tt>, the window
+     *                   component. If the component is {@code null}, the window
      *                   will be centered on the desktop as per
      *                   {@link JWindow#setLocationRelativeTo(java.awt.Component)}.
      * @see #addWizardListener
@@ -573,7 +573,7 @@ public class Wizard extends JPanel {
      * @param windowIcon the icon to use for the frame. This is used to configure
      *                   {@link javax.swing.JFrame#setIconImage(java.awt.Image)}.
      * @param relativeTo the new {@link JFrame} will be displayed relative to this
-     *                   component. If the component is <tt>null</tt>, the window
+     *                   component. If the component is {@code null}, the window
      *                   will be centered on the desktop as per
      *                   {@link JWindow#setLocationRelativeTo(java.awt.Component)}.
      * @see #addWizardListener
@@ -592,8 +592,8 @@ public class Wizard extends JPanel {
      *
      * @param title  the dialog title.
      * @param parent the component that will own the dialog.
-     * @param modal  <tt>true</tt> to make the dialog modal,
-     *               <tt>false otherwise</tt>.
+     * @param modal  {@code true} to make the dialog modal,
+     *               {@code false} otherwise.
      * @see #addWizardListener
      * @see #removeWizardListener
      */
@@ -647,7 +647,7 @@ public class Wizard extends JPanel {
      *
      * @param window     the window that will contain the wizard.
      * @param relativeTo the component used to position the window. If the component
-     *                   is <tt>null</tt>, the window will be centered on the
+     *                   is {@code null}, the window will be centered on the
      *                   desktop as per
      *                   {@link JWindow#setLocationRelativeTo(java.awt.Component)}.
      */

@@ -125,7 +125,7 @@ public class PanelWizardStep extends JPanel implements WizardStep {
     private Icon icon;
 
     /**
-     * Marks this step as being fully configured. Only when this is <tt>true</tt>
+     * Marks this step as being fully configured. Only when this is {@code true}
      * can the wizard progress. This is a bound property.
      */
     private boolean complete;
@@ -188,7 +188,7 @@ public class PanelWizardStep extends JPanel implements WizardStep {
      * Sets the {@link javax.swing.Icon} that represents this step.
      *
      * @param icon the {@link javax.swing.Icon} that represents this step, or
-     *             <tt>null</tt> if the step doesn't have an icon.
+     *             {@code null} if the step doesn't have an icon.
      */
     public void setIcon(Icon icon) {
         if ((this.icon != null && !this.icon.equals(icon)) || this.icon == null && icon != null) {
@@ -233,9 +233,9 @@ public class PanelWizardStep extends JPanel implements WizardStep {
 
     /**
      * Marks this step as compete. The wizard will not be able to proceed from this
-     * step until this property is configured to <tt>true</tt>.
+     * step until this property is configured to {@code true}.
      *
-     * @param complete <tt>true</tt> to allow the wizard to proceed, <tt>false</tt>
+     * @param complete {@code true} to allow the wizard to proceed, {@code false}
      *                 otherwise.
      * @see #isComplete
      */
@@ -259,8 +259,8 @@ public class PanelWizardStep extends JPanel implements WizardStep {
      * Wizard steps that go into a busy state must also implement {@link #abortBusy}
      * to cancel any in-progress operation.
      *
-     * @param busy <tt>true</tt> to mark the step as busy and disable further user
-     *             action, <tt>false</tt> to return the wizard to its normal state.
+     * @param busy {@code true} to mark the step as busy and disable further user
+     *             action, {@code false} to return the wizard to its normal state.
      */
     public void setBusy(boolean busy) {
         if (this.busy != busy) {

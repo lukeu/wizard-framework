@@ -87,8 +87,8 @@ public abstract class AbstractWizardModel implements WizardModel {
     /**
      * Configures if the previous button should be enabled.
      *
-     * @param previousAvailable <tt>true</tt> to enable the previous button,
-     *                          <tt>false</tt> otherwise.
+     * @param previousAvailable {@code true} to enable the previous button,
+     *                          {@code false} otherwise.
      */
     protected void setPreviousAvailable(boolean previousAvailable) {
         if (this.previousAvailable != previousAvailable) {
@@ -101,7 +101,7 @@ public abstract class AbstractWizardModel implements WizardModel {
     /**
      * Configures if the next button should be enabled.
      *
-     * @param nextAvailable <tt>true</tt> to enable the next button, <tt>false</tt>
+     * @param nextAvailable {@code true} to enable the next button, {@code false}
      *                      otherwise.
      */
     protected void setNextAvailable(boolean nextAvailable) {
@@ -115,7 +115,7 @@ public abstract class AbstractWizardModel implements WizardModel {
     /**
      * Configures if the last button should be enabled.
      *
-     * @param lastAvailable <tt>true</tt> to enable the last button, <tt>false</tt>
+     * @param lastAvailable {@code true} to enable the last button, {@code false}
      *                      otherwise.
      */
     protected void setLastAvailable(boolean lastAvailable) {
@@ -129,8 +129,8 @@ public abstract class AbstractWizardModel implements WizardModel {
     /**
      * Configures if the cncel button should be enabled.
      *
-     * @param cancelAvailable <tt>true</tt> to enable the cancel button,
-     *                        <tt>false</tt> otherwise.
+     * @param cancelAvailable {@code true} to enable the cancel button,
+     *                        {@code false} otherwise.
      */
     protected void setCancelAvailable(boolean cancelAvailable) {
         if (this.cancelAvailable != cancelAvailable) {
@@ -148,7 +148,7 @@ public abstract class AbstractWizardModel implements WizardModel {
     /**
      * Configures if the last button should be displayed.
      *
-     * @param lastVisible <tt>true</tt> to display the last button, <tt>false</tt>
+     * @param lastVisible {@code true} to display the last button, {@code false}
      *                    otherwise.
      * @see #isLastVisible
      */

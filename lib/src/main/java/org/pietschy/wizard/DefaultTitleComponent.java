@@ -130,7 +130,7 @@ public class DefaultTitleComponent extends JPanel {
      * Checks if the title is using a gradient background. Subclasses can control
      * the appearance of the gradient by overriding {@link #prepareGradient()}.
      *
-     * @return <tt>true</tt> if the background will use a gradient, <tt>false</tt>
+     * @return {@code true} if the background will use a gradient, {@code false}
      *         if the background will be painted using the background color.
      * @see #prepareGradient()
      */
@@ -142,7 +142,7 @@ public class DefaultTitleComponent extends JPanel {
      * Configures the title to use a gradient background. Subclasses can control the
      * appearance of the gradient by overriding {@link #prepareGradient()}.
      *
-     * @param gradientBackground <tt>true</tt> to paint a gradient background.
+     * @param gradientBackground {@code true} to paint a gradient background.
      * @see #prepareGradient()
      */
     public void setGradientBackground(boolean gradientBackground) {
@@ -177,7 +177,7 @@ public class DefaultTitleComponent extends JPanel {
      * If this method returns null, the component will be filled with the current
      * backgrount color.
      *
-     * @return the background paint to use for this component or <tt>null</tt> to
+     * @return the background paint to use for this component or {@code null} to
      *         use the default background color.
      */
     protected Paint prepareGradient() {

@@ -51,7 +51,7 @@ public interface WizardStep {
      * Gets the {@link javax.swing.Icon} that represents this step.
      *
      * @return the {@link javax.swing.Icon} that represents this step, or
-     *         <tt>null</tt> if the step doesn't have an icon.
+     *         {@code null} if the step doesn't have an icon.
      */
     Icon getIcon();
 
@@ -69,8 +69,8 @@ public interface WizardStep {
      * Checks if this step is compete. This method should return true if the wizard
      * can proceed to the next step.
      *
-     * @return <tt>true</tt> if the wizard can proceed from this step,
-     *         <tt>false</tt> otherwise.
+     * @return {@code true} if the wizard can proceed from this step,
+     *         {@code false} otherwise.
      */
     boolean isComplete();
 
@@ -78,8 +78,8 @@ public interface WizardStep {
      * Checks if the current task is busy. This usually indicates that the step is
      * performing a time consuming task on a background thread.
      *
-     * @return <tt>true</tt> if step is busy performing a background operation,
-     *         <tt>false</tt> otherwise.
+     * @return {@code true} if step is busy performing a background operation,
+     *         {@code false} otherwise.
      * @see #abortBusy()
      */
     boolean isBusy();
@@ -118,7 +118,7 @@ public interface WizardStep {
      *                               the user. If you wish to prevent this behaviour
      *                               please ensure
      *                               {@link InvalidStateException#setShowUser} is
-     *                               called with a value of <tt>false</tt>.
+     *                               called with a value of {@code false}.
      */
     void applyState() throws InvalidStateException;
 

@@ -43,7 +43,7 @@ public interface WizardModel {
     /**
      * Checks if the previous button should be enabled.
      *
-     * @return <tt>true</tt> if the previou button should be enabled, <tt>false</tt>
+     * @return {@code true} if the previou button should be enabled, {@code false}
      *         otherwise.
      */
     boolean isPreviousAvailable();
@@ -51,7 +51,7 @@ public interface WizardModel {
     /**
      * Checks if the next button should be enabled.
      *
-     * @return <tt>true</tt> if the next button should be enabled, <tt>false</tt>
+     * @return {@code true} if the next button should be enabled, {@code false}
      *         otherwise.
      */
     boolean isNextAvailable();
@@ -59,7 +59,7 @@ public interface WizardModel {
     /**
      * Checks if the last button should be enabled.
      *
-     * @return <tt>true</tt> if the last button should be enabled, <tt>false</tt>
+     * @return {@code true} if the last button should be enabled, {@code false}
      *         otherwise.
      * @see #isLastVisible
      */
@@ -68,21 +68,21 @@ public interface WizardModel {
     /**
      * Increments the model the the next step and fires the appropriate property
      * change events. This method must only be called if {@link #isNextAvailable}
-     * returns <tt>true</tt>.
+     * returns {@code true}.
      */
     void nextStep();
 
     /**
      * Takes the model back to the previsou step and fires the appropriate property
      * change events. This method must only be called if
-     * {@link #isPreviousAvailable} returns <tt>true</tt>.
+     * {@link #isPreviousAvailable} returns {@code true}.
      */
     void previousStep();
 
     /**
      * Takes the model to the last step in the wizard and fires the appropriate
      * property change events. This method must only be called if
-     * {@link #isLastAvailable} returns <tt>true</tt>.
+     * {@link #isLastAvailable} returns {@code true}.
      */
     void lastStep();
 
@@ -91,7 +91,7 @@ public interface WizardModel {
      * true if the {@link #isLastAvailable} will return true at any point. Returning
      * false will prevent the last button from appearing on the wizard at all.
      *
-     * @return <tt>true</tt> if the last button should be displayed, <tt>false</tt>
+     * @return {@code true} if the last button should be displayed, {@code false}
      *         otherwise.
      */
     boolean isLastVisible();
@@ -113,7 +113,7 @@ public interface WizardModel {
      * Checks if the specified step is the last step in the wizard.
      *
      * @param step the step to check
-     * @return <tt>true</tt> if its the final step in the wizard, <tt>false</tt>
+     * @return {@code true} if its the final step in the wizard, {@code false}
      *         otherwise.
      */
     boolean isLastStep(WizardStep step);

@@ -105,12 +105,12 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
     }
 
     /**
-     * Returns true if all the steps in the wizard return <tt>true</tt> from
+     * Returns true if all the steps in the wizard return {@code true} from
      * {@link WizardStep#isComplete}. This is primarily used to determine if the
      * last button can be enabled.
      *
-     * @return <tt>true</tt> if all the steps in the wizard are complete,
-     *         <tt>false</tt> otherwise.
+     * @return {@code true} if all the steps in the wizard are complete,
+     *         {@code false} otherwise.
      */
     public boolean allStepsComplete() {
         for (WizardStep step : steps) {

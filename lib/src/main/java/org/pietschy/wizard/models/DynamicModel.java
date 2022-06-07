@@ -61,7 +61,7 @@ import org.pietschy.wizard.WizardStep;
  */
 public class DynamicModel extends AbstractWizardModel {
 
-    /** An implementation of {@link Condition} that always returns <tt>true</tt>. */
+    /** An implementation of {@link Condition} that always returns {@code true}. */
     public static final Condition TRUE_CONDITION = model -> true;
 
     private final ArrayList<WizardStep> steps = new ArrayList<>();
@@ -145,7 +145,7 @@ public class DynamicModel extends AbstractWizardModel {
      * {@link Condition#evaluate(org.pietschy.wizard.WizardModel)}.
      * <p>
      * Subclasses that override this method must be sure to invoke
-     * <tt>super.refreshModelState()</tt>.
+     * {@code super.refreshModelState()}.
      */
     @Override
     public void refreshModelState() {
@@ -157,15 +157,15 @@ public class DynamicModel extends AbstractWizardModel {
     }
 
     /**
-     * Returns true if all included steps in the wizard return <tt>true</tt> from
+     * Returns true if all included steps in the wizard return {@code true} from
      * {@link WizardStep#isComplete}. This is primarily used to determine if the
      * last button can be enabled.
      * <p>
      * Please note that this method ignores all steps for which their
      * {@link Condition} returns false.
      *
-     * @return <tt>true</tt> if all the visible steps in the wizard are complete,
-     *         <tt>false</tt> otherwise.
+     * @return {@code true} if all the visible steps in the wizard are complete,
+     *         {@code false} otherwise.
      */
     public boolean allStepsComplete() {
         for (int i = 0; i < steps.size(); i++) {

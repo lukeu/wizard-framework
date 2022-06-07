@@ -72,7 +72,7 @@ public abstract class Path {
      * Checks if the specified step is the first step in the path.
      *
      * @param step the step to check
-     * @return <tt>true</tt> if the step is the first in the path, <tt>false</tt>
+     * @return {@code true} if the step is the first in the path, {@code false}
      *         otherwise.
      */
     public boolean isFirstStep(WizardStep step) {
@@ -83,7 +83,7 @@ public abstract class Path {
      * Checks if the specified step is the last step in the path.
      *
      * @param step the step to check
-     * @return <tt>true</tt> if the step is the last in the path, <tt>false</tt>
+     * @return {@code true} if the step is the last in the path, {@code false}
      *         otherwise.
      */
     public boolean isLastStep(WizardStep step) {

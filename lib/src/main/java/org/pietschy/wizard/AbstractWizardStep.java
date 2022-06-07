@@ -138,7 +138,7 @@ public abstract class AbstractWizardStep implements WizardStep {
     private Component view;
 
     /**
-     * Marks this step as being fully configured. Only when this is <tt>true</tt>
+     * Marks this step as being fully configured. Only when this is {@code true}
      * can the wizard progress. This is a bound property.
      */
     private boolean complete;
@@ -219,7 +219,7 @@ public abstract class AbstractWizardStep implements WizardStep {
      * Sets the {@link javax.swing.Icon} that represents this step.
      *
      * @param icon the {@link javax.swing.Icon} that represents this step, or
-     *             <tt>null</tt> if the step doesn't have an icon.
+     *             {@code null} if the step doesn't have an icon.
      */
     public void setIcon(Icon icon) {
         if ((this.icon != null && !this.icon.equals(icon)) || this.icon == null && icon != null) {
@@ -258,7 +258,7 @@ public abstract class AbstractWizardStep implements WizardStep {
      * can proceed to the next step. This property is bound and changes can be made
      * at anytime by calling {@link #setComplete(boolean)} .
      *
-     * @return <tt>true</tt> if the wizard can proceed from this step, <tt>false</tt> otherwise.
+     * @return {@code true} if the wizard can proceed from this step, {@code false} otherwise.
      */
     @Override
     public boolean isComplete() {
@@ -267,9 +267,9 @@ public abstract class AbstractWizardStep implements WizardStep {
 
     /**
      * Marks this step as compete. The wizard will not be able to proceed from this
-     * step until this property is configured to <tt>true</tt>.
+     * step until this property is configured to {@code true}.
      *
-     * @param complete <tt>true</tt> to allow the wizard to proceed, <tt>false</tt> otherwise.
+     * @param complete {@code true} to allow the wizard to proceed, {@code false} otherwise.
      */
     public void setComplete(boolean complete) {
         if (this.complete != complete) {
@@ -291,8 +291,8 @@ public abstract class AbstractWizardStep implements WizardStep {
      * Wizard steps that go into a busy state must also implement {@link #abortBusy}
      * to cancel any inprogress operation.
      *
-     * @param busy <tt>true</tt> to mark the step as busy and disable further user action,
-     *             <tt>false</tt> to return the wizard to its normal state.
+     * @param busy {@code true} to mark the step as busy and disable further user action,
+     *             {@code false} to return the wizard to its normal state.
      */
     public void setBusy(boolean busy) {
         if (this.busy != busy) {

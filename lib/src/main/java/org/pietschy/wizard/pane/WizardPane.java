@@ -64,7 +64,7 @@ public interface WizardPane {
      *                               the user. If you wish to prevent this behaviour
      *                               please ensure
      *                               {@link InvalidStateException#setShowUser}is
-     *                               called with a value of <tt>false</tt>.
+     *                               called with a value of {@code false}.
      */
     void applyState() throws InvalidStateException;
 

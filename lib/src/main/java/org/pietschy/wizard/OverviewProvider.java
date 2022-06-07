@@ -27,14 +27,14 @@ import javax.swing.JComponent;
  * <p>
  * If the models implements this interface, the overview will be displayed in
  * the left pane of the wizard. The overview can be hidden by calling
- * {@link Wizard#setOverviewVisible} with a value of <tt>false</tt>.
+ * {@link Wizard#setOverviewVisible} with a value of {@code false}.
  */
 public interface OverviewProvider {
     /**
      * Called to get a component that provides an overview of the wizard. This
      * component will be shown in the wizard on the side corresponding the
      * {@link java.awt.BorderLayout#LINE_START}. The overview can be disabled
-     * by calling {@link Wizard#setOverviewVisible} with a value of <tt>false</tt>.
+     * by calling {@link Wizard#setOverviewVisible} with a value of {@code false}.
      *
      * @return a component that provides an overview of the wizard progress.
      */

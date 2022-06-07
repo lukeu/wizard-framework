@@ -57,7 +57,7 @@ public class BranchingPath extends Path {
      * Adds a possible branch from this path.
      *
      * @param path      the {@link Path} to traverse based when the condition
-     *                  returns <tt>true</tt>.
+     *                  returns {@code true}.
      * @param condition a {@link Condition} that activates this path.
      */
     public void addBranch(Path path, Condition condition) {

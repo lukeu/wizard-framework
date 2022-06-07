@@ -23,7 +23,7 @@ package org.pietschy.wizard;
  * This exception is thrown by {@link WizardStep} instances if the call to
  * {@link WizardStep#applyState} can't be fullfilled. By default this
  * exception's message will be displayed to the user. To disable this feature,
- * please ensure you call {@link #setShowUser} with the value of <tt>false</tt>.
+ * please ensure you call {@link #setShowUser} with the value of {@code false}.
  */
 public class InvalidStateException extends Exception {
     private boolean showUser = true;
@@ -53,7 +53,7 @@ public class InvalidStateException extends Exception {
     /**
      * Checks if this exception should be presented to the user.
      *
-     * @return <tt>true</tt> to present the exception to the user, <tt>false</tt>
+     * @return {@code true} to present the exception to the user, {@code false}
      *         otherwise.
      */
     public boolean isShowUser() {
@@ -63,8 +63,8 @@ public class InvalidStateException extends Exception {
     /**
      * Configures if this exception should be presented to the user.
      *
-     * @param showUser <tt>true</tt> to present the exception to the user,
-     *                 <tt>false</tt> otherwise.
+     * @param showUser {@code true} to present the exception to the user,
+     *                 {@code false} otherwise.
      */
     public void setShowUser(boolean showUser) {
         this.showUser = showUser;
