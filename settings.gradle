@@ -8,4 +8,4 @@
  */
 
 rootProject.name = 'wizard-framework'
-include('lib')
+include('wizard')
