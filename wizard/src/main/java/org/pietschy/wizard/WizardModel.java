@@ -68,6 +68,16 @@ public interface WizardModel {
     boolean isLastAvailable();
 
     /**
+     * Checks if the last button should be displayed. This method should only return
+     * true if the {@link #isLastAvailable} will return true at any point. Returning
+     * false will prevent the last button from appearing on the wizard at all.
+     *
+     * @return {@code true} if the last button should be displayed, {@code false}
+     *         otherwise.
+     */
+    boolean isLastVisible();
+
+    /**
      * Increments the model the the next step and fires the appropriate property
      * change events. This method must only be called if {@link #isNextAvailable}
      * returns {@code true}.
@@ -87,16 +97,6 @@ public interface WizardModel {
      * {@link #isLastAvailable} returns {@code true}.
      */
     void lastStep();
-
-    /**
-     * Checks if the last button should be displayed. This method should only return
-     * true if the {@link #isLastAvailable} will return true at any point. Returning
-     * false will prevent the last button from appearing on the wizard at all.
-     *
-     * @return {@code true} if the last button should be displayed, {@code false}
-     *         otherwise.
-     */
-    boolean isLastVisible();
 
     /**
      * Takes the model back to the first step and fires the appropriate property
@@ -174,4 +174,8 @@ public interface WizardModel {
      * {@link WizardStep} to force a refresh.
      */
     void refreshModelState();
+
+    default boolean isCancelAvailable() {
+        return true;
+    }
 }

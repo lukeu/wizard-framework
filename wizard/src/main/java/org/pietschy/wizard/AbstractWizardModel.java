@@ -132,7 +132,7 @@ public abstract class AbstractWizardModel implements WizardModel {
     }
 
     /**
-     * Configures if the cncel button should be enabled.
+     * Configures if the cancel button should be enabled.
      *
      * @param cancelAvailable {@code true} to enable the cancel button,
      *                        {@code false} otherwise.
@@ -143,6 +143,11 @@ public abstract class AbstractWizardModel implements WizardModel {
             this.cancelAvailable = cancelAvailable;
             pcs.firePropertyChange("cancelAvailable", old, cancelAvailable);
         }
+    }
+
+    @Override
+    public boolean isCancelAvailable() {
+       return cancelAvailable;
     }
 
     @Override

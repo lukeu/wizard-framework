@@ -33,5 +33,6 @@ class CancelAction extends WizardAction {
 
     @Override
     protected void updateState() {
+        setEnabled(getModel().isCancelAvailable());
     }
 }
