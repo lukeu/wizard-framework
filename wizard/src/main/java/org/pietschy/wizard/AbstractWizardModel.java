@@ -41,7 +41,12 @@ public abstract class AbstractWizardModel implements WizardModel {
 
     private final PropertyChangeListener completeListener = evt -> {
         if (evt.getPropertyName().equals("complete")) {
-            refreshModelState();
+
+            // only respond to the complete step when there is an active step. This catches the case
+            // where setComplete is called while during init before the model has been started.
+            if (getActiveStep() != null) {
+               refreshModelState();
+            }
         }
     };
 
