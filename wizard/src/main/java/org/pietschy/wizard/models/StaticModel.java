@@ -76,6 +76,21 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
         setActiveStep(steps.get(currentStep));
     }
 
+    public void jumpToStep(WizardStep step) {
+        boolean jumped = false;
+        for (int ii = 0; ii < steps.size(); ++ii) {
+            if (steps.get(ii) == step) {
+                currentStep = ii;
+                jumped = true;
+                setActiveStep(step);
+            }
+        }
+
+        if (!jumped) {
+            throw new IllegalStateException("Unknown step");
+        }
+   }
+
     @Override
     public boolean isLastStep(WizardStep step) {
         return steps.indexOf(step) == steps.size() - 1;
@@ -134,5 +149,10 @@ public class StaticModel extends AbstractWizardModel implements OverviewProvider
         }
 
         return overviewComponent;
+    }
+
+    /** Returns true if and only if jumping to the given step is allowed from the current step. */
+    public boolean isJumpAllowed(WizardStep step) {
+       return false;
     }
 }
