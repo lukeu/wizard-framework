@@ -1,6 +1,6 @@
+
 Changes in 0.1.12
 - Updated LastAction to call applyState on the active page when pressed.
-
 
 Changes in 0.1.11
 - Added missing setters to AbstractWizardStep and PanelWizardStep and updated existing
