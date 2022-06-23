@@ -1,4 +1,31 @@
 
+# Swing Wizard Framework
+
+This format is (now) based on [Keep a Changelog](http://keepachangelog.com/)
+
+## Not yet released...
+
+### Added
+ - Expose 'isCancelAvailable' and use in the CancelAction
+ - Permit clicking the overview to jump to a step. (If using `StaticModel` and the code opts in)
+
+### Fixed
+ - Only respond to `setComplete` when there is an active step
+
+## [0.2] - 2022-06-03
+
+### Changed
+ - Make copyright headers more inclusive to new authors
+ - Switched to a Gradle build
+ - Modernised the code:
+   - Now requires Java 8 or later.
+   - Reformatted to Google's Java Style Guidelines (with +4 space indent)
+ - Fixed compiler warnings and enforce some strictly
+
+-------------------------------------
+
+# Original CHANGES.TXT ...
+
 Changes in 0.1.12
 - Updated LastAction to call applyState on the active page when pressed.
 

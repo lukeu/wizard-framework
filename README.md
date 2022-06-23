@@ -19,13 +19,14 @@ I reached out to the primary author, Andrew Pietsch, asking if he had any prefer
 So I've resurrected it here on github, and retained the original package `org.pietschy.*` for compatibility. (Note however, his website is on pietschy.com these days.)
 
 The last binary release was v0.1.12, I've started by importing its source as the baseline, then:
- * Modernised the code - now requires Java 8 or later
+ * Modernised the code (now requires Java >= 8)
  * Switched to a Gradle build
- * Applied a few changes more recent than the binary release that I needed. (I only had a snapshot of the original SVN repo, but I did my best to reconstruct them as independent commits from the svn tags - see the git history for details.)
+ * Applied a few changes more recent than the binary release that I needed.
+    - (I only had a snapshot of the original SVN repo, but I did my best to reconstruct them as independent commits from the svn tags - see the git history for details.)
 
 I've then bumped the version to v0.2. The hope is to keep the API of 0.2.x backwardly
 compatible with 0.1.12, so that folks can just bump versions and pick up fixes and any
-new features.
+new features. More details in the [Changelog](CHANGELOG.md)
 
 Things planned:
 
