@@ -41,7 +41,12 @@ public abstract class AbstractWizardModel implements WizardModel {
 
     private final PropertyChangeListener completeListener = evt -> {
         if (evt.getPropertyName().equals("complete")) {
-            refreshModelState();
+
+            // only respond to the complete step when there is an active step. This catches the case
+            // where setComplete is called while during init before the model has been started.
+            if (getActiveStep() != null) {
+               refreshModelState();
+            }
         }
     };
 
@@ -127,7 +132,7 @@ public abstract class AbstractWizardModel implements WizardModel {
     }
 
     /**
-     * Configures if the cncel button should be enabled.
+     * Configures if the cancel button should be enabled.
      *
      * @param cancelAvailable {@code true} to enable the cancel button,
      *                        {@code false} otherwise.
@@ -138,6 +143,11 @@ public abstract class AbstractWizardModel implements WizardModel {
             this.cancelAvailable = cancelAvailable;
             pcs.firePropertyChange("cancelAvailable", old, cancelAvailable);
         }
+    }
+
+    @Override
+    public boolean isCancelAvailable() {
+       return cancelAvailable;
     }
 
     @Override

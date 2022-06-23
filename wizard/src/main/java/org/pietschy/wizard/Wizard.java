@@ -29,8 +29,6 @@ import java.awt.Window;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeListener;
-import java.util.Iterator;
-
 import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
@@ -135,8 +133,8 @@ public class Wizard extends JPanel {
         helpAction = new HelpAction(this);
 
         // initialize all the wizard steps.
-        for (Iterator<WizardStep> iter = model.stepIterator(); iter.hasNext();) {
-            iter.next().init(this.model);
+        for (WizardStep step : model.steps()) {
+            step.init(this.model);
         }
 
         setLayout(new BorderLayout());
@@ -468,8 +466,7 @@ public class Wizard extends JPanel {
         int w = 0;
         int h = 0;
 
-        for (Iterator<WizardStep> iter = getModel().stepIterator(); iter.hasNext();) {
-            WizardStep step = iter.next();
+        for (WizardStep step : getModel().steps()) {
             Dimension d = step.getPreferredSize();
 
             w = Math.max(d.width, w);

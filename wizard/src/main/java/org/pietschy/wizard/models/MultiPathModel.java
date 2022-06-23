@@ -19,8 +19,10 @@
 
 package org.pietschy.wizard.models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
@@ -189,8 +191,8 @@ public class MultiPathModel extends AbstractWizardModel {
      *         {@code false} otherwise.
      */
     public boolean allStepsComplete() {
-        for (Iterator<WizardStep> iterator = stepIterator(); iterator.hasNext();) {
-            if (!iterator.next().isComplete()) {
+        for (WizardStep step : steps()) {
+            if (!step.isComplete()) {
                 return false;
             }
         }
@@ -200,7 +202,12 @@ public class MultiPathModel extends AbstractWizardModel {
 
     @Override
     public Iterator<WizardStep> stepIterator() {
-        return pathMapping.keySet().iterator();
+        return steps().iterator();
+    }
+
+    @Override
+    public List<WizardStep> steps() {
+        return new ArrayList<>(pathMapping.keySet());
     }
 
     protected Path getPathForStep(WizardStep step) {
